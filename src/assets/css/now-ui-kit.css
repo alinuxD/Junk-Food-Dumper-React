@@ -4301,7 +4301,7 @@ img {
 .section-story-overview {
   padding: 50px 0; }
   .section-story-overview .image-container {
-    height: 335px;
+      height: 335px;
     position: relative;
     background-position: center center;
     background-size: cover;
@@ -5961,3 +5961,14 @@ td.rdtYear:hover {
   .nav-tabs {
     padding-left: 10px;
     padding-right: 10px; } }
+
+.input-group-text {
+  background-color: #FFFFFF;
+  border: 1px solid #E3E3E3;
+  border-radius: 30px;
+  color: #555555;
+  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out; }

@@ -132,11 +132,11 @@
         }
     }
     .input-group-prepend{
-      .input-group-text{
-          background-color: $opacity-gray-3;
-          border: none;
-          border-left: transparent !important;
-      }
+        .input-group-text{
+            background-color: $opacity-gray-3;
+            border: none;
+            border-left: transparent !important;
+        }
     }
 
     &.input-group-focus{
@@ -168,8 +168,8 @@
     @include transition-input-focus-color();
 
     .input-group-focus &{
-      background-color: $white-bg;
-      border-color: $primary-color;
+        background-color: $white-bg;
+        border-color: $primary-color;
     }
 
     .has-success &,
@@ -207,31 +207,31 @@
 
 .input-group,
 .form-group{
-  .input-group-prepend{
-    margin-right: 0;
+    .input-group-prepend{
+        margin-right: 0;
 
-    .input-group-text {
-      border-left: 1px solid #E3E3E3;
-    }
-  }
-  .input-group-append .input-group-text {
-    border-right: 1px solid #E3E3E3;
-    padding: 10px 18px 10px 0;
-  }
-
-  &.input-group-focus {
-    .input-group-prepend .input-group-text {
-      border-left: 1px solid #f96332;
+        .input-group-text {
+            border-left: 1px solid #E3E3E3;
+        }
     }
     .input-group-append .input-group-text {
-      border-right: 1px solid #f96332;
+        border-right: 1px solid #E3E3E3;
+        padding: 10px 18px 10px 0;
     }
-    &.no-border{
-      .input-group-prepend .input-group-text{
-        border-left: transparent;
-      }
+
+    &.input-group-focus {
+        .input-group-prepend .input-group-text {
+            border-left: 1px solid #f96332;
+        }
+        .input-group-append .input-group-text {
+            border-right: 1px solid #f96332;
+        }
+        &.no-border{
+            .input-group-prepend .input-group-text{
+                border-left: transparent;
+            }
+        }
     }
-  }
 }
 
 .input-group .form-control:first-child,
@@ -303,13 +303,63 @@ textarea.form-control{
 
 // Input files - hide actual input - requires specific markup in the sample.
 .form-group input[type=file] {
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+
+.with-border {
+    padding: -20px -20px -20px -20px !important;
+    border: 2px solid #000 !important;
+    border-radius:10px !important;
+    width:10px !important;
+    height: 50px !important;
+    margin-top: 20px;
+}
+
+.newCard {
+    width:50%;
+}
+
+.anotherCard {
+    width:60%;
+    margin-top: 50px;
+    margin-left: 120px;
+    align-content: center;
+}
+
+.newBorder {
+    border: 2px solid greenyellow !important;
+    border-radius:100% !important;
+    width: 100px;
+    height: 250px;
+    line-height: 100px;
+    text-align: center;
+    display: inline-block;
+    background: greenyellow;
+    text-decoration: none;
+    color: #117a8b;
+}
+
+.anotherNewCard1 {
+    width:100%;
+    margin-top: 10px;
+    margin-left: 120px;
+    margin-right: 120px;
+    align-content: center;
+}
+
+.anotherNewCard2 {
+    width:100%;
+    margin-top: 150px;
+    margin-left: 0px;
+    margin-right: 120px;
+    align-content: center;
 }
