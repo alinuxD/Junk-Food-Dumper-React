@@ -7,7 +7,7 @@ import {
 
 // core components
 
-function HomePageHeader() {
+function BMIPageHeader() {
     let pageHeader = React.createRef();
 
     React.useEffect(() => {
@@ -30,7 +30,7 @@ function HomePageHeader() {
                     className="page-header-image"
                     style={{
                         backgroundImage:
-                            "url(" + require("assets/img/BMI2.jpg").default + ")",
+                            "url(" + require("assets/img/BMI2.jpeg").default + ")",
                     }}
                     ref={pageHeader}
                 ></div>
@@ -44,4 +44,4 @@ function HomePageHeader() {
     );
 }
 
-export default HomePageHeader;
+export default BMIPageHeader;

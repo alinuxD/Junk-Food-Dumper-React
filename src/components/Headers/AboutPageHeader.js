@@ -7,7 +7,7 @@ import {
 
 // core components
 
-function HomePageHeader() {
+function AboutPageHeader() {
     let pageHeader = React.createRef();
 
     React.useEffect(() => {
@@ -30,16 +30,15 @@ function HomePageHeader() {
                     className="page-header-image"
                     style={{
                         backgroundImage:
-                            "url(" + require("assets/img/landing_back_ground.jpg").default + ")",
+                            "url(" + require("assets/img/Main_background.png").default + ")",
                     }}
                     ref={pageHeader}
                 ></div>
                 <div className="content-center">
                     <Container>
-                        <h1 className="title">
-                            Junk Food Dumper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your healthy diet mentor
+                        <h1 className="title">About Us
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </h1>
                     </Container>
                 </div>
@@ -48,4 +47,4 @@ function HomePageHeader() {
     );
 }
 
-export default HomePageHeader;
+export default AboutPageHeader;

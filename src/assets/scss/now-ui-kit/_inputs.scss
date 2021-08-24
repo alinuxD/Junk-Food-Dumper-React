@@ -317,35 +317,38 @@ textarea.form-control{
 
 .with-border {
     padding: -20px -20px -20px -20px !important;
-    border: 2px solid #000 !important;
+    border: 1px solid #000 !important;
     border-radius:10px !important;
     width:10px !important;
-    height: 50px !important;
-    margin-top: 20px;
+    height: 40px !important;
+    margin-top: 25px;
 }
 
 .newCard {
     width:50%;
+    margin-right: 350px;
+    margin-top: 50px;
 }
 
 .anotherCard {
-    width:60%;
-    margin-top: 50px;
-    margin-left: 120px;
+    width:100%;
+    margin-top: -30px;
+    margin-left: 60px;
     align-content: center;
 }
 
 .newBorder {
-    border: 2px solid greenyellow !important;
+    //border: 2px solid greenyellow !important;
     border-radius:100% !important;
-    width: 100px;
-    height: 250px;
-    line-height: 100px;
+    width: 130px;
+    height: 130px;
+    line-height: 150px;
     text-align: center;
     display: inline-block;
     background: greenyellow;
     text-decoration: none;
     color: #117a8b;
+    margin-top: -20px;
 }
 
 .anotherNewCard1 {
@@ -363,3 +366,11 @@ textarea.form-control{
     margin-right: 120px;
     align-content: center;
 }
+
+.newButton {
+    border-width: 1px;
+    border-radius: 50px !important;
+    padding: 11px 25px !important;
+    width: 250px;
+    height: 50px;
+    margin-left: 100px}

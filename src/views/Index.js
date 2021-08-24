@@ -10,6 +10,7 @@ import IndexHeader from "components/Headers/IndexHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
 
 // sections for this page
+import FoodRatingExample from "../components/FootRating/FoodRatingExample";
 import Images from "./index-sections/Images.js";
 import BasicElements from "./index-sections/BasicElements.js";
 import Navbars from "./index-sections/Navbars.js";
@@ -42,6 +43,7 @@ function Index() {
       <IndexNavbar />
       <div className="wrapper">
         <IndexHeader />
+        <FoodRatingExample />
         <div className="main">
           <Images />
           <BasicElements />

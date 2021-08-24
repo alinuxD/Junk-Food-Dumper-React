@@ -31,6 +31,8 @@ import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import HomePage from "views/HomePage.js"
+import AboutPage from "./views/AboutPage";
+import BmiPage from "./views/BmiPage";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -41,13 +43,13 @@ ReactDOM.render(
                render={(props) => <HomePage {...props} />}
         />
 
-        {/*<Route path="/about-page"*/}
-        {/*       render={(props) => <AboutPage {...props} />}*/}
-        {/*/>*/}
+        <Route path="/about-page"
+               render={(props) => <AboutPage {...props} />}
+        />
 
-        {/*<Route path="/bmi-page"*/}
-        {/*       render={(props) => <BmiPage {...props} />}*/}
-        {/*/>*/}
+        <Route path="/bmi-page"
+               render={(props) => <BmiPage {...props} />}
+        />
 
         {/*<Route path="/food-details-page"*/}
         {/*       render={(props) => <FoodDetailsPage {...props} />}*/}
