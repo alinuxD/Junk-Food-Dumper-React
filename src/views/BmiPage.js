@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 // reactstrap components
 import {
@@ -15,36 +15,37 @@ import {
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import BMIPageHeader from "../components/Headers/BMIPageHeader";
+import RecommendExercise from "../components/ExerciseComponents/RecommendExercise";
+
 import GaugeChart from 'react-gauge-chart';
 import ReactSpeedometer from "react-d3-speedometer";
 
 
 
-function calcu() {
-    // if (document.getElementById("click") != null) {
-    if(document.getElementById('w') == null || document.getElementById('h') == null ){
-        return 15;
-    }
-    var s1 = document.getElementById('w').value;
-    var s2 = document.getElementById('h').value;
+function calcu(weight,height) {
+    var s1 = weight;
+    var s2 = height;
     var s3 = Number(s1)/((Number(s2)/100)*(Number(s2)/100));
     if (s3 >= 15 && s3 <= 35) {
         // document.getElementById('result').innerHTML=s3.toFixed(1);
         return s3.toFixed(1);
     } else {
         // document.getElementById('result').innerHTML=0;
-        return 15;
+        return "error";
     }
-    // } else {
-    //
-    //     return 15;
-    // }
-
-
 }
 
 function BmiPage() {
+    //state
     const [bmi, setBmi] = React.useState(15);
+    const [age, setAge] = useState(null)
+    const [height, setHeight] = useState(null)
+    const [weight,setWeight] = useState(null)
+    // exerciseWeight is the value that will send to RecommendExercise component
+    const [exerciseWeight, setExerciseWeight]= useState(50)
+    const [exerciseDivDisplay, setExerciseDivDisplay]=useState('none')
+
+
     const [firstFocus, setFirstFocus] = React.useState(false);
     const [lastFocus, setLastFocus] = React.useState(false);
     React.useEffect(() => {
@@ -59,7 +60,14 @@ function BmiPage() {
         };
     }, []);
 
-    var chartValue =0;
+    //submit Button function
+    const submitValue = () => {
+        setBmi(calcu(weight,height))
+
+        setExerciseWeight(weight)
+        setExerciseDivDisplay('block')
+
+    }
 
     return (
         <>
@@ -98,6 +106,7 @@ function BmiPage() {
 
                                                    onFocus={() => setFirstFocus(true)}
                                                    onBlur={() => setFirstFocus(false)}
+                                                   onChange = {e => setAge(e.target.value)}
                                             ></Input>
 
                                         </InputGroup>
@@ -112,6 +121,7 @@ function BmiPage() {
                                                    id='h'
                                                    onFocus={() => setFirstFocus(true)}
                                                    onBlur={() => setFirstFocus(false)}
+                                                   onChange = {e => setHeight(e.target.value)}
                                             ></Input>
 
                                             <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
@@ -129,6 +139,7 @@ function BmiPage() {
                                                    id='w'
                                                    onFocus={() => setFirstFocus(true)}
                                                    onBlur={() => setFirstFocus(false)}
+                                                   onChange = {e => setWeight(e.target.value)}
                                             ></Input>
 
                                             <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
@@ -190,7 +201,7 @@ function BmiPage() {
                                                 ringWidth={60}
                                                 width={500}
                                                 height={500}
-                                                labelFontSize={15}
+                                                labelFontSize={"15"}
                                                 paddingHorizontal={100}
                                             />
                                         </CardBody>
@@ -201,7 +212,7 @@ function BmiPage() {
                                         block
                                         className="newButton"
                                         color="info"
-                                        onClick={() => setBmi(calcu())}
+                                        onClick={submitValue}
                                         size="lg"
                                     >
                                         Get Your BMI!
@@ -238,9 +249,11 @@ function BmiPage() {
                                 </Card>
                             </Col>
                         </div>
+                        <div style={{display:exerciseDivDisplay}}>
+                            <RecommendExercise value={exerciseWeight}/>
+                        </div>
                     </Container>
                 </div>
-
 
                 <DefaultFooter />
             </div>

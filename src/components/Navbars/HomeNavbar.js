@@ -106,21 +106,21 @@ function HomeNavbar() {
                                     BMI Calculator
                                 </NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink to="/food-details-page" tag={Link}>
-                                    Food Details
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink to="/diet-plan-page" tag={Link}>
-                                    Diet Plan
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink to="/help-page">
-                                    Help
-                                </NavLink>
-                            </NavItem>
+                            {/*<NavItem>*/}
+                            {/*    <NavLink to="/food-details-page" tag={Link}>*/}
+                            {/*        Food Details*/}
+                            {/*    </NavLink>*/}
+                            {/*</NavItem>*/}
+                            {/*<NavItem>*/}
+                            {/*    <NavLink to="/diet-plan-page" tag={Link}>*/}
+                            {/*        Diet Plan*/}
+                            {/*    </NavLink>*/}
+                            {/*</NavItem>*/}
+                            {/*<NavItem>*/}
+                            {/*    <NavLink to="/help-page">*/}
+                            {/*        Help*/}
+                            {/*    </NavLink>*/}
+                            {/*</NavItem>*/}
                         </Nav>
                     </Collapse>
                 </Container>
