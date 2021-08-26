@@ -39,33 +39,59 @@ function RecommendExercise(props){
     return (
         <>
 
-                <Row>
-                    <Col className="ml-auto mr-auto text-center" md="6">
-                        <h3 className="title">Recommended Exercise</h3>
-                        <h5>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th>Exercise Name</th>
-                                        <th>Calories Burnt per hour</th>
-                                    </tr>
-                                    <tr >
-                                        <td>{exercise.exerciseList[randomList[0]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <td>{round(exercise.exerciseList[randomList[0]].calories*parseInt(props.value),2)}</td>
-                                    </tr>
-                                    <tr >
-                                        <td>{exercise.exerciseList[randomList[1]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <td>{round(exercise.exerciseList[randomList[1]].calories*parseInt(props.value),2)}</td>
-                                    </tr >
-                                    <tr>
-                                        <td>{exercise.exerciseList[randomList[2]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <td>{round(exercise.exerciseList[randomList[2]].calories*parseInt(props.value),2)}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </h5>
-                    </Col>
-                </Row>
+            <Row>
+                <h2 className="title">Recommended Exercise</h2>
+                <Col className="ml-auto  text-center" md="6">
+
+                    <h4>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th>Exercise Name</th>
+                                <th>Calories Burnt / H</th>
+                            </tr>
+                            <tr >
+                                <td>{exercise.exerciseList[randomList[0]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>{round(exercise.exerciseList[randomList[0]].calories*parseInt(props.value),2)}</td>
+                            </tr>
+                            <tr >
+                                <td>{exercise.exerciseList[randomList[1]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>{round(exercise.exerciseList[randomList[1]].calories*parseInt(props.value),2)}</td>
+                            </tr >
+                            <tr>
+                                <td>{exercise.exerciseList[randomList[2]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>{round(exercise.exerciseList[randomList[2]].calories*parseInt(props.value),2)}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </h4>
+                </Col>
+            </Row>
+            <Row style={{marginTop:"63px"}}>
+                <Col md="6">
+
+                    <h3 className="title">
+                        <br></br><br></br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Do you know
+                    </h3>
+                </Col>
+                <Col md="6">
+                    <h3>
+
+                    </h3>
+                    <h5>
+                        <br></br>
+                        To lose 1 kilogram, you need to burn 7,700 calories.
+                        Our recommendation is to choose an exercise you like and keep exercise and for your healthy life.
+                    </h5>
+                    <h3 style={{color:'red'}}>
+                        <b>Please contact your GP for healthy advices before exercise</b>
+                    </h3>
+                </Col>
+            </Row>
 
         </>
     )

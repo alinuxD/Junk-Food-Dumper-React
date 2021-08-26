@@ -17,8 +17,8 @@ import HomeNavbar from "../components/Navbars/HomeNavbar";
 import BMIPageHeader from "../components/Headers/BMIPageHeader";
 import RecommendExercise from "../components/ExerciseComponents/RecommendExercise";
 
-import GaugeChart from 'react-gauge-chart';
 import ReactSpeedometer from "react-d3-speedometer";
+import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
 
 
 
@@ -26,7 +26,7 @@ function calcu(weight,height) {
     var s1 = weight;
     var s2 = height;
     var s3 = Number(s1)/((Number(s2)/100)*(Number(s2)/100));
-    if (s3 >= 15 && s3 <= 35) {
+    if (s3 >= 10 && s3 <= 40) {
         return s3.toFixed(1);
     } else {
         return "error";
@@ -88,19 +88,21 @@ function select(age,gender) {
 
 function BmiPage() {
     //state
-    const [bmi, setBmi] = React.useState(12);
-    const [age, setAge] = useState(10)
+    const [bmi, setBmi] = React.useState("12");
+    const [speedBmi, setSpeedBmi] = React.useState("12");
+    const [age, setAge] = useState(9)
     const [height, setHeight] = useState(null)
     const [weight,setWeight] = useState(null)
     // exerciseWeight is the value that will send to RecommendExercise component
     const [exerciseWeight, setExerciseWeight]= useState(50)
     const [exerciseDivDisplay, setExerciseDivDisplay]=useState('none')
+    const [bmiDivDisplay, setBmiDivDisplay]=useState('none')
     const [guide, setGuide] = React.useState([12,15,24,27,29]);
     const [gender, setGender] = React.useState('Male');
 
 
     const [firstFocus, setFirstFocus] = React.useState(false);
-    const [lastFocus, setLastFocus] = React.useState(false);
+    // const [lastFocus, setLastFocus] = React.useState(false);
     React.useEffect(() => {
         document.body.classList.add("home-page");
         document.body.classList.add("sidebar-collapse");
@@ -115,12 +117,23 @@ function BmiPage() {
 
     //submit Button function
     const submitValue = () => {
-        setBmi(calcu(weight,height))
+        let calValue = calcu(weight,height)
+        if (age >=10 && age<=15   ){
 
-        setExerciseWeight(weight)
-        setExerciseDivDisplay('block')
-
-        setGuide(select(age,gender))
+            if (calValue != "error"){
+                setSpeedBmi(calValue)
+                setExerciseWeight(weight)
+                setGuide(select(age,gender))
+                setExerciseDivDisplay("block")
+            }else{
+                setExerciseDivDisplay("none")
+            }
+            setBmi(calValue)
+            setBmiDivDisplay("block")
+        }else {
+            alert("please input age between 10 - 15")
+            setExerciseDivDisplay('none')
+        }
 
     }
 
@@ -155,12 +168,12 @@ function BmiPage() {
                                             <h4 style={{marginTop:'40px',marginRight: '-40px'}}>Gender:</h4>
                                             <Input style={{marginTop:'50px',marginRight: '0px',marginLeft: '0px'}}
                                                    label="Male" type='Radio' checked={gender === 'Male'} value="Male"
-                                                   onClick={() => setGender('Male') }/>
+                                                   onChange={() => setGender('Male') }/>
                                             <font style={{fontSize: '1.5em',marginRight: '50px',marginLeft:'-20px',marginTop:'40px', fontWeight:'600'}}>Boy</font>
 
                                             <Input style={{marginTop:'50px',marginRight: '0px',marginLeft: '-50px'}}
                                                    label="Female" type='Radio' checked={gender === 'Female'} value="Female"
-                                                   onClick={() => setGender('Female')}/>
+                                                   onChange={() => setGender('Female')}/>
                                             <font style={{fontSize: '1.5em',marginRight: '100px',marginLeft:'-20px',marginTop:'40px', fontWeight:'600'}}>Girl</font>
 
                                         </InputGroup>
@@ -173,11 +186,11 @@ function BmiPage() {
 
                                             <Input className="with-border" style={{fontSize: '1.5em',marginRight: '250px',marginLeft: '27px'}}
                                                    placeholder="Age..."
-
+                                                   type='number'
                                                    onFocus={() => setFirstFocus(true)}
                                                    onBlur={() => setFirstFocus(true)}
                                                    onChange = {e => setAge(e.target.value)}
-                                            >q</Input>
+                                            ></Input>
 
                                         </InputGroup>
                                         <InputGroup style={{marginBottom: '20px'}}>
@@ -192,7 +205,7 @@ function BmiPage() {
                                                    onFocus={() => setFirstFocus(true)}
                                                    onBlur={() => setFirstFocus(true)}
                                                    onChange = {e => setHeight(e.target.value)}
-                                            >q</Input>
+                                            ></Input>
 
                                             <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
                                                 cm
@@ -210,7 +223,7 @@ function BmiPage() {
                                                    onFocus={() => setFirstFocus(true)}
                                                    onBlur={() => setFirstFocus(true)}
                                                    onChange = {e => setWeight(e.target.value)}
-                                            >q</Input>
+                                            ></Input>
 
                                             <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
                                                 Kg
@@ -221,7 +234,7 @@ function BmiPage() {
                                     <Col md="6" style={{float:'right'}}>
 
 
-                                        <h3 style={{marginTop:'80px',marginBottom:'-40px',marginLeft:'100px',display:exerciseDivDisplay}} >
+                                        <h3 style={{marginTop:'80px',marginBottom:'-40px',marginLeft:'100px',display:bmiDivDisplay}} >
                                             <font style={{marginRight: '15px',marginTop:'50px', fontWeight:'600'}}>
                                                 Your BMI:
                                             </font>
@@ -233,7 +246,7 @@ function BmiPage() {
 
                                         <CardBody style={{marginTop:'120px',fontSize: '3.0em',marginLeft: '-65px',marginRight:'150px'}}>
                                             <ReactSpeedometer
-                                                value={bmi}
+                                                value={speedBmi}
                                                 minValue={12}
                                                 maxValue={guide[4]}
                                                 segments={4}
@@ -266,8 +279,8 @@ function BmiPage() {
                                                 needleTransitionDuration={3000}
                                                 ringWidth={70}
                                                 width={500}
-                                                height={500}
-                                                labelFontSize={16}
+                                                // height={500}
+                                                labelFontSize={"16"}
                                                 paddingHorizontal={100}
                                             />
                                         </CardBody>
@@ -284,38 +297,31 @@ function BmiPage() {
                                     >
                                         Get Your BMI!
                                     </Button>
+                                    <div style={{display:exerciseDivDisplay}}>
+                                        <h2 className="title" style={{marginTop: '100px'}}>Recommended Calorie intake </h2>
+                                        <Col md="6" style={{float:'left'}}>
+                                            <CardBody className="anotherNewCard2" style={{marginTop: "36px"}}>
+                                                <RecommendIntake gender={gender} age={age}/>
 
-                                    <h2 className="title" style={{marginTop: '100px'}}>Recommended Calorie intake </h2>
-                                    <Col md="6" style={{float:'left'}}>
-                                        <CardBody className="anotherNewCard2">
-                                            <InputGroup style={{marginBottom: '20px'}}>
-                                                <h4 style={{marginRight: '15px',marginLeft: '-10px',textAlign: 'left'}}>
-                                                    Your calorie:
-                                                </h4>
-                                                <Input className="with-border" style={{fontSize: '1.5em',marginRight: '15px'}}
-                                                       placeholder="2300"
-                                                ></Input>
-                                                <h4 >
-                                                    Kcal/day
-                                                </h4>
-                                            </InputGroup>
-
-                                        </CardBody>
-                                    </Col>
-                                    <Col md="5" style={{float:'right',marginRight: '15px',marginLeft: '10px'}}>
-                                        <CardBody className="anotherNewCard1">
-                                            <div
-                                                className="image-container image-right"
-                                                style={{
-                                                    backgroundImage:
-                                                        "url(" + require("assets/img/Picture1.png").default + ")",
-                                                }}
-                                            ></div>
-                                        </CardBody>
-                                    </Col>
+                                            </CardBody>
+                                        </Col>
+                                        <Col md="5" style={{float:'right',marginRight: '15px',marginLeft: '10px'}}>
+                                            <CardBody className="anotherNewCard1" style={{marginTop: "-100px"}}>
+                                                <div
+                                                    className="image-container image-right"
+                                                    style={{
+                                                        backgroundImage:
+                                                            "url(" + require("assets/img/Picture1.png").default + ")",
+                                                    }}
+                                                ></div>
+                                            </CardBody>
+                                        </Col>
+                                    </div>
                                 </Card>
                             </Col>
                         </div>
+
+
                         <div style={{display:exerciseDivDisplay}}>
                             <RecommendExercise value={exerciseWeight}/>
                         </div>
