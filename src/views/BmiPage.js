@@ -27,23 +27,76 @@ function calcu(weight,height) {
     var s2 = height;
     var s3 = Number(s1)/((Number(s2)/100)*(Number(s2)/100));
     if (s3 >= 15 && s3 <= 35) {
-        // document.getElementById('result').innerHTML=s3.toFixed(1);
         return s3.toFixed(1);
     } else {
-        // document.getElementById('result').innerHTML=0;
         return "error";
     }
 }
 
+function select(age,gender) {
+    const a1 = age;
+    var a2 = [0,0,0,0,0];
+    if(gender === 'Male') {
+        if(Number(a1) === 10) {
+            a2 = [12,14.2,19.3,22.1,24.1];
+            return a2;
+        }else if(Number(a1) === 11) {
+            a2 = [12,14.5,20.1,23.2,25.2];
+            return a2;
+        }else if(Number(a1) === 12) {
+            a2 = [12,14.9,21,24.2,26.2];
+            return a2;
+        }else if(Number(a1) === 13) {
+            a2 = [12,15.4,21.8,25.1,27.1];
+            return a2;
+        }else if(Number(a1) === 14) {
+            a2 = [12,15.9,22.6,26,28];
+            return a2;
+        }else if(Number(a1) === 15) {
+            a2 = [12,16.5,23.4,26.8,28.8];
+            return a2;
+        }else {
+            return alert("please input age between 10 - 15")
+        }
+    } else if(gender === 'Female') {
+        if(Number(a1) === 10) {
+            a2 = [12,14,20,23,25];
+            return a2;
+        }else if(Number(a1) === 11) {
+            a2 = [12,14.4,20.8,24.1,26.1];
+            return a2;
+        }else if(Number(a1) === 12) {
+            a2 = [12,14.8,21.7,25.2,27.2];
+            return a2;
+        }else if(Number(a1) === 13) {
+            a2 = [12,15.3,22.5,26.2,28.2];
+            return a2;
+        }else if(Number(a1) === 14) {
+            a2 = [12,15.9,23.3,27.2,29.2];
+            return a2;
+        }else if(Number(a1) === 15) {
+            a2 = [12,16.3,24,28.1,30.1];
+            return a2;
+        }else {
+            return alert("please input age between 10 - 15")
+        }
+    }
+
+
+}
+
+
 function BmiPage() {
     //state
-    const [bmi, setBmi] = React.useState(15);
-    const [age, setAge] = useState(null)
+    const [bmi, setBmi] = React.useState(12);
+    const [age, setAge] = useState(10)
     const [height, setHeight] = useState(null)
     const [weight,setWeight] = useState(null)
     // exerciseWeight is the value that will send to RecommendExercise component
     const [exerciseWeight, setExerciseWeight]= useState(50)
     const [exerciseDivDisplay, setExerciseDivDisplay]=useState('none')
+    const [guide, setGuide] = React.useState([12,15,24,27,29]);
+    const [gender, setGender] = React.useState('Male');
 
 
     const [firstFocus, setFirstFocus] = React.useState(false);
@@ -66,6 +119,8 @@ function BmiPage() {
 
         setExerciseWeight(weight)
         setExerciseDivDisplay('block')
+
+        setGuide(select(age,gender))
 
     }
 
@@ -96,7 +151,22 @@ function BmiPage() {
                                     <h2 className="title">Calculate your child’s BMI below</h2>
                                     <Col md="6" style={{float:'left'}}>
 
-                                        <InputGroup style={{marginBottom: '20px',marginTop:'100px'}}>
+                                        <InputGroup >
+                                            <h4 style={{marginTop:'40px',marginRight: '-40px'}}>Gender:</h4>
+                                            <Input style={{marginTop:'50px',marginRight: '0px',marginLeft: '0px'}}
+                                                   label="Male" type='Radio' checked={gender === 'Male'} value="Male"
+                                                   onClick={() => setGender('Male') }/>
+                                            <font style={{fontSize: '1.5em',marginRight: '50px',marginLeft:'-20px',marginTop:'40px', fontWeight:'600'}}>Boy</font>
+
+                                            <Input style={{marginTop:'50px',marginRight: '0px',marginLeft: '-50px'}}
+                                                   label="Female" type='Radio' checked={gender === 'Female'} value="Female"
+                                                   onClick={() => setGender('Female')}/>
+                                            <font style={{fontSize: '1.5em',marginRight: '100px',marginLeft:'-20px',marginTop:'40px', fontWeight:'600'}}>Girl</font>
+
+                                        </InputGroup>
+
+
+                                        <InputGroup style={{marginBottom: '20px',marginTop:'10px'}}>
                                             <h4 style={{marginRight: '15px',marginLeft: '40px'}}>
                                                 Age:
                                             </h4>
@@ -105,9 +175,9 @@ function BmiPage() {
                                                    placeholder="Age..."
 
                                                    onFocus={() => setFirstFocus(true)}
-                                                   onBlur={() => setFirstFocus(false)}
+                                                   onBlur={() => setFirstFocus(true)}
                                                    onChange = {e => setAge(e.target.value)}
-                                            ></Input>
+                                            >q</Input>
 
                                         </InputGroup>
                                         <InputGroup style={{marginBottom: '20px'}}>
@@ -120,9 +190,9 @@ function BmiPage() {
                                                    type='number'
                                                    id='h'
                                                    onFocus={() => setFirstFocus(true)}
-                                                   onBlur={() => setFirstFocus(false)}
+                                                   onBlur={() => setFirstFocus(true)}
                                                    onChange = {e => setHeight(e.target.value)}
-                                            ></Input>
+                                            >q</Input>
 
                                             <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
                                                 cm
@@ -138,9 +208,9 @@ function BmiPage() {
                                                    type='number'
                                                    id='w'
                                                    onFocus={() => setFirstFocus(true)}
-                                                   onBlur={() => setFirstFocus(false)}
+                                                   onBlur={() => setFirstFocus(true)}
                                                    onChange = {e => setWeight(e.target.value)}
-                                            ></Input>
+                                            >q</Input>
 
                                             <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
                                                 Kg
@@ -151,7 +221,7 @@ function BmiPage() {
                                     <Col md="6" style={{float:'right'}}>
 
 
-                                        <h3 style={{marginTop:'80px',marginBottom:'-40px',marginLeft:'100px'}}>
+                                        <h3 style={{marginTop:'80px',marginBottom:'-40px',marginLeft:'100px',display:exerciseDivDisplay}} >
                                             <font style={{marginRight: '15px',marginTop:'50px', fontWeight:'600'}}>
                                                 Your BMI:
                                             </font>
@@ -160,51 +230,48 @@ function BmiPage() {
                                                 Kg/㎡
                                             </font>
                                         </h3>
-                                        {/*<GaugeChart style={{marginTop:'135px',fontSize: '1.0em',marginRight: '115px',width:'600px'}}*/}
-                                        {/*            id="gauge-chart5"*/}
-                                        {/*            nrOfLevels={320}*/}
-                                        {/*            arcsLength={[0.2, 0.5, 0.3]}*/}
-                                        {/*            colors={['#F5CD19', '#5BE12C', '#EA4228']}*/}
-                                        {/*            percent={0.5}*/}
-                                        {/*            arcPadding={0.02}*/}
-                                        {/*            textColor={'#000000'}*/}
-                                        {/*            formatTextValue={value=>value/2}*/}
 
-                                        {/*/>*/}
                                         <CardBody style={{marginTop:'120px',fontSize: '3.0em',marginLeft: '-65px',marginRight:'150px'}}>
                                             <ReactSpeedometer
                                                 value={bmi}
-                                                minValue={15}
-                                                maxValue={35}
+                                                minValue={12}
+                                                maxValue={guide[4]}
                                                 segments={4}
-                                                customSegmentStops={[15, 18.5, 25, 30,35]}
-                                                // customSegmentLabels={[
-                                                //     {
-                                                //         text: "Underweight",
-                                                //         position: "OUTSIDE",
-                                                //         color: "#555",
-                                                //     },
-                                                //     {
-                                                //         text: "Normal",
-                                                //         position: "OUTSIDE",
-                                                //         color: "#555",
-                                                //     },
-                                                //     {
-                                                //         text: "Overweight",
-                                                //         position: "OUTSIDE",
-                                                //         color: "#555",
-                                                //     }
-                                                // ]}
+                                                customSegmentStops={guide}
+                                                forceRender={true}
+                                                customSegmentLabels={[
+                                                    {
+                                                        text: "Underweight",
+                                                        position: "OUTSIDE",
+                                                        color: "#F5CD19",
+                                                    },
+                                                    {
+                                                        text: "Normal",
+                                                        position: "OUTSIDE",
+                                                        color: "#5BE12C",
+                                                    },
+                                                    {
+                                                        text: "Overweight",
+                                                        position: "OUTSIDE",
+                                                        color: "#ECA522",
+                                                    },
+                                                    {
+                                                        text: "Obese",
+                                                        position: "OUTSIDE",
+                                                        color: "#D44124",
+                                                    }
+                                                ]}
                                                 segmentColors={["#F5CD19", "#5BE12C", "#ECA522","#D44124"]}
                                                 needleTransition="easeElastic"
                                                 needleTransitionDuration={3000}
-                                                ringWidth={60}
+                                                ringWidth={70}
                                                 width={500}
                                                 height={500}
-                                                labelFontSize={"15"}
+                                                labelFontSize={16}
                                                 paddingHorizontal={100}
                                             />
                                         </CardBody>
+
 
                                     </Col>
                                     <Button
@@ -218,12 +285,12 @@ function BmiPage() {
                                         Get Your BMI!
                                     </Button>
 
-                                    <h2 className="title" style={{marginTop: '50px'}}>Recommended Calorie intake </h2>
+                                    <h2 className="title" style={{marginTop: '100px'}}>Recommended Calorie intake </h2>
                                     <Col md="6" style={{float:'left'}}>
                                         <CardBody className="anotherNewCard2">
                                             <InputGroup style={{marginBottom: '20px'}}>
                                                 <h4 style={{marginRight: '15px',marginLeft: '-10px',textAlign: 'left'}}>
-                                                    Calorie:
+                                                    Your calorie:
                                                 </h4>
                                                 <Input className="with-border" style={{fontSize: '1.5em',marginRight: '15px'}}
                                                        placeholder="2300"
