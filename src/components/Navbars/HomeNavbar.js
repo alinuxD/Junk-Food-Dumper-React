@@ -46,9 +46,9 @@ function HomeNavbar() {
                     }}
                 />
             ) : null}
-            <Navbar className={"fixed-top " + navbarColor} color={'white'} expand="xl">
+            <Navbar className={"fixed-top " + navbarColor} color={'white'} expand="xl" style={{backgroundColor: "#2125294a !important"}}>
                 <Container>
-                    <div className="navbar-translate">
+                    <div className="navbar-translate" >
                         <NavbarBrand
                             to="/home-page"
                             // target="_blank"
@@ -81,35 +81,35 @@ function HomeNavbar() {
                         isOpen={collapseOpen}
                         navbar
                     >
-                        <Nav navbar>
+                        <Nav navbar >
 
                             <NavItem>
-                                <NavLink to="/home-page" tag={Link}>
+                                <NavLink to="/home-page" tag={Link} style={{fontSize: "1em"}}>
                                     <p>Home</p>
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink to="/about-page" tag={Link}>
+                                <NavLink to="/about-page" tag={Link} style={{fontSize: "1em"}}>
                                     About
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink to="/bmi-page" tag={Link}>
+                                <NavLink to="/bmi-page" tag={Link} style={{fontSize: "1em"}}>
                                     BMI Calculator
                                 </NavLink>
                             </NavItem>
                             {/*<NavItem>*/}
-                            {/*    <NavLink to="/food-details-page" tag={Link}>*/}
+                            {/*    <NavLink to="/food-details-page" tag={Link} style={{fontSize: "1em"}}>*/}
                             {/*        Food Details*/}
                             {/*    </NavLink>*/}
                             {/*</NavItem>*/}
                             {/*<NavItem>*/}
-                            {/*    <NavLink to="/diet-plan-page" tag={Link}>*/}
+                            {/*    <NavLink to="/diet-plan-page" tag={Link} style={{fontSize: "1em"}}>*/}
                             {/*        Diet Plan*/}
                             {/*    </NavLink>*/}
                             {/*</NavItem>*/}
                             {/*<NavItem>*/}
-                            {/*    <NavLink to="/help-page">*/}
+                            {/*    <NavLink to="/help-page"> style={{fontSize: "1em"}}*/}
                             {/*        Help*/}
                             {/*    </NavLink>*/}
                             {/*</NavItem>*/}
