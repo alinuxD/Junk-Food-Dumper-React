@@ -43,38 +43,6 @@ function RecommendIntake(props){
         <>
 
             <div>
-            {/*<Row>*/}
-            {/*    <Col className="ml-auto mr-auto text-left" md="10">*/}
-            {/*        <div style={{*/}
-            {/*            backgroundImage:*/}
-            {/*                "url(" + require("assets/img/bg7.jpg").default + ")",*/}
-            {/*        }}>*/}
-            {/*            <h4  style={{marginRight: '-40px',fontWeight:'600'}}>Your Child's Activity Level:</h4>*/}
-            {/*            <InputGroup >*/}
-
-            {/*                <Input style={radioInput}*/}
-            {/*                       label="Male" type='Radio' checked={activity === 'sed'} value="sed"*/}
-            {/*                       onChange={() => setActivity('sed') }/>*/}
-            {/*                <div style={radionValue}>Not Active</div>*/}
-
-            {/*                <Input style={radioInput}*/}
-            {/*                       label="Female" type='Radio' checked={activity === 'mod'} value="mod"*/}
-            {/*                       onChange={() => setActivity('mod')}/>*/}
-            {/*                <div style={radionValue}>Moderately Active</div>*/}
-
-            {/*                <Input style={radioInput}*/}
-            {/*                       label="Female" type='Radio' checked={activity === 'act'} value="act"*/}
-            {/*                       onChange={() => setActivity('act')}/>*/}
-            {/*                <div style={radionValue}>Active</div>*/}
-
-            {/*            </InputGroup>*/}
-            {/*        </div>*/}
-            {/*        <h2 className="title">Recommend </h2>*/}
-            {/*        <h2 className="text-center" style={{color:"#ffbe00",fontWeight: 700}}>{guideline[ageLine][props.gender][activity]}   Kcal </h2>*/}
-            {/*        <h2 className="text-right"style={{fontWeight: 700}}>Intake Per Day </h2>*/}
-
-            {/*    </Col>*/}
-            {/*</Row>*/}
                 <InputGroup >
                     <h3 style={{marginRight: '15px',marginLeft: '-10px',textAlign: 'left'}}>
                         Your calorie:
@@ -104,10 +72,6 @@ function RecommendIntake(props){
                                 <div style={radionValue}>Active</div>
 
                             </InputGroup>
-
-
-
-
             </div>
         </>
     )

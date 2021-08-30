@@ -1,13 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/img/logo_black.png"
+
 // reactstrap components
 import {
     Collapse,
-    // DropdownToggle,
-    // DropdownMenu,
-    // DropdownItem,
-    // UncontrolledDropdown,
     NavbarBrand,
     Navbar,
     NavItem,
@@ -53,18 +49,14 @@ function HomeNavbar() {
             <Navbar className={"fixed-top " + navbarColor} color={'white'} expand="xl">
                 <Container>
                     <div className="navbar-translate">
-                        <NavbarBrand>
-
-                            <img src={logo} alt="description of it" height={80}/>
-
-                        </NavbarBrand>
                         <NavbarBrand
                             to="/home-page"
                             // target="_blank"
                             id="navbar-brand"
+                            style={{fontSize: "1.8571em"}}
                         >
 
-                            Techpathy
+                            Junk Food Dumper
                         </NavbarBrand>
 
                         <UncontrolledTooltip target="#navbar-brand">

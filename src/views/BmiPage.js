@@ -127,9 +127,11 @@ function BmiPage() {
                 setExerciseDivDisplay("block")
             }else{
                 setExerciseDivDisplay("none")
+                setBmiDivDisplay("none")
+                alert("Height and  weight are out of range!")
             }
             setBmi(calValue)
-            setBmiDivDisplay("block")
+
         }else {
             alert("please input age between 10 - 15")
             setExerciseDivDisplay('none')
