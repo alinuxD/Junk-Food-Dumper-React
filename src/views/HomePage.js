@@ -59,9 +59,9 @@ function HomePage() {
                                         What is Junk Food Dumper?
                                     </h3>
                                     <p>
-                                        Junk food dumper allows you to choose the perfect diet based on your preferences.
-                                        It also shows you the clorie intake necessary to be healthy along with nutritional value of various food items.
-                                        T his is a perfect website that would help you on your journey towards a healthy lifestyle for your children.
+                                        <b>Junk food dumper allows you to choose the perfect diet based on your preferences.
+                                        It also shows you the calorie intake necessary to be healthy along with nutritional value of various food items.
+                                            This is a perfect website that would help you on your journey towards a healthy lifestyle for your children.</b>
                                     </p>
                                     <div
                                         className="image-container image-right"
@@ -74,16 +74,16 @@ function HomePage() {
                                         How Junk Food become a Problem?
                                     </h3>
                                     <p>
-                                        Regular consumption on junk food causes long-term health problems such as obesity,
-                                        accompanying emotional and self-esteem problems, and chronic illnesses.
+                                        <b>Regular consumption on junk food causes long-term health problems such as obesity,
+                                        accompanying emotional and self-esteem problems, and chronic illnesses.</b>
                                     </p>
                                     <p>
-                                        Lack of vitamins such as magnesium and calcium,
-                                        encourage the development of deficiency diseases as well as dental caries due to higher sugar intake.
+                                        <b>Lack of vitamins such as magnesium and calcium,
+                                        encourage the development of deficiency diseases as well as dental caries due to higher sugar intake.</b>
                                     </p>
                                     <p>
-                                        Fast food intake more than three times a week is associated with greater odds such as asthma.
-                                        Asthma severity is more than 25% in younger children.
+                                        <b>Fast food intake more than three times a week is associated with greater odds such as asthma.
+                                        Asthma severity is more than 25% in younger children.</b>
                                     </p>
                                 </Col>
                             </Row>

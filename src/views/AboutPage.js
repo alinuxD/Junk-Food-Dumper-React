@@ -42,11 +42,11 @@ function AboutPage() {
                                         About Us
                                     </h2>
                                     <p>
-                                        We offer various features that can help you to keep your child healthy.
+                                        <b>We offer various features that can help you to keep your child healthy.
                                         We allow you to calculate BMI and recommend the necessary calorie intake,
                                         so that you know how many calories your child needs to be healthy.
                                         You can also plan your own diet by looking at various feedbacks we give you based on what food items you want in your meal.
-                                        We aim to aid you in keeping your child healthy in a easy and effective way.<br></br><br></br>
+                                            We aim to aid you in keeping your child healthy in a easy and effective way.</b><br></br><br></br>
                                     </p>
                                     <div
                                         className="image-container"
@@ -69,7 +69,7 @@ function AboutPage() {
                                         <br></br><br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our Vision & Mission
                                     </h2>
                                     <p>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         How - To Build Your Children Healthy Diet <br></br>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -80,7 +80,7 @@ function AboutPage() {
                                         We - Care About Your Children <br></br>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        Help - Build Up Children Healthy Life
+                                            Help - Build Up Children Healthy Life</b>
                                     </p>
                                 </Col>
                             </Row>
@@ -91,17 +91,17 @@ function AboutPage() {
                                     <b>FAQs</b>
                                 </h2>
                                 <p>
-                                    <b>What if my child is allergic to certain food items?</b><br></br>
-                                    You can avoid looking for food items if you know that your child is already allergic to it.
-                                    Our recommendation would be to consult a GP to know what if your child can eat a certain food item.<br></br>
+                                    <b><b>What if my child is allergic to certain food items?</b></b><br></br>
+                                    <b>You can avoid looking for food items if you know that your child is already allergic to it.
+                                    Our recommendation would be to consult a GP to know what if your child can eat a certain food item.</b><br></br>
 
-                                    <b>How do I know that this information is accurate?</b><br></br>
-                                    All the information provided to you is based on turtable sources.
-                                    Click here for further information.<br></br>
+                                    <b><b>How do I know that this information is accurate?</b></b><br></br>
+                                    <b>All the information provided to you is based on turtable sources.
+                                    Click here for further information.</b><br></br>
 
-                                    <b>How is BMI calculated?</b><br></br>
-                                    BMI is a calculation of your size that takes into account your height and weight.
-                                    Click here to calculate your child’s BMI.
+                                    <b><b>How is BMI calculated?</b></b><br></br>
+                                    <b>BMI is a calculation of your size that takes into account your height and weight.
+                                        Click here to calculate your child’s BMI.</b>
                                 </p>
                             </Col>
                         </Row>
