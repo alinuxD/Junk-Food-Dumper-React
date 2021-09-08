@@ -103,11 +103,11 @@ function HomeNavbar() {
                             {/*        Food Details*/}
                             {/*    </NavLink>*/}
                             {/*</NavItem>*/}
-                            {/*<NavItem>*/}
-                            {/*    <NavLink to="/diet-plan-page" tag={Link} style={{fontSize: "1em"}}>*/}
-                            {/*        Diet Plan*/}
-                            {/*    </NavLink>*/}
-                            {/*</NavItem>*/}
+                            <NavItem>
+                                <NavLink to="/diet-plan-page" tag={Link} style={{fontSize: "1em"}}>
+                                    Diet Plan
+                                </NavLink>
+                            </NavItem>
                             {/*<NavItem>*/}
                             {/*    <NavLink to="/help-page"> style={{fontSize: "1em"}}*/}
                             {/*        Help*/}
