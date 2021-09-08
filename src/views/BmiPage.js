@@ -182,11 +182,11 @@ function BmiPage() {
 
 
                                         <InputGroup style={{marginBottom: '20px',marginTop:'10px'}}>
-                                            <h4 style={{marginRight: '15px',marginLeft: '40px'}}>
-                                                Age:
+                                            <h4 >
+                                                Age(10-15):
                                             </h4>
 
-                                            <Input className="with-border" style={{fontSize: '1.5em',marginRight: '250px',marginLeft: '27px'}}
+                                            <Input className="with-border" style={{fontSize: '1.5em',marginRight: '215px',marginLeft: '19px'}}
                                                    placeholder="Age..."
                                                    type='number'
                                                    onFocus={() => setFirstFocus(true)}
@@ -314,6 +314,10 @@ function BmiPage() {
                                                     style={{
                                                         backgroundImage:
                                                             "url(" + require("assets/img/Picture1.png").default + ")",
+
+                                                        marginLeft: "-145px",
+                                                        marginBottom: "130px",
+                                                        marginRight: "117px",
                                                     }}
                                                 ></div>
                                             </CardBody>

@@ -48,7 +48,7 @@ function RecommendExercise(props){
                             <tbody>
                             <tr>
                                 <th>Exercise Name</th>
-                                <th>Calories Burnt / H</th>
+                                <th>Calories Burnt / Hour</th>
                             </tr>
                             <tr >
                                 <td>{exercise.exerciseList[randomList[0]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
