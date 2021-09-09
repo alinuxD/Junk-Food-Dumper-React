@@ -40,7 +40,7 @@ function DietPlanPage() {
 
         // error control
         if(resp.data==""){
-            alert('Wrong Ingredients!')
+            alert('Please enter valid ingredients.')
             setQueryFather(query)
             return
         }

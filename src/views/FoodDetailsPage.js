@@ -136,7 +136,7 @@ const middleOutStyle ={
 
 
 
-function FoodDetailsPage() {
+function FoodDetailsPage(props) {
 
     React.useEffect(() => {
         document.body.classList.add("about-page");
@@ -164,7 +164,6 @@ function FoodDetailsPage() {
     for (var i=0; i<tempObj2.length; i++){
         directions.push(tempObj2[i].direction_description)
     }
-
 
 
 
