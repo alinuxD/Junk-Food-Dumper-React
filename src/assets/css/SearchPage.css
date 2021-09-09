@@ -27,10 +27,12 @@
     border-radius: unset
 }
 .demo_line_01{
-    padding: 0 20px 0;
-    margin: 20px 0;
-    line-height: 3px;
-    border-left: 700px solid #59AD4C;
-    border-right: 700px solid #59AD4C;
+    padding: 0 2em 0;
+    margin: 4em 0;
+    line-height: 0.2em;
+    border-left: 36em solid #59AD4C;
+    border-right: 36em solid #59AD4C;
     text-align: center;
+    min-width: 200px;
+    width: 100%;
 }

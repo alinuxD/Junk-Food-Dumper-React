@@ -151,12 +151,13 @@ function FoodDetailsPage(props) {
     const [directions, setDirections]=useState([])
     // var noData = "No Data"
     // var question = "?"
-    const id = 89086
+
 
 
 
 
     useEffect(()=>{
+        const id = props.match.params.id
         axios.get(
             `http://api.junkfooddumper.tk/recipes/get?id=${id}`,
         )

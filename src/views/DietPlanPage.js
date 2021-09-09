@@ -10,6 +10,9 @@ import SearchPage from "../assets/css/SearchPage.css";
 import SearchResultPageHeader from "../components/Headers/SearchResultPageHeader";
 import defaultImage from "../assets/img/default.jpg"
 import FoodSearchHeader from "../components/Headers/FoodSearchHeader";
+import {Link} from "react-router-dom";
+import {Route} from "react-router";
+import FoodDetailsPage from "./FoodDetailsPage";
 
 function defaultPic(pd) {
     if ("recipe_image" in pd)
@@ -17,13 +20,14 @@ function defaultPic(pd) {
     else {return defaultImage;}
 }
 
+
+
 function DietPlanPage() {
 
     const [offset, setOffset] = useState(0);
     const [data, setData] = useState([]);
     const [perPage] = useState(10);
     const [pageCount, setPageCount] = useState(0);
-    //const pic = useState(recipe_image)
     const [queryFather, setQueryFather] = useState("")
     const [query, setQuery] = useState("")
 
@@ -31,7 +35,7 @@ function DietPlanPage() {
 
 
     const getData = async() => {
-        const resp = await axios.get(`http://localhost:8080/recipes/search`, {
+        const resp = await axios.get(`http://api.junkfooddumper.tk/recipes/search`, {
             params: {
                 query: queryFather,
             }
@@ -54,47 +58,42 @@ function DietPlanPage() {
         const postData = slice.map(pd => <div key={pd.recipe_id}>
 
 
-            <CardBody style={{textAlign:'left',marginBottom:'200px',marginTop:'50px',align:'center',marginLeft:'420px',paddingBottom:'-2px',paddingTop:'-2px'}}>
-                <Col md="2" style={{float:'left'}}>
+            <CardBody style={{textAlign:'left',marginBottom:'10%',marginTop:'5%',align:'center',marginLeft:'420px',paddingBottom:'-2px',paddingTop:'-2px',width:'70%',minWidth:'500px'}}>
+                <Col md="2" style={{float:'left',position: 'absolute'}}>
                     <img src={defaultPic(pd)} style={{float:'left',height:'150px',width:'160px',marginBottom:'50px',marginRight:'0px'}}/>
                 </Col>
                 <Col md="10" style={{float:'right',textAlign:'left'}}>
-                    <p style={{fontSize: '1.2em',color:'black',fontWeight:'700'}}>
+                    <p style={{fontSize: '1.2em',color:'black',fontWeight:'700',position: 'absolute'}}>
                         {pd.recipe_name}
                     </p>
-                    <p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'400px'}}>
+                    <p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'400px',position: 'absolute',marginTop:'50px'}}>
                         {pd.recipe_description}
                     </p>
-                    <Button style={{align:'left',fontSize: '1.1em',marginLeft:'0px'}}
+
+                    <Button style={{align:'left',fontSize: '1.2em',marginLeft:'0px',
+                        position: 'absolute',marginTop:'100px',webkitTransitionDuration:'0.4s',transitionDuration:'0.4s'}}
                             id="click"
                             block
                             className="newButton2"
                             size="lg"
                     >
-                        Know more
+                        <Link to={'/food-details-page/'+pd.recipe_id} style={{textDecoration:'none',color:'white'}}>
+                            Know more
+                        </Link>
+
                     </Button>
+
                 </Col>
 
             </CardBody>
-            {/*<p>{pd.recipe_name}</p>*/}
-            {/*<img src={pd.recipe_image} alt=""/>*/}
+
 
         </div>)
         setData(postData)
         setPageCount(Math.ceil(data.length / perPage ))
     }
 
-    // const getData = async() => {
-    //     const res = await axios.get(obj)
-    //     const data = res.data;
-    //     const slice = data.slice(offset, offset + perPage)
-    //     const postData = slice.map(pd => <div key={pd.recipe_id}>
-    //         <p>{pd.recipe_name}</p>
-    //         <img src={pd.recipe_image} alt=""/>
-    //     </div>)
-    //     setData(postData)
-    //     setPageCount(Math.ceil(data.length / perPage))
-    // }
+
     const handlePageClick = (e) => {
         const selectedPage = e.selected;
         setOffset(selectedPage * 10)
@@ -103,8 +102,6 @@ function DietPlanPage() {
     useEffect(() => {
         getData()
     }, [offset,queryFather])
-
-
 
 
 
@@ -127,14 +124,10 @@ function DietPlanPage() {
 
             <div className="wrapper">
                 <FoodSearchHeader setQueryFather ={setQueryFather}/>
-                <div className="DietPlanPage">
-                    {/*<CardBody style={{marginTop:'70px',marginLeft:'460px',marginBottom:'10px'}}>*/}
-                    {/*    <h2 style={{fontSize: '2em',color:'black',fontWeight:'700'}}>*/}
-                    {/*        Results*/}
-                    {/*    </h2>*/}
-                    {/*</CardBody>*/}
-                    <div className="demo_line_01" style={{fontSize: '1.3em',color:'#3C7A33',fontWeight:'700',}}>Recommended Recipes</div>
-                    <h2 style={{fontSize: '2em',color:'black',fontWeight:'700',marginTop:'70px',marginLeft:'480px',marginBottom:'10px'}}>
+                <div className="DietPlanPage" >
+
+                    <div className="demo_line_01" style={{fontSize: '1.3em',color:'#3C7A33',fontWeight:'700',position:'relative'}}>Recommended Recipes</div>
+                    <h2 style={{fontSize: '2em',color:'black',fontWeight:'700',marginTop:'70px',marginLeft:'480px',marginBottom:'10px',position:'relative'}}>
                         Your Ingredients: {query}
                     </h2>
 
