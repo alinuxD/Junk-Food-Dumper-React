@@ -327,8 +327,8 @@ function BmiPage() {
                             </Col>
                         </div>
 
-
                         <div style={{display:exerciseDivDisplay}}>
+                            <h3 style={{textAlign: "center"}}>Want to look for some good recipes!&nbsp;  <a href="/diet-plan-page">Click Here!</a></h3>
                             <RecommendExercise value={exerciseWeight}/>
                         </div>
                     </Container>
