@@ -25,6 +25,7 @@ function DietPlanPage() {
     const [pageCount, setPageCount] = useState(0);
     //const pic = useState(recipe_image)
     const [queryFather, setQueryFather] = useState("")
+    const [query, setQuery] = useState("")
 
 
 
@@ -35,6 +36,17 @@ function DietPlanPage() {
                 query: queryFather,
             }
         })
+
+
+        // error control
+        if(resp.data==""){
+            alert('Wrong Ingredients!')
+            setQueryFather(query)
+            return
+        }
+        setQuery(queryFather)
+
+
 
         const data = resp.data.recipes.recipe;
 
@@ -123,7 +135,7 @@ function DietPlanPage() {
                     {/*</CardBody>*/}
                     <div className="demo_line_01" style={{fontSize: '1.3em',color:'#3C7A33',fontWeight:'700',}}>Recommended Recipes</div>
                     <h2 style={{fontSize: '2em',color:'black',fontWeight:'700',marginTop:'70px',marginLeft:'480px',marginBottom:'10px'}}>
-                        Your Ingredients: {queryFather}
+                        Your Ingredients: {query}
                     </h2>
 
 
