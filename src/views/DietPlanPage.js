@@ -9,6 +9,7 @@ import ReactPaginate from 'react-paginate';
 import SearchPage from "../assets/css/SearchPage.css";
 import SearchResultPageHeader from "../components/Headers/SearchResultPageHeader";
 import defaultImage from "../assets/img/default.jpg"
+import FoodSearchHeader from "../components/Headers/FoodSearchHeader";
 
 function defaultPic(pd) {
     if ("recipe_image" in pd)
@@ -23,19 +24,20 @@ function DietPlanPage() {
     const [perPage] = useState(10);
     const [pageCount, setPageCount] = useState(0);
     //const pic = useState(recipe_image)
-
+    const [queryFather, setQueryFather] = useState("")
 
 
 
 
     const getData = async() => {
-        const resp = await axios.get(`http://localhost:8080/recipes/search?query=apple`, {
+        const resp = await axios.get(`http://localhost:8080/recipes/search`, {
             params: {
-                query: "apple",
+                query: queryFather,
             }
         })
 
         const data = resp.data.recipes.recipe;
+
         const slice = data.slice(offset, offset + perPage)
         const postData = slice.map(pd => <div key={pd.recipe_id}>
 
@@ -88,7 +90,7 @@ function DietPlanPage() {
 
     useEffect(() => {
         getData()
-    }, [offset])
+    }, [offset,queryFather])
 
 
 
@@ -110,17 +112,18 @@ function DietPlanPage() {
     return (
         <>
             <HomeNavbar />
+
             <div className="wrapper">
-                <SearchResultPageHeader />
+                <FoodSearchHeader setQueryFather ={setQueryFather}/>
                 <div className="DietPlanPage">
-                    <CardBody style={{marginTop:'70px',marginLeft:'460px',marginBottom:'10px'}}>
-                        <h2 style={{fontSize: '2em',color:'black',fontWeight:'700'}}>
-                            Results
-                        </h2>
-                    </CardBody>
+                    {/*<CardBody style={{marginTop:'70px',marginLeft:'460px',marginBottom:'10px'}}>*/}
+                    {/*    <h2 style={{fontSize: '2em',color:'black',fontWeight:'700'}}>*/}
+                    {/*        Results*/}
+                    {/*    </h2>*/}
+                    {/*</CardBody>*/}
                     <div className="demo_line_01" style={{fontSize: '1.3em',color:'#3C7A33',fontWeight:'700',}}>Recommended Recipes</div>
                     <h2 style={{fontSize: '2em',color:'black',fontWeight:'700',marginTop:'70px',marginLeft:'480px',marginBottom:'10px'}}>
-                        Your Ingredients: Apple
+                        Your Ingredients: {queryFather}
                     </h2>
 
 

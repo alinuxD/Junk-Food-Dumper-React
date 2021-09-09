@@ -32,9 +32,9 @@ function FoodSearchHeader(props) {
     });
     // const setFoodInput = props;
     const [query, setQuery] = React.useState('')
-    const {setRes} = props
+    const {setQueryFather} = props
     function onclickButton(){
-        setRes(query)
+        setQueryFather(query)
     }
 
     return (
@@ -62,7 +62,7 @@ function FoodSearchHeader(props) {
                                    value={query}
                             ></Input>
                             <Button
-                                onClick={()=>setRes(query)}
+                                onClick={onclickButton}
                                 style={{border:'none',backgroundColor:'none',background:'none', marginLeft:'-200px',marginTop:'4px',borderRadius: '25px'}}>
                                 <img src = {searchLogo} alt=" " style={{width:'23px',border:"none",marginTop:'-7px'}} ></img>
 

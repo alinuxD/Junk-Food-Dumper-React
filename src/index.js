@@ -33,6 +33,7 @@ import ProfilePage from "views/examples/ProfilePage.js";
 import HomePage from "views/HomePage.js"
 import AboutPage from "./views/AboutPage";
 import BmiPage from "./views/BmiPage";
+import DietPlanPage from "./views/DietPlanPage";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -54,9 +55,9 @@ ReactDOM.render(
         {/*<Route path="/food-details-page"*/}
         {/*       render={(props) => <FoodDetailsPage {...props} />}*/}
         {/*/>*/}
-        {/*<Route path="/diet-plan-page"*/}
-        {/*       render={(props) => <DietPlanPage {...props} />}*/}
-        {/*/>*/}
+        <Route path="/diet-plan-page"
+               render={(props) => <DietPlanPage {...props} />}
+        />
         {/*<Route path="/help-page"*/}
         {/*       render={(props) => <HelpPage {...props} />}*/}
         {/*/>*/}
