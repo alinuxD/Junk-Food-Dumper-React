@@ -37,7 +37,9 @@ Junk food dumper is your children healthy diet mentor.
 
 ---
 ### Website Functon Demo
-1. ![BMI Calculator](https://github.com/alinuxD/TA44-Junk-Food-Dumper-React/blob/master/BMI_Calculator.gif)
+1. BMI Calculator
+![BMI Calculator](https://github.com/alinuxD/TA44-Junk-Food-Dumper-React/blob/master/BMI_Calculator.gif)
+2. Healthy Recipes
 
 ---
 ### License
