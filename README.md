@@ -1,22 +1,19 @@
 # Junk Food Dumper - Your Healthy Diet Mentor
 <p>
 	<img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=plastic">
-  <img src="https://img.shields.io/badge/-Javascript-red?logo=javascript&logoColor=white&style=plastic">
+	<img src="https://img.shields.io/badge/-Javascript-red?logo=javascript&logoColor=white&style=plastic">
 	<img src="https://img.shields.io/github/license/alinuxD/TA44-Junk-Food-Dumper-React">
-	</p>
+</p>
 
 ## Quick Start
----
+
 1.  Download the project's zip
 2.  Make sure you have [node.js](https://nodejs.org/en/?ref=creativetim) installed
 3.  Type `npm install` in terminal/console in the source folder where `package.json` is located
 4.  You will find all the branding colors inside `src/assets/scss/now-ui-kit/_variables.scss`. You can change them with a `HEX` value or with other predefined variables.
 5.  Run in terminal `npm start`.
 
-```
-npm start
-```
----
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -30,18 +27,20 @@ Here's how Junk Food Dumper help:
 
 Junk food dumper is your children healthy diet mentor. 
 
---- 
+
 ### Build With
 - <a herf="https://reactjs.org/">ReactJS</a>
 - <a herf="https://plotly.com/">Ploty</a>
+- <a>JavaScript</a>
 
----
+
 ### Website Functon Demo
-1. BMI Calculator
+**1. BMI Calculator**
 ![BMI Calculator](https://github.com/alinuxD/TA44-Junk-Food-Dumper-React/blob/master/BMI_Calculator.gif)
-2. Healthy Recipes
+**2. Healthy Recipes**
+![Healthy Recipes](https://github.com/alinuxD/TA44-Junk-Food-Dumper-React/blob/master/healthy_recipe.gif)
 
----
+
 ### License
 Distrubuted under MIT License. See `LICENSE` for more information
 
