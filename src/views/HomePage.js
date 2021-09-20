@@ -58,7 +58,7 @@ function HomePage() {
                                     <h3 className="title">
                                         What is Junk Food Dumper?
                                     </h3>
-                                    <p>
+                                    <p align='justify'>
                                         <b>Junk food dumper allows you to choose the perfect diet based on your preferences.
                                         It also shows you the calorie intake necessary to be healthy along with nutritional value of various food items.
                                             This is a perfect website that would help you on your journey towards a healthy lifestyle for your children.</b>
@@ -73,15 +73,15 @@ function HomePage() {
                                     <h3 className="title">
                                         How Junk Food become a Problem?
                                     </h3>
-                                    <p>
+                                    <p align='justify'>
                                         <b>Regular consumption on junk food causes long-term health problems such as obesity,
                                         accompanying emotional and self-esteem problems, and chronic illnesses.</b>
                                     </p>
-                                    <p>
+                                    <p align='justify'>
                                         <b>Lack of vitamins such as magnesium and calcium,
                                         encourage the development of deficiency diseases as well as dental caries due to higher sugar intake.</b>
                                     </p>
-                                    <p>
+                                    <p align='justify'>
                                         <b>Fast food intake more than three times a week is associated with greater odds such as asthma.
                                         Asthma severity is more than 25% in younger children.</b>
                                     </p>

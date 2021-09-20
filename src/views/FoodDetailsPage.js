@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
+import "assets/css/FlippingCard.css";
 
 // reactstrap components
 import {
     Container,
     Row,
-    Col,
+    Col, Label, Input, FormGroup,
 } from "reactstrap";
 
 // core components
@@ -14,125 +15,22 @@ import iconPeople from 'assets/img/icon_people.png';
 import iconClock from 'assets/img/icon_clock.png';
 import iconPlate from 'assets/img/icon_plate.png';
 import iconStar from 'assets/img/icon_star.png';
+import carbohydrateImg from 'assets/img/Carbohydrate.png';
+import energyImg from 'assets/img/Energy.png';
+import fatImg from 'assets/img/Fat.png';
+import proteinImg from 'assets/img/Protein.png';
 
 /* Star 1 */
-
-
 
 
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import FoodSearchHeader from "../components/Headers/FoodSearchHeader";
-import {round} from "mathjs";
+import {round, string} from "mathjs";
 import Javascript from "./index-sections/Javascript";
 import axios from "axios";
 import defaultImage from "../assets/img/default.jpg";
 import FoodDetailHeader from "../components/Headers/FoodDetailHeader";
-
-
-const divRedStyleLeft= {
-    height:180,
-    width:180,
-    backgroundColor:'#C4C4C4',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius:25,
-    borderBottomLeftRadius:25,
-    borderBottomRightRadius:25,
-};
-
-
-const divRedStyle1 = {
-    height:160,
-    width:135,
-    backgroundColor:'#F68888',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius:25,
-    borderBottomLeftRadius:25,
-    borderBottomRightRadius:25,
-    float:'left',
-    marginLeft:'80px'
-};
-const divRedStyle2 = {
-    height:160,
-    width:135,
-    backgroundColor:'#83CF77',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius:25,
-    borderBottomLeftRadius:25,
-    borderBottomRightRadius:25,
-    float:'left',
-    marginLeft:'40px'
-};
-const divRedStyle3 = {
-    height:160,
-    width:135,
-    backgroundColor:'#EDF49C',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius:25,
-    borderBottomLeftRadius:25,
-    borderBottomRightRadius:25,
-    float:'left',
-    marginLeft:'80px',
-    marginTop:'40px'
-};
-const divRedStyle4 = {
-    height:160,
-    width:135,
-    backgroundColor:'#7CADF8',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius:25,
-    borderBottomLeftRadius:25,
-    borderBottomRightRadius:25,
-    float:'left',
-    marginLeft:'40px',
-    marginTop:'40px'
-
-};
-
-const titleStyle ={
-    textAlign:'center',
-    height:35,
-    lineHeight:'35px',
-    color:'white',
-    fontSize: 30,
-    fontWeight:'bold'
-};
-const middleStyle1 ={
-    textAlign:'center',
-    height:50,
-    lineHeight:'50px',
-    color:'#000000',
-    fontSize: 20,
-    fontWeight:'bold'
-};
-
-const middleStyle2 ={
-    textAlign:'center',
-    height:20,
-    lineHeight:'10px',
-    color:'#000000',
-    fontSize: 15,
-    fontWeight:'bold'
-};
-const bottomStyle ={
-    textAlign:'center',
-    height:45,
-    lineHeight:'50px',
-    color:'white',
-    fontSize: 25,
-    fontWeight:'bold'
-};
-
-const middleOutStyle ={
-    textAlign:'center',
-    height:80,
-    width:120,
-    backgroundColor:'white',
-    fontWeight:'bold',
-    margin:'auto',
-};
-
-
 
 
 function FoodDetailsPage(props) {
@@ -149,12 +47,13 @@ function FoodDetailsPage(props) {
     const [recipeImage, setRecipeImage]=useState('')
     const [ingredients, setIngredients]=useState([])
     const [directions, setDirections]=useState([])
-    // var noData = "No Data"
-    // var question = "?"
 
-
-
-
+    const containerF = {
+        width : '100%',
+        minWidth: '810px',
+        height: '100%',
+        minHeight: '600px'
+    }
 
     useEffect(()=>{
         const id = props.match.params.id
@@ -162,92 +61,112 @@ function FoodDetailsPage(props) {
             `http://api.junkfooddumper.tk/recipes/get?id=${id}`,
         )
             .then(res =>{
-                console.log(res)
-                try{
+                if (typeof res.data.recipe.recipe_name ==='string')
+                {
                     setRecipeName(res.data.recipe.recipe_name)
                 }
-                catch (err){
+                else
+                {
                     setRecipeName('No Data')
+
                 }
 
-
-                try{
+                if(typeof res.data.recipe.number_of_servings ==='string')
+                {
                     setNumberOfServings(res.data.recipe.number_of_servings)
                 }
-                catch (err){
-                    setNumberOfServings('?')
+                else{
+                    setNumberOfServings('-')
                 }
 
 
-                try{
+                if(typeof res.data.recipe.preparation_time_min ==='string')
+                {
                     setPrepTime(res.data.recipe.preparation_time_min)
                 }
-                catch (err){
-                    setPrepTime('?')
+                else
+                {
+                    setPrepTime('-')
                 }
 
 
-                try{
+                if (typeof res.data.recipe.cooking_time_min ==='string'){
                     setCookTime(res.data.recipe.cooking_time_min)
                 }
-                catch (err){
-                    setCookTime('?')
+                else
+                {
+                    setCookTime('-')
                 }
 
-
-                try{
+                if (typeof res.data.recipe.recipe_types.recipe_type ==='string')
+                {
+                    // console.log(typeof res.data.recipe.recipe_types.recipe_type)
                     setRecipeType(res.data.recipe.recipe_types.recipe_type)
                 }
-                catch (err){
+                else if (typeof res.data.recipe.recipe_types.recipe_type ==='object')
+                {
+
+                    let tempList = res.data.recipe.recipe_types.recipe_type
+                    // console.log(res.data.recipe.recipe_types.recipe_type)
+                    setRecipeType(
+                        <p style={{fontSize:'20px',
+                            fontWeight:'bold',
+                            marginTop:'5px',
+                            lineHeight: 1}}>
+                            {tempList[0]} <br></br>
+                            {tempList[1]}
+                        </p>
+                    )
+                }
+                else
+                {
                     setRecipeType('No data')
+
+                }
+
+                if (typeof res.data.recipe.rating ==='string')
+                {
+                    setRating(parseFloat(res.data.recipe.rating).toFixed(1))
+
+                }
+                else
+                {
+                    setRating('-')
                 }
 
 
-                try{
-                    setRecipeType(res.data.recipe.recipe_types.recipe_type)
-                }
-                catch (err){
-                    setRecipeType('No data')
-                }
-
-
-                try{
-                    setRating(res.data.recipe.rating)
-                }
-                catch (err){
-                    setRating('?')
-                }
-
-
-                try{
+                if (typeof res.data.recipe.serving_sizes.serving.calories ==='string'){
                     setCalories(res.data.recipe.serving_sizes.serving.calories)
                 }
-                catch (err){
-                    setCalories('?')
+                else{
+                    setCalories('-')
                 }
 
 
-                try{
+                if(typeof res.data.recipe.serving_sizes.serving.carbohydrate  ==='string'){
                     setCarbohydrate(res.data.recipe.serving_sizes.serving.carbohydrate)
                 }
-                catch (err){
-                    setCarbohydrate('?')
+                else{
+                    setCarbohydrate('-')
                 }
 
 
-                try{
+                if(typeof res.data.recipe.serving_sizes.serving.protein ==='string')
+                {
                     setProtein(res.data.recipe.serving_sizes.serving.protein)
                 }
-                catch (err){
-                    setProtein('?')
+                else{
+                    setProtein('-')
                 }
 
 
-                try{
+                if (typeof res.data.recipe.serving_sizes.serving.fat === 'string')
+                {
                     setFat(res.data.recipe.serving_sizes.serving.fat)
                 }
-                catch (err){
-                    setFat('?')
+                else
+                {
+                    setFat('-')
                 }
 
 
@@ -259,19 +178,54 @@ function FoodDetailsPage(props) {
                 }
 
 
-                try{
+
+                if (typeof res.data.recipe.ingredients.ingredient==='object')
+                {
                     setIngredients(res.data.recipe.ingredients.ingredient)
+                    // console.log(res.data.recipe.ingredients.ingredient)
                 }
-                catch (err){
-                    setIngredients('No data')
+                else
+                {
+                    let emptyList = [{
+                        serving_id:'No Data',
+                        ingredient_description:'No Data'
+                    }]
+                    setIngredients(emptyList)
                 }
 
 
-                try{
-                    setDirections(res.data.recipe.directions.direction)
+                if(typeof res.data.recipe.directions.direction === 'object')
+                {
+                    let tempDirections = res.data.recipe.directions.direction
+                    if (Object.keys(tempDirections)[0]==='direction_number')
+                    {
+                        let list = [{direction_number:tempDirections.direction_number,
+                            direction_description:tempDirections.direction_description}]
+                        setDirections(list)
+                    }
+                    else
+                    {
+                        setDirections(res.data.recipe.directions.direction)
+                    }
+                    // setDirections(res.data.recipe.directions.direction
+                    //     // <div style={{fontSize: 20, width:'90%'}}>
+                    //     //     {tempDirections.map(item => (
+                    //     //         <li key = {item.direction_number}>{item.direction_description}</li>
+                    //     //     ))}
+                    //     // </div>
+                    // )
+                    // console.log(tempDirections)
+                    // console.log(Object.keys(tempDirections))
+                    // console.log(typeof Object.keys(tempDirections)[0])
+                    // console.log(tempDirections.direction_description)
+                    // console.log((parseInt(tempDirections.direction_number)))
+
                 }
-                catch (err){
-                    setDirections('No data')
+                else
+                {
+                    let noDataList = [{direction_number:'No Data',
+                        direction_description:'No Data'}]
+                    setDirections(noDataList)
                 }
 
 
@@ -309,178 +263,236 @@ function FoodDetailsPage(props) {
 
     return (
         <>
-            <HomeNavbar />
-            <div className="wrapper">
-                <FoodDetailHeader />
-                <div className="section section-about-us">
-                    <Container>
-                        <div className="separator separator-primary"></div>
-                        <div className="section-story-overview">
-                            <div>
-                                <div style={{marginTop: '-80px'}}>
-                                    <h2 className='text-lg-center'>
-                                        <b>Recipe Name: {recipeName}</b>
-                                    </h2>
-                                </div>
-                                <div style={{width:'50%',float:'left',marginTop:'10px'}}>
-                                    <div style={{marginLeft:'110px',float:"left"}}>
-                                        <div style={divRedStyleLeft}>
-                                            <img src={iconPeople} style={{height:'30px',marginLeft:'75px',marginTop:'10px'}} alt=" "/>
-                                            <p className='text-center'style={{fontSize:25,fontWeight:'bold',marginTop:'10px'}}>
-                                                Yield
-                                            </p>
-                                            <p className='text-center' style={{fontSize:20,fontWeight:'bold',marginTop:'-20px'}}>
-                                                {numberOfServings} Servings
-                                            </p>
-                                        </div>
+            <div style={containerF}>
+                <HomeNavbar />
+                <div className="wrapper">
+                    <FoodDetailHeader />
+                    <div className="section section-about-us">
+                        <Container className = "contain">
+                            <div className="separator separator-primary"></div>
+                            <div className="section-story-overview">
+                                <div>
+                                    <div style={{marginTop: '-80px'}}>
+                                        <h2 className='text-lg-center'>
+                                            <b>Recipe Name: {recipeName}</b>
+                                        </h2>
                                     </div>
-
-                                    <div style={{marginLeft:'20px',float:"left"}}>
-                                        <div style={divRedStyleLeft}>
-                                            <img src={iconClock} style={{height:'30px',marginLeft:'75px',marginTop:'10px'}} alt=" "/>
-                                            <p className='text-center'style={{fontSize:25,fontWeight:'bold'}}>
-                                                Prep Time
-                                            </p>
-                                            <p className='text-center' style={{fontSize:20,fontWeight:'bold',marginTop:'-20px'}}>
-                                                {prepTime} Mins
-                                            </p>
-                                            <p className='text-center'style={{fontSize:25,fontWeight:'bold',marginTop:'-20px'}}>
-                                                Cook Time
-                                            </p>
-                                            <p className='text-center' style={{fontSize:20,fontWeight:'bold',marginTop:'-20px'}}>
-                                                {cookTime} Mins
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style={{marginLeft:'110px',float:"left",marginTop:'20px'}}>
-                                        <div style={divRedStyleLeft}>
-                                            <img src={iconPlate} style={{height:'30px',marginLeft:'75px',marginTop:'10px'}} alt=" "/>
-                                            <p className='text-center'style={{fontSize:25,fontWeight:'bold',marginTop:'10px'}}>
-                                                Meal Type
-                                            </p>
-                                            <p className='text-center' style={{fontSize:20,fontWeight:'bold',marginTop:'-20px'}}>
-                                                {recipeType}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div style={{marginLeft:'20px',float:"left",marginTop:'20px'}}>
-                                        <div style={divRedStyleLeft}>
-                                            <img src={iconStar} style={{height:'30px',marginLeft:'75px',marginTop:'10px'}} alt=" "/>
-                                            <p className='text-center'style={{fontSize:25,fontWeight:'bold',marginTop:'10px'}}>
-                                                Rating
-                                            </p>
-                                            <p lassName='text-center' style={{fontWeight:'bold',marginTop:'-10px',marginLeft:'10px'}}>
-                                                <font size="10">{parseFloat(rating).toFixed(1)}</font> out of 5
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div style={{width:'50%',float:'left',marginTop:'10px'}}>
-                                    <div style={divRedStyle1}>
-                                        <div style={titleStyle}></div>
-                                        <div style={middleOutStyle}>
-                                            <div style={middleStyle1}>
-                                                Energy
-                                            </div>
-                                            <div style={middleStyle2}>
-                                                {calories} kcal
+                                    <div style={{width:'50%',float:'left',marginTop:'10px'}}>
+                                        <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
+                                             style={{marginLeft:'115px'}}>
+                                            <div className="flipper">
+                                                <div className="front" style={{backgroundColor:'#C4C4C4'}}>
+                                                    <img src={iconPeople} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleF">
+                                                        Yield
+                                                    </p>
+                                                </div>
+                                                <div className="back" style={{backgroundColor:'#C4C4C4'}}>
+                                                    <img src={iconPeople} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        Yield<br></br>
+                                                        {numberOfServings} Servings
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div style={bottomStyle}></div>
-                                    </div>
 
-                                    <div style={divRedStyle2}>
-                                        <div style={titleStyle}></div>
-                                        <div style={middleOutStyle}>
-                                            <div style={middleStyle1}>
-                                                Carb
-                                            </div>
-                                            <div style={middleStyle2}>
-                                                {carbohydrate} kcal
-                                            </div>
-                                        </div>
-                                        <div style={bottomStyle}></div>
-                                    </div>
-
-                                    <br></br>
-                                    <div style={divRedStyle3}>
-                                        <div style={titleStyle}></div>
-                                        <div style={middleOutStyle}>
-                                            <div style={middleStyle1}>
-                                                Prot
-                                            </div>
-                                            <div style={middleStyle2}>
-                                                {protein} g
+                                        <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
+                                             style={{marginLeft:'20px'}}>
+                                            <div className="flipper">
+                                                <div className="front" style={{backgroundColor:'#C4C4C4'}}>
+                                                    <img src={iconClock} style={{height:'50px',marginTop:'20px'}} alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        Prep Time <br></br>
+                                                        & <br></br>
+                                                        Cooking Time
+                                                    </p>
+                                                </div>
+                                                <div className="back" style={{backgroundColor:'#C4C4C4'}}>
+                                                    <img src={iconClock} style={{height:'50px',marginTop:'20px'}} alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        Prep Time:<br></br>
+                                                        {prepTime} Mins<br></br>
+                                                        Cooking Time:<br></br>
+                                                        {cookTime} Mins
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div style={bottomStyle}></div>
-                                    </div>
 
-                                    <div style={divRedStyle4}>
-                                        <div style={titleStyle}></div>
-                                        <div style={middleOutStyle}>
-                                            <div style={middleStyle1}>
-                                                Fat
-                                            </div>
-                                            <div style={middleStyle2}>
-                                                {fat} g
+                                        <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
+                                             style={{marginLeft:'115px',marginTop:'20px'}}>
+                                            <div className="flipper">
+                                                <div className="front" style={{backgroundColor:'#C4C4C4'}}>
+                                                    <img src={iconPlate} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleF">
+                                                        Meal Type
+                                                    </p>
+                                                </div>
+                                                <div className="back" style={{backgroundColor:'#C4C4C4'}}>
+                                                    <img src={iconPlate} style={{height:'70px',marginTop:'20px'}} alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        Meal Type<br></br>
+                                                        {recipeType}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div style={bottomStyle}></div>
+
+                                        <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
+                                             style={{marginLeft:'20px',marginTop:'20px'}}>
+                                            <div className="flipper">
+                                                <div className="front" style={{backgroundColor:'#C4C4C4'}}>
+                                                    <img src={iconStar} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleF">
+                                                        Rating
+                                                    </p>
+                                                </div>
+                                                <div className="back" style={{backgroundColor:'#C4C4C4'}}>
+                                                    <img src={iconStar} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        Rating<br></br>
+                                                        {rating} out of 5
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <Row style={{width:'100%', marginLeft:'80px'}}>
-                                    <br></br><br></br>
-                                </Row>
 
-                                <p style={{lineHeight:0}}>
-                                    <br></br>
-                                </p>
-                                <div align='center' style={{width:'50%',float:'left'}}>
-                                    <img src={recipeImage} alt=" " style={{marginLeft:'40px',width:'300px',height:'300px'}}/>
-                                </div>
 
-                                <div style={{width:'50%',float:'left'}}>
-                                    <h2 style={{marginLeft:'80px'}}>
-                                        <b>Ingredients:</b>
-                                    </h2>
-                                    <div style={{fontSize: 20,marginLeft:'80px'}}>
-                                        {ingredients.map(item => (
-                                            <li key = {item.serving_id}>{item.ingredient_description}</li>
-                                        ))}
+                                    <div style={{width:'50%',float:'left',marginTop:'10px'}}>
+                                        <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
+                                             style={{position:"absolute"}}>
+                                            <div className="flipper">
+                                                <div className="front" style={{backgroundColor:'#F68888'}}>
+                                                    <img src={energyImg} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleF">
+                                                        Energy
+                                                    </p>
+                                                </div>
+                                                <div className="back" style={{backgroundColor:'#F68888'}}>
+                                                    <img src={energyImg} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        Energy<br></br>
+                                                        {calories} kcal
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
+                                             style={{marginLeft:'200px'}}>
+                                            <div className="flipper">
+                                                <div className="front" style={{backgroundColor:'#83CF77'}}>
+                                                    <img src={carbohydrateImg} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleF">
+                                                        carbohydrate
+                                                    </p>
+                                                </div>
+                                                <div className="back" style={{backgroundColor:'#83CF77'}}>
+                                                    <img src={carbohydrateImg} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        carbohydrate<br></br>
+                                                        {carbohydrate} g
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
+                                             style={{position:"absolute",marginTop:'200px'}}>
+                                            <div className="flipper">
+                                                <div className="front" style={{backgroundColor:'#EDF49C'}}>
+                                                    <img src={proteinImg} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleF">
+                                                        Protein
+                                                    </p>
+                                                </div>
+                                                <div className="back" style={{backgroundColor:'#EDF49C'}}>
+                                                    <img src={proteinImg} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        Protein<br></br>
+                                                        {protein} g
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
+                                             style={{marginLeft:'200px',marginTop:'20px'}}>
+                                            <div className="flipper">
+                                                <div className="front" style={{backgroundColor:'#7CADF8'}}>
+                                                    <img src={fatImg} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleF">
+                                                        fat
+                                                    </p>
+                                                </div>
+                                                <div className="back" style={{backgroundColor:'#7CADF8'}}>
+                                                    <img src={fatImg} className="rightImgStyle" alt=" "/>
+                                                    <p className="rightTextStyleB">
+                                                        fat<br></br>
+                                                        {fat} g
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <Row style={{width:'100%', marginLeft:'80px'}}>
+                                        <br></br><br></br>
+                                    </Row>
 
-                            <Row style={{width:'100%', marginLeft:'80px'}}>
-                                <Col>
-                                    <h2>
+                                    <p style={{lineHeight:0}}>
                                         <br></br>
-                                        <b>Description:</b>
-                                    </h2>
-                                    <div style={{fontSize: 20}}>
-                                        {directions.map(item => (
-                                            <li key = {item.direction_number}>{item.direction_description}</li>
-                                        ))}
+                                    </p>
+                                    <div align='center' style={{width:'50%',float:'left'}}>
+                                        <img src={recipeImage} alt=" " style={{marginLeft:'40px',width:'300px',height:'300px'}}/>
                                     </div>
-                                </Col>
-                            </Row>
-                        </div>
-                        <a href="javascript:history.go(-1)">
-                            <button className="text-lg-center"
-                                    style={{backgroundColor:'rgba(128,1,255,0.66)',marginLeft:'45%',
-                                        borderRadius:'25px',fontSize:15,color:'white',height:45,borderWidth:0}}>
-                                Back to Search Page
-                            </button>
-                        </a>
 
-                    </Container>
+                                    <div style={{width:'50%',float:'left'}}>
+                                        <h2 style={{marginLeft:'80px'}}>
+                                            <b>Ingredients:</b>
+                                        </h2>
+
+                                        <div style={{fontSize: 20,marginLeft:'30px'}}>
+                                            {ingredients.map(item => (
+                                                <FormGroup check>
+                                                    <Label check>
+                                                        <Input type="checkbox"></Input>
+                                                        <span className="form-check-sign"></span>
+                                                        <li key = {item.serving_id}>{item.ingredient_description}</li>
+                                                    </Label>
+                                                </FormGroup>
+                                                ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <Row style={{width:'100%', marginLeft:'100px'}}>
+                                    <Col>
+                                        <h2>
+                                            <br></br>
+                                            <b>Description:</b>
+                                        </h2>
+                                        <div style={{fontSize: 20, width:'90%'}}>
+                                            {directions.map(item => (
+                                                <li key = {item.direction_number}>{item.direction_description}</li>
+                                            ))}
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </div>
+                            <a href="javascript:history.go(-1)">
+                                <button className="text-lg-center"
+                                        style={{backgroundColor:'rgba(128,1,255,0.66)',marginLeft:'45%',
+                                            borderRadius:'25px',fontSize:15,color:'white',height:45,borderWidth:0}}>
+                                    Back to Search Page
+                                </button>
+                            </a>
+
+                        </Container>
+                    </div>
+                    <DefaultFooter />
                 </div>
-                <DefaultFooter />
             </div>
         </>
 

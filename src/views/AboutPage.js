@@ -41,7 +41,7 @@ function AboutPage() {
                                     <h2 className="title">
                                         About Us
                                     </h2>
-                                    <p>
+                                    <p align='justify'>
                                         <b>We offer various features that can help you to keep your child healthy.
                                         We allow you to calculate BMI and recommend the necessary calorie intake,
                                         so that you know how many calories your child needs to be healthy.
