@@ -158,6 +158,7 @@ function DietPlanPage() {
         document.body.classList.add("about-page");
         document.body.classList.add("sidebar-collapse");
         document.documentElement.classList.remove("nav-open");
+        document.body.setAttribute("style","overflow-x:auto;")
         window.scrollTo(0, 0);
         document.body.scrollTop = 0;
         return function cleanup() {
@@ -171,7 +172,7 @@ function DietPlanPage() {
         <>
             <HomeNavbar />
 
-            <div className="wrapper">
+            <div className="wrapper" style={{minWidth:'1800px'}}>
                 <FoodSearchHeader setQueryFather ={setQueryFather}/>
                 <div className="DietPlanPage" style={{with:'10%',minWidth:'1800px'}}>
 
