@@ -54,42 +54,91 @@ function DietPlanPage() {
 
         const data = resp.data.recipes.recipe;
 
-        const slice = data.slice(offset, offset + perPage)
-        const postData = slice.map(pd => <div key={pd.recipe_id}>
+        const slice1 = data.slice(offset, offset + perPage)
+        const postData1 = slice1.map(pd => <div key={pd.recipe_id}>
+
+            <Col md="6" style={{float:'left',position: 'relative',marginTop:'0px',paddingBottom:'50px',paddingLeft:'150px'}}>
+
+                    <Col md="5" style={{float:'left',position: 'absolute',align:'left'}}>
+                        <img src={defaultPic(pd)} style={{float:'left',height:'150px',width:'150px',marginBottom:'0px'}}/>
+                    </Col>
+                    <Col md="9" style={{float:'right',textAlign:'left',paddingLeft:'0px',paddingBottom:'20px'}}>
+                        <p style={{fontSize: '1.2em',color:'black',fontWeight:'700',position: 'absolute'}}>
+                            {pd.recipe_name}
+                        </p>
+                        <p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'120px',position: 'absolute',marginTop:'30px',paddingBottom:'100px'}}>
+                            {pd.recipe_description}
+                        </p>
+                        {/*<p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'400px',position: 'absolute',marginTop:'70px'}}>*/}
+                        {/*    Calories:{pd.recipe_nutrition.calories}*/}
+                        {/*</p>*/}
+
+                        <Button style={{align:'left',fontSize: '1.2em',marginLeft:'0px',verticalAlign:'middle',
+                            position: 'relative',marginTop:'100px',webkitTransitionDuration:'0.4s',transitionDuration:'0.4s'}}
+                                id="click"
+                                block
+                                className="newButton2"
+                                size="lg"
+                        >
+                            <Link to={'/food-details-page/'+pd.recipe_id} style={{textDecoration:'none',color:'white'}}>
+                                <span>Know more</span>
+                            </Link>
+
+                        </Button>
+
+                    </Col>
 
 
-            <CardBody style={{textAlign:'left',marginBottom:'10%',marginTop:'5%',align:'center',marginLeft:'420px',paddingBottom:'-2px',paddingTop:'-2px',width:'70%',minWidth:'500px'}}>
-                <Col md="2" style={{float:'left',position: 'absolute'}}>
-                    <img src={defaultPic(pd)} style={{float:'left',height:'150px',width:'160px',marginBottom:'50px',marginRight:'0px'}}/>
-                </Col>
-                <Col md="10" style={{float:'right',textAlign:'left'}}>
-                    <p style={{fontSize: '1.2em',color:'black',fontWeight:'700',position: 'absolute'}}>
-                        {pd.recipe_name}
-                    </p>
-                    <p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'400px',position: 'absolute',marginTop:'50px'}}>
-                        {pd.recipe_description}
-                    </p>
+            </Col>
 
-                    <Button style={{align:'left',fontSize: '1.2em',marginLeft:'0px',
-                        position: 'absolute',marginTop:'100px',webkitTransitionDuration:'0.4s',transitionDuration:'0.4s'}}
-                            id="click"
-                            block
-                            className="newButton2"
-                            size="lg"
-                    >
-                        <Link to={'/food-details-page/'+pd.recipe_id} style={{textDecoration:'none',color:'white'}}>
-                            Know more
-                        </Link>
-
-                    </Button>
-
-                </Col>
-
-            </CardBody>
 
 
         </div>)
-        setData(postData)
+
+        // const slice2 = data.slice(offset + perPage/2, offset + perPage)
+        // const postData2 = slice2.map(pd => <div key={pd.recipe_id}>
+        //
+        //
+        //     <Col md="5" style={{float:'right',position: 'relative'}}>
+        //         <CardBody style={{textAlign:'left',marginBottom:'50px',marginTop:'100px',align:'center',marginLeft:'620px'}}>
+        //             <Col md="3" style={{float:'left',position: 'absolute'}}>
+        //                 <img src={defaultPic(pd)} style={{float:'left',height:'150px',width:'150px',marginBottom:'50px',marginRight:'0px',paddingRight:'0px'}}/>
+        //             </Col>
+        //             <Col md="5" style={{float:'right',textAlign:'left',paddingLeft:'0px'}}>
+        //                 <p style={{fontSize: '1.2em',color:'black',fontWeight:'700',position: 'absolute'}}>
+        //                     {pd.recipe_name}
+        //                 </p>
+        //                 <p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'400px',position: 'absolute',marginTop:'50px'}}>
+        //                     {pd.recipe_description}
+        //                 </p>
+        //                 <p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'400px',position: 'absolute',marginTop:'70px'}}>
+        //                     Calories:{pd.recipe_nutrition.calories}
+        //                 </p>
+        //
+        //                 <Button style={{align:'left',fontSize: '1.2em',marginLeft:'0px',verticalAlign:'middle',
+        //                     position: 'absolute',marginTop:'100px',webkitTransitionDuration:'0.4s',transitionDuration:'0.4s'}}
+        //                         id="click"
+        //                         block
+        //                         className="newButton2"
+        //                         size="lg"
+        //                 >
+        //                     <Link to={'/food-details-page/'+pd.recipe_id} style={{textDecoration:'none',color:'white'}}>
+        //                         <span>Know more</span>
+        //                     </Link>
+        //
+        //                 </Button>
+        //
+        //             </Col>
+        //
+        //         </CardBody>
+        //     </Col>
+        //
+        //
+        //
+        // </div>)
+
+        // const postData3 = postData1.concat(postData2)
+        setData(postData1)
         setPageCount(Math.ceil(data.length / perPage ))
     }
 
@@ -124,19 +173,21 @@ function DietPlanPage() {
 
             <div className="wrapper">
                 <FoodSearchHeader setQueryFather ={setQueryFather}/>
-                <div className="DietPlanPage" >
+                <div className="DietPlanPage" style={{with:'10%',minWidth:'1800px'}}>
 
-                    <div className="demo_line_01" style={{fontSize: '1.3em',color:'#3C7A33',fontWeight:'700',position:'relative'}}>Recommended Recipes</div>
-                    <h2 style={{fontSize: '2em',color:'black',fontWeight:'700',marginTop:'70px',marginLeft:'480px',marginBottom:'10px',position:'relative'}}>
+                    <div className="demo_line_01" style={{fontSize: '1.3em',color:'#3C7A33',fontWeight:'700',position:'relative',textAlign:'center'}}>Recommended Recipes</div>
+                    <h2 style={{fontSize: '2em',color:'black',fontWeight:'700',marginTop:'70px',marginLeft:'480px',marginBottom:'150px',position:'relative'}}>
                         Your Ingredients: {query}
                     </h2>
 
 
-                    <CardBody style={{textAlign:'center'}}>
+
+
                         <div className="SearchPage">
                             {data}
-                            <div style={{marginLeft:'600px',marginTop:'250px'}}>
+                            <div style={{marginLeft:'700px',marginTop:'1100px',position:'absolute'}}>
                                 <ReactPaginate
+
                                                previousLabel={"prev"}
                                                nextLabel={"next"}
                                                breakLabel={"..."}
@@ -149,8 +200,9 @@ function DietPlanPage() {
                                                subContainerClassName={"pages pagination"}
                                                activeClassName={"active"}/>
                             </div>
+
                         </div>
-                    </CardBody>
+
                 </div>
                 <DefaultFooter />
             </div>
