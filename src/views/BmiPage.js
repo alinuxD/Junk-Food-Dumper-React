@@ -19,6 +19,9 @@ import RecommendExercise from "../components/ExerciseComponents/RecommendExercis
 
 import ReactSpeedometer from "react-d3-speedometer";
 import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import FoodSearch from "../components/Headers/FoodSearch";
 
 
 
@@ -326,10 +329,23 @@ function BmiPage() {
                                 </Card>
                             </Col>
                         </div>
-
                         <div style={{display:exerciseDivDisplay}}>
-                            <h3 style={{textAlign: "center"}}>Want to look for some good recipes!&nbsp;  <a href="/diet-plan-page">Click Here!</a></h3>
-                            <RecommendExercise value={exerciseWeight}/>
+                            {/* tab object */}
+                            <Tabs>
+                                <TabList>
+                                <Tab><h3>Move More</h3></Tab>
+                                <Tab><h3>Eat Better</h3></Tab>
+                                </TabList>
+
+                                <TabPanel>
+                                    <div>
+                                    <RecommendExercise value={exerciseWeight}/>
+                                    </div>
+                                </TabPanel>
+                                <TabPanel>
+                                    <FoodSearch/>
+                                </TabPanel>
+                            </Tabs>
                         </div>
                     </Container>
                 </div>
