@@ -59,9 +59,9 @@ function HomePage() {
 
     return (
         <>
-            <HomeNavbar />
+            <HomeNavbar/>
             <div className="wrapper">
-                <HomePageHeader />
+                <HomePageHeader/>
                 <div className="section section-about-us">
                     <Container>
                         <div className="separator separator-primary"></div>
@@ -125,21 +125,25 @@ function HomePage() {
                         <div>
                             <h3 className="title" align='center'> Why Children Obesity is a Critical Problem?</h3>
                             <Row margin="0">
-                                <Col align="left"><div><img src={baymaxIcon} alt="BaymaxIcon"/></div></Col>
-                                <Col align="center"><div><img src={junkfoodIcon} alt="BaymaxIcon"/></div></Col>
-                                <Col align="right"><div><img src={trendIcon} alt="BaymaxIcon"/></div></Col>
-                            </Row>
-                            <Row>
-                                <Col align="center"><b >Children were obese in Australia </b></Col>
-                                <Col align="center"><b> Advertisements are related to junk food.</b></Col>
-                                <Col align="center"><b>Type 2 Diabetes patients booming</b></Col>
+                                <Col align="left"><div>
+                                    <img src={baymaxIcon} alt="BaymaxIcon"/></div>
+                                    <h5 align='left'>Children were obese in Australia</h5>
+                                </Col>
+                                <Col align="center">
+                                    <div><img src={junkfoodIcon} alt="BaymaxIcon"/></div>
+                                    <h5 align='center'>Advertisements are related to junk food.</h5>
+                                </Col>
+                                <Col align="right">
+                                    <div><img src={trendIcon} alt="BaymaxIcon"/></div>
+                                    <h5 align='right'>Type 2 Diabetes Patients Booming</h5>
+                                </Col>
                             </Row>
                         </div>
 
                         {/* Children Obesity chart components */}
                         <div className="section-story-overview" style={{marginTop: '20px'}}>
                             <Row>
-                                <Col>
+                                <Col xs="7"> 
                                 <h3 className="title" align='center'>Children Obesity Rate</h3>
                                     <ReactECharts option={{
                                             tooltip: {
@@ -188,7 +192,7 @@ function HomePage() {
                                         />
                                 </Col>
                                 
-                                <Col align='center'>
+                                <Col>
                                     <div
                                         className="image-container"
                                         style={{
@@ -199,7 +203,7 @@ function HomePage() {
                                     </div>
                                 </Col>
                             </Row>
-                            <div style={{display:hideButton}} align='center'>
+                            <div style={{display:hideButton, marginTop: '20px'}} align='center'>
                                         <Button id="click" block className="newButton" color="info" onClick={submitValue} size="lg">
                                                 Know More
                                         </Button>
