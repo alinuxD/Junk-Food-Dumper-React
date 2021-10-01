@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import {Link} from "react-router-dom";
 
 // reactstrap components
 import {
@@ -34,14 +34,27 @@ import Video from '../components/VideoComponents/video.js'
 
 // Page
 
+
 function HomePage() {
     // set knowmore block to None
     const [showMore, setshowMore]=useState('none')
     const [hideButton, sethideButton]=useState('block')
+    const [showLess, setshowLess]=useState('none')
 
-    // const [firstFocus, setFirstFocus] = React.useState(false);
-    // const [lastFocus, setLastFocus] = React.useState(false);
-    
+    // Press Know more button
+    const submitValue = () => {
+        setshowMore("block")
+        sethideButton("none")
+        setshowLess("block");
+    };
+
+    const submitClose = () => {
+        setshowMore("none")
+        setshowLess("none")
+        sethideButton("block");
+    }
+
+        
     React.useEffect(() => {
         document.body.classList.add("home-page");
         document.body.classList.add("sidebar-collapse");
@@ -54,26 +67,34 @@ function HomePage() {
         };
     }, []);
 
-    // press know more button
-    const submitValue = () => {
-        setshowMore("block")
-        sethideButton("none")
-    }
+
 
     return (
         <>
-            <HomeNavbar/>
+        <HomeNavbar/>
             <div className="wrapper">
                 <HomePageHeader/>
                 <div className="section section-about-us">
                     <Container>
                         <div className="separator separator-primary"></div>
-                        <h1 align="center">What is Junk Food Dumper?</h1>
+                        <h1 style={{fontWeight:'bold'}}align="center">What is Junk Food Dumper?</h1>
 
                         {/* Icon Section */}
                         <Row>
-                            <Col align="center"><div><img src={bmiIcon} height="200" alt="BMI_Calculator"/></div></Col>
-                            <Col align="center"><div><img src={recipeIcon} alt="Healthy Recipe"/></div></Col>
+                            <Col align="center">
+                                <div>
+                                    <Link to="/bmi-page">
+                                        <img src={bmiIcon} height="200" alt="BMI_Calculator"/>
+                                    </Link>
+                                </div>
+                            </Col>
+                            <Col align="center">
+                                <div>
+                                    <Link to='/diet-plan-page'>
+                                    <img src={recipeIcon} alt="Healthy Recipe"/>
+                                    </Link>
+                                </div>
+                            </Col>
                             <Col align='center'><div><img src={exportIcon} alt="Export Recipe"/></div></Col>
                         </Row>
                         <Row>
@@ -86,10 +107,10 @@ function HomePage() {
                         <div className="section-story-overview">
 
                         {/* About Section */}
-                            <p align='justify'>
+                            <p align='justify' style={{fontSize:"20px"}}>
                                 <b> Junk food dumper allows you to choose the perfect diet based on your preferences. 
-                                    It also shows you the clorie intake necessary to be healthy along with nutrional value of various food items. 
-                                    This is a perfect website that would help you on your journey towards a heallthy lifestyle for your child.
+                                    It also shows you the calories intake necessary to be healthy along with the nutritional value of various food items. 
+                                    This is a perfect website that would help you on your journey towards a healthy lifestyle for your child.
                                 </b>
                             </p>
                         </div>
@@ -117,7 +138,7 @@ function HomePage() {
                                     <h3 className="title" align="center">Why Junk Food is an Issue?</h3>
                                     <p align='justify'>
                                         <b>
-                                            Regular consumption on junk food causes long-term health problems such as obesity, accompanying emotional and self-esteem problems, and chronic illnesses. 
+                                            Regular consumption of junk food causes long-term health problems such as obesity, accompanying emotional and self-esteem problems, and chronic illnesses. 
                                             Lack of vitamins such as magnesium and calcium, encourage the development of deficiency diseases as well as dental caries due to higher sugar intake. 
                                             Fast food intake more than three times a week is associated with greater odds such as asthma. Asthma severity is more than 25% in younger children.
                                         </b>
@@ -147,7 +168,7 @@ function HomePage() {
                         <div style={{height:"100%"}}>
                                 <h3 className="title" align='center'>Let The Data Speak for Itself</h3>
                                 <StackChart/>
-                                <p align='center'>
+                                <p align='center' style={{fontWeight:"normal"}}>
                                             Nearly 25% of the children around Austrlia were experencing overweight issue
                                     </p>
 
@@ -156,22 +177,24 @@ function HomePage() {
                                                 Know More
                                         </Button>
                             </div>
+                            {/* Know more tab */}
                             <div style={{display:showMore}}>
                                 <hr style={{ color: "#808080", backgroundColor: "#808080", height: 3}}/>
                                 <FruitConsumption/>
                                 <VegConsumption/>
-                                <JunkFoodConsumption/>
+                                <JunkFoodConsumption/>   
 
-                                
-                                
+                                <div style={{display:showLess, marginTop: '1%'}}>
+                                    <Button id="click" block className="newButton" color="info" onClick={submitClose} size="lg">
+                                        Show Less
+                                    </Button>
+                                </div>                             
                             </div>
                             
                         </div>
                         
 
                     </Container>
-                
-                
                 {/* Footer */}
                 </div>
                 <DefaultFooter />

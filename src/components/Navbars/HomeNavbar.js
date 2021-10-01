@@ -89,11 +89,6 @@ function HomeNavbar() {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink to="/about-page" tag={Link} style={{fontSize: "1em"}}>
-                                    About
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink to="/bmi-page" tag={Link} style={{fontSize: "1em"}}>
                                     BMI Calculator
                                 </NavLink>
@@ -106,6 +101,11 @@ function HomeNavbar() {
                             <NavItem>
                                 <NavLink to="/diet-plan-page" tag={Link} style={{fontSize: "1em"}}>
                                     Diet Plan
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink to="/about-page" tag={Link} style={{fontSize: "1em"}}>
+                                    About
                                 </NavLink>
                             </NavItem>
                             {/*<NavItem>*/}

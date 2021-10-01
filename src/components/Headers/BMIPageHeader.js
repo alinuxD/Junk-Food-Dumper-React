@@ -36,7 +36,8 @@ function BMIPageHeader() {
                 ></div>
                 <div className="content-center">
                     <Container>
-                        <h1 className="title" style={{color: 'white',fontSize: '55px',textAlign: 'left'}}>BMI Caclulator</h1>
+                        <h1 className="title" style={{color: 'white',fontSize: '50px',textAlign: 'left'}}>How Much Do you Need</h1>
+                        <h1 className="title" style={{color: 'white',fontSize: '45px',textAlign: 'right'}}>Base On How You Live</h1>
                     </Container>
                 </div>
             </div>

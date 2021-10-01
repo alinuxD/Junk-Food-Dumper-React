@@ -23,6 +23,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import FoodSearch from "../components/Headers/FoodSearch";
 
+// icon
+import {FaRegQuestionCircle, FaReact} from 'react-icons/fa'
+import {AiOutlineCalculator} from 'react-icons/ai'
 
 
 function calcu(weight,height) {
@@ -124,10 +127,15 @@ function BmiPage() {
         if (age >=10 && age<=15   ){
 
             if (calValue != "error"){
-                setSpeedBmi(calValue)
+                if (calValue > select(age,gender)[4]){
+                    setSpeedBmi(select(age,gender)[4])
+                } else
+                {
+                setSpeedBmi(calValue)}
                 setExerciseWeight(weight)
                 setGuide(select(age,gender))
                 setExerciseDivDisplay("block")
+                setBmiDivDisplay("block")
             }else{
                 setExerciseDivDisplay("none")
                 setBmiDivDisplay("none")
@@ -150,8 +158,8 @@ function BmiPage() {
                 <div className="section section-about-us">
                     <Container>
 
-                        <h2 style={{color: 'black',fontSize: '35px',textAlign: 'left'}} className="title">What is BMI? Why is it important?</h2>
-                        <h5 className="description" style={{color: 'black',fontSize: '20px',textAlign: 'left', fontWeight:'normal'}}>
+                        <h2 style={{color: 'black',fontSize: '35px',textAlign: 'left'}} className="title"><FaRegQuestionCircle/> Why Body Mass Index (BMI) is Important?</h2>
+                        <h5 className="description" style={{color: 'black',fontSize: '20px',textAlign: 'justify', fontWeight:'normal'}}>
                             BMI is a calculation of your size that takes into account
                             your height and weight. It's a good way to gauge whether
                             your weight is in healthy proportion to your height.
@@ -160,13 +168,12 @@ function BmiPage() {
                             the healthy range. BMI helps in averting major health issues.
                         </h5>
 
-                        <div className="separator separator-primary"></div>
                         <div className="section-story-overview">
 
                             <Col className="ml-auto mr-auto" md="20">
                                 <Card className="card-login card-plain">
 
-                                    <h2 className="title">Calculate your child’s BMI below</h2>
+                                    <h2 className="title"><AiOutlineCalculator/> Calculate Your Child’s BMI Below</h2>
                                     <Col md="6" style={{float:'left'}}>
 
                                         <InputGroup >
@@ -251,8 +258,9 @@ function BmiPage() {
 
                                         <CardBody style={{marginTop:'120px',fontSize: '3.0em',marginLeft: '-65px',marginRight:'150px'}}>
                                             <ReactSpeedometer
+                                            currentValueText="Body Mass Index (BMI)"
                                                 value={speedBmi}
-                                                minValue={12}
+                                                minValue={guide[0]}
                                                 maxValue={guide[4]}
                                                 segments={4}
                                                 customSegmentStops={guide}
@@ -282,7 +290,7 @@ function BmiPage() {
                                                 segmentColors={["#F5CD19", "#5BE12C", "#ECA522","#D44124"]}
                                                 needleTransition="easeElastic"
                                                 needleTransitionDuration={3000}
-                                                ringWidth={70}
+                                                ringWidth={100}
                                                 width={500}
                                                 // height={500}
                                                 labelFontSize={"16"}
@@ -303,7 +311,7 @@ function BmiPage() {
                                         Get Your BMI!
                                     </Button>
                                     <div style={{display:exerciseDivDisplay}}>
-                                        <h2 className="title" style={{marginTop: '100px'}}>Recommended Calorie intake </h2>
+                                        <h2 className="title" style={{marginTop: '50px'}} ><FaReact/> Recommended Calorie intake </h2>
                                         <Col md="6" style={{float:'left'}}>
                                             <CardBody className="anotherNewCard2" style={{marginTop: "36px"}}>
                                                 <RecommendIntake gender={gender} age={age}/>
@@ -329,12 +337,13 @@ function BmiPage() {
                                 </Card>
                             </Col>
                         </div>
+                        <polorChart/>
                         <div style={{display:exerciseDivDisplay}}>
                             {/* tab object */}
                             <Tabs>
                                 <TabList>
-                                <Tab><h3>Move More</h3></Tab>
-                                <Tab><h3>Eat Better</h3></Tab>
+                                <Tab><h3 style={{fontWeight:'bold'}}>Move More</h3></Tab>
+                                <Tab><h3 style={{fontWeight:'bold'}}>Eat Better</h3></Tab>
                                 </TabList>
 
                                 <TabPanel>

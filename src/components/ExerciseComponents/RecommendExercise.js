@@ -7,6 +7,8 @@ import {
 } from "reactstrap";
 import {round} from "mathjs";
 
+// icon 
+import {FaRunning} from 'react-icons/fa'
 
 
 
@@ -40,7 +42,7 @@ function RecommendExercise(props){
         <>
 
             <Row>
-                <h2 className="title">Recommended Exercise</h2>
+                <h2 className="title"><FaRunning/> Recommended Exercise</h2>
                 <Col className="ml-auto  text-center" md="6">
 
                     <h4>

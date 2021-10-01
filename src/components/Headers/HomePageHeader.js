@@ -36,11 +36,8 @@ function HomePageHeader() {
                 ></div>
                 <div className="content-center">
                     <Container>
-                        <h1 className="title">
-                            Junk Food Dumper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your healthy diet mentor
-                        </h1>
+                    <h1 className="title" style={{color: 'white',fontSize: '50px',textAlign: 'left'}}>Junk Food Dumper</h1>
+                        <h1 className="title" style={{color: 'white',fontSize: '45px',textAlign: 'right'}}>Your Healthy Diet Mentor</h1>
                     </Container>
                 </div>
             </div>
