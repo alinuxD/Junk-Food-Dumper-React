@@ -1,14 +1,10 @@
 /*eslint-disable*/
 import React from "react";
-import {
-    Container,
-    Row,
-    Col,
-} from "reactstrap";
+import {Container, Row, Col,InputGroup, Input,} from "reactstrap";
 import {round} from "mathjs";
 
 // icon 
-import {FaRunning} from 'react-icons/fa'
+import {FaRunning , FaListUl} from 'react-icons/fa'
 
 
 
@@ -40,11 +36,10 @@ function RecommendExercise(props){
 
     return (
         <>
-
-            <Row>
-                <h2 className="title"><FaRunning/> Recommended Exercise</h2>
-                <Col className="ml-auto  text-center" md="6">
-
+         
+            <Row>    
+                <Col className="ml-auto  text-center">
+                    <h2 className="title"><FaListUl/> Recommended Exercise</h2>
                     <h4>
                         <table>
                             <tbody>
@@ -68,8 +63,41 @@ function RecommendExercise(props){
                         </table>
                     </h4>
                 </Col>
+                <Col>
+                <svg width="570" height="500">
+                    <ellipse cx="350" cy="250" rx="300" ry="250" style={{fill:"lightgray", stroke:'white',strokeWidth:"1"}}/>
+                    <text x='210' y='120' style={{fontSize:'45px', fontWeight:'bold', fill:'black'}}> Do you know </text>
+                    <text x='130' y='170' style={{fontSize:'25px', fontWeight:'bold'}}>To lose 1 kilogram, you need to  
+                        <tspan x='130' y='200'>
+                        burn 7,700 calories. 
+                        </tspan>
+                        <tspan x='130' y='230'>
+                        Our recommendation is to   
+                        </tspan>
+                        <tspan x='130' y='260'>
+                        choose an exercise you like 
+                        </tspan>
+                        <tspan x='130' y='290'>
+                        and keep exercise for your
+                        </tspan>
+                        <tspan x='130' y='320'>
+                        healthy lifestyle.
+                        </tspan>
+                    </text>
+                    <text x='130' y='360' style={{fontSize:'28px', fontWeight:'bold', fill:'red'}}>
+                        Please contact your GP 
+                        <tspan x='130' y='390'>
+                        for suggestion and healthy 
+                    </tspan>
+                    <tspan x='130' y='420'>
+                        advices before exercise.
+                    </tspan>
+                    </text>
+
+                </svg>
+                </Col>
             </Row>
-            <Row style={{marginTop:"63px"}}>
+            {/* <Row style={{marginTop:"63px"}}>
                 <Col md="6">
 
                     <h3 className="title">
@@ -81,6 +109,7 @@ function RecommendExercise(props){
                     </h3>
                 </Col>
                 <Col md="6">
+                    
                     <h3>
 
                     </h3>
@@ -93,7 +122,7 @@ function RecommendExercise(props){
                         <b>Please contact your GP for healthy advices before exercise</b>
                     </h3>
                 </Col>
-            </Row>
+            </Row> */}
 
         </>
     )

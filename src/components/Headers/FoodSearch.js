@@ -1,9 +1,18 @@
 import React from "react";
+
+//img import
+import searchLogo from 'assets/img/demo.png';
+// import Parent from "./views/DietPlanPage";
+
+// reactstrap components
 import {
     Button,
     Container, Input, InputGroup
 } from "reactstrap";
-import {FaSearch} from 'react-icons/fa';
+import Javascript from "../../views/index-sections/Javascript";
+
+
+
 
 
 function FoodSearch(props) {
@@ -43,39 +52,102 @@ function FoodSearch(props) {
         <>
             <div className="page-header page-header-small">
                 <div
+                    className="page-header-image"
                     style={{
-                        backgroundImage:"none",
+                        backgroundImage:
+                            "url(" + require("assets/img/search_back_ground.jpg").default + ")",
                     }}
                     ref={pageHeader}
                 ></div>
                 <div  className="content-center">
-                    {/* Search bar style */}
                     <Container >
-                        <h1 style={{color: 'Black',fontSize: '35px', fontWeight:'bold'}}>
-                            Looking for healthy recipes? Just Type
+                        <h1 style={{color: 'white',fontSize: '35px'}}  className="title">
+                            Enter your choice of Ingredients!
                         </h1>
                         <form>
                             <Input
-                                   style ={{float:'left',fontSize: '1.5em', width: '850px',height:'50px', borderRadius: '20px', marginLeft: '0px',backgroundColor:'white'}}
+                                   style ={{float:'left',fontSize: '1.5em', width: '500px',borderRadius: '15px', marginLeft: '160px',backgroundColor:'white'}}
                                    type="text"
                                    name="condition"
-                                   placeholder="Type in the ingrident name here"
+                                   placeholder="  What’s in your refrigerator?"
                                    onChange = {e => setQuery(e.target.value)}
                                    value={query}
                                    onKeyPress={handleKeypress}
                             ></Input>
-                            <Button onClick={onclickButton}
-                                style={{border:'none',backgroundColor:'black',borderRadius: '10px'}}>
-                                        <i><FaSearch/></i>
+                            <Button
+                                onClick={onclickButton}
+                                style={{border:'none',backgroundColor:'none',background:'none', marginLeft:'-200px',marginTop:'3px',borderRadius: '25px'}}>
+                                <img src = {searchLogo} alt=" " style={{width:'23px',border:"none",marginTop:'-7px'}} ></img>
+
                             </Button>
                         </form>
 
-
                     </Container>
-                
                 </div>
             </div>
         </>
     );
 }
 export default FoodSearch;
+
+
+
+
+
+
+
+// import React from "react";
+//
+// //img import
+// import searchLogo from 'assets/img/demo.png';
+// // import Parent from "./views/DietPlanPage";
+//
+// // reactstrap components
+// import {
+//     Button,
+//     Container, Input
+// } from "reactstrap";
+
+// import DietPlanPage from "../../views/DietPlanPage";
+
+
+
+//
+// function FoodSearchHeader(props) {
+//
+//     // const setFoodInput = props;
+//     const [query, setQuery] = React.useState('')
+//     const {setRes} = props
+//
+//     return (
+//         <>
+//             <div className="page-header page-header-small">
+//                 <div  className="content-center">
+//                     <Container>
+//                         <h1 style={{color: 'white',fontSize: '35px'}}  className="title">
+//                             Enter your choice of Ingredients!
+//                         </h1>
+//                         <form>
+//                             <Input style={{fontSize: '1.5em', width: '500px',borderRadius: '15px', marginLeft: '5px',backgroundColor:'white'}}
+//                                    type="text"
+//                                    name="condition"
+//                                    placeholder="  What’s in your refrigerator?"
+//                                    onChange = {e => setQuery(e.target.value)}
+//                                    value={query}
+//                             ></Input>
+//                             <Button
+//                                 onClick={()=>setRes(query)}
+//                                 style={{border:'none',backgroundColor:'none',background:'none', marginLeft:'-40px',borderRadius: '25px'}}>
+//                                 <img src = {searchLogo} alt=" " style={{width:'23px',border:"none",marginTop:'-7px'}} ></img>
+//
+//                             </Button>
+//                         </form>
+//                     </Container>
+//                 </div>
+//             </div>
+//         </>
+//     );
+// }
+// export default FoodSearchHeader;
+
+

@@ -4,27 +4,28 @@ import React, {useState} from "react";
 import {
     Button,
     Input,
-
     InputGroup,
     Container,
     Col, CardBody,  Card
 } from "reactstrap";
 
-// core components
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+// core components
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import BMIPageHeader from "../components/Headers/BMIPageHeader";
 import RecommendExercise from "../components/ExerciseComponents/RecommendExercise";
 
 import ReactSpeedometer from "react-d3-speedometer";
-import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+// import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
+
 import 'react-tabs/style/react-tabs.css';
 import FoodSearch from "../components/Headers/FoodSearch";
+import RecommendCaloriesbar from "components/ExerciseComponents/RecommendCaloriesbar.js";
 
 // icon
-import {FaRegQuestionCircle, FaReact} from 'react-icons/fa'
+import {FaRegQuestionCircle, FaReact, FaRunning} from 'react-icons/fa'
 import {AiOutlineCalculator} from 'react-icons/ai'
 
 
@@ -311,14 +312,12 @@ function BmiPage() {
                                         Get Your BMI!
                                     </Button>
                                     <div style={{display:exerciseDivDisplay}}>
-                                        <h2 className="title" style={{marginTop: '50px'}} ><FaReact/> Recommended Calorie intake </h2>
-                                        <Col md="6" style={{float:'left'}}>
-                                            <CardBody className="anotherNewCard2" style={{marginTop: "36px"}}>
-                                                <RecommendIntake gender={gender} age={age}/>
+                                        <h2 className="title" style={{marginTop: '50px'}} ><FaReact/> Recommended Calorie Intake Per Day </h2>
+                                        
+                                        {/* Recommend Calories Bar */}
+                                        <RecommendCaloriesbar gender={gender} age={age}/>
 
-                                            </CardBody>
-                                        </Col>
-                                        <Col md="5" style={{float:'right',marginRight: '15px',marginLeft: '10px'}}>
+                                        {/* <Col md="5" style={{float:'right',marginRight: '15px',marginLeft: '10px'}}>
                                             <CardBody className="anotherNewCard1" style={{marginTop: "-100px"}}>
                                                 <div
                                                     className="image-container image-right"
@@ -333,20 +332,27 @@ function BmiPage() {
                                                 ></div>
                                             </CardBody>
                                         </Col>
+                                        <RecommendCaloriesbar gender={gender} age={age}/> */}
+
+                                        {/* Description for different active level */}
+                                        <h4><FaRunning/> Sedentary Active - Briskly walking less than 30 minutes a day. Spend most of the day sitting</h4>
+                                        <h4><FaRunning/><FaRunning/> Moderately Active - Briskly walking at least one hour and 45 minutes.</h4>
+                                        <h4><FaRunning/><FaRunning/><FaRunning/> Very Active - Briskly walking more then four hours and 15 minutes a day. Jogging two hours a day</h4>
+                                    
                                     </div>
                                 </Card>
                             </Col>
                         </div>
-                        <polorChart/>
                         <div style={{display:exerciseDivDisplay}}>
+                            
                             {/* tab object */}
-                            <Tabs>
+                            <Tabs >
                                 <TabList>
                                 <Tab><h3 style={{fontWeight:'bold'}}>Move More</h3></Tab>
                                 <Tab><h3 style={{fontWeight:'bold'}}>Eat Better</h3></Tab>
                                 </TabList>
 
-                                <TabPanel>
+                                <TabPanel style={{backgroundColor:'#eeeeee'}}>
                                     <div>
                                     <RecommendExercise value={exerciseWeight}/>
                                     </div>
@@ -356,10 +362,13 @@ function BmiPage() {
                                 </TabPanel>
                             </Tabs>
                         </div>
+
                     </Container>
+
                 </div>
 
                 <DefaultFooter />
+
             </div>
         </>
     );
