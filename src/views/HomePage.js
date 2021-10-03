@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import "assets/css/Disclaimer.css";
 
 // reactstrap components
 import {
@@ -37,9 +38,9 @@ import Video from '../components/VideoComponents/video.js'
 
 function HomePage() {
     // set knowmore block to None
-    const [showMore, setshowMore]=useState('none')
-    const [hideButton, sethideButton]=useState('block')
-    const [showLess, setshowLess]=useState('none')
+    const [showMore, setshowMore] = useState('none')
+    const [hideButton, sethideButton] = useState('block')
+    const [showLess, setshowLess] = useState('none')
 
     // Press Know more button
     const submitValue = () => {
@@ -54,7 +55,7 @@ function HomePage() {
         sethideButton("block");
     }
 
-        
+
     React.useEffect(() => {
         document.body.classList.add("home-page");
         document.body.classList.add("sidebar-collapse");
@@ -68,143 +69,196 @@ function HomePage() {
     }, []);
 
 
+    function hideDisclaimer() {
+        document.getElementById("navbar").style.display = "";
+        document.getElementById("footer").style.display = "";
+        document.getElementById("background1").style.display = "none";
+        document.getElementById("background2").style.display = "none";
+        document.getElementById("disclaimer").style.display = "none";
+    }
+
 
     return (
         <>
-        <HomeNavbar/>
-            <div className="wrapper">
-                <HomePageHeader/>
-                <div className="section section-about-us">
-                    <Container>
-                        <div className="separator separator-primary"></div>
-                        <h1 style={{fontWeight:'bold'}}align="center">What is Junk Food Dumper?</h1>
+            <div onClick={hideDisclaimer}>
+                <div id='navbar' style={{display: 'none'}}>
+                    <HomeNavbar/>
+                </div>
 
-                        {/* Icon Section */}
-                        <Row>
-                            <Col align="center">
-                                <div>
-                                    <Link to="/bmi-page">
-                                        <img src={bmiIcon} height="200" alt="BMI_Calculator"/>
-                                    </Link>
-                                </div>
-                            </Col>
-                            <Col align="center">
-                                <div>
-                                    <Link to='/diet-plan-page'>
-                                    <img src={recipeIcon} alt="Healthy Recipe"/>
-                                    </Link>
-                                </div>
-                            </Col>
-                            <Col align='center'><div><img src={exportIcon} alt="Export Recipe"/></div></Col>
-                        </Row>
-                        <Row>
-                            <Col align="center"><h4 >Calculate Your BMI</h4></Col>
-                            <Col align="center"><h4>Plan Healty Recipes</h4></Col>
-                            <Col align="center"><h4>Maintain Healthy Diet</h4></Col>
-                            
-                        </Row>
+                <div className="wrapper">
+                    <div id="background1" className='background1' style={{display: 'block'}}/>
+                    <div id="disclaimer" className='disclaimer' style={{display: 'block'}}>
+                        <h3 align='center' style={{fontWeight:'bold'}}>Disclaimer</h3>
+                        <p align='justify' style={{fontFamily:'Arial'}}>
+                            Please read this disclaimer (“Disclaimer”) carefully before using a website operated by
+                            Techpathy.<br></br><br></br>
 
-                        <div className="section-story-overview">
+                            All information posted is merely for educational and informational purposes. It is not intended
+                            as a substitute for professional advice. Should you decide to act upon any information on this website,
+                            you do so at your own risk.<br></br><br></br>
 
-                        {/* About Section */}
-                            <p align='justify' style={{fontSize:"20px"}}>
-                                <b> Junk food dumper allows you to choose the perfect diet based on your preferences. 
-                                    It also shows you the calories intake necessary to be healthy along with the nutritional value of various food items. 
-                                    This is a perfect website that would help you on your journey towards a healthy lifestyle for your child.
-                                </b>
-                            </p>
-                        </div>
-                        
-                        {/* Project Video */}
-                        <div>
-                            <Video/>
-                        </div>
+                            While the information on this website has been verified to the best of our abilities,
+                            we cannot guarantee that there are no mistakes or errors.<br></br><br></br>
+
+                            We reserve the right to change this policy at any given time, of which you will be promptly
+                            updated. If you want to make sure that you are up to date with the latest changes,
+                            we advise you to frequently visit the page.
+                        </p>
+                    </div>
+
+                    <HomePageHeader/>
+                    <div className="section section-about-us">
+
+                        <Container>
+                            <div className="separator separator-primary"></div>
+                            {/*<div id="background3" className='background' style={{display:'block'}}/>*/}
+                            <div id="background2" className='background2' style={{display: 'block'}}/>
 
 
-                        <div className="section-story-overview">
+                            <h1 style={{fontWeight: 'bold'}} align="center">What is Junk Food Dumper?</h1>
+
+                            {/* Icon Section */}
                             <Row>
-                                <Col>
-                                    <div
-                                        className="image-container"
-                                        style={{
-                                            backgroundImage:
-                                                "url(" + require("assets/img/land_page_pic_3.png").default + ")",
-                                        }}
-                                    >
+                                <Col align="center">
+                                    <div>
+                                        <Link to="/bmi-page">
+                                            <img src={bmiIcon} height="200" alt="BMI_Calculator"/>
+                                        </Link>
                                     </div>
                                 </Col>
-
-                                <Col>
-                                    <h3 className="title" align="center">Why Junk Food is an Issue?</h3>
-                                    <p align='justify'>
-                                        <b>
-                                            Regular consumption of junk food causes long-term health problems such as obesity, accompanying emotional and self-esteem problems, and chronic illnesses. 
-                                            Lack of vitamins such as magnesium and calcium, encourage the development of deficiency diseases as well as dental caries due to higher sugar intake. 
-                                            Fast food intake more than three times a week is associated with greater odds such as asthma. Asthma severity is more than 25% in younger children.
-                                        </b>
-                                    </p>
-                                </Col>
-                            </Row>
-                        </div>
-                        <div>
-                            <h3 className="title" align='center'> How Children Obesity Become an Issue?</h3>
-                            <Row margin="0">
-                                <Col align="left"><div>
-                                    <img src={baymaxIcon} alt="BaymaxIcon"/></div>
-                                    <h5 align='left'>Children were obese in Australia</h5>
-                                </Col>
                                 <Col align="center">
-                                    <div><img src={junkfoodIcon} alt="BaymaxIcon"/></div>
-                                    <h5 align='center'>Advertisements are related to junk food.</h5>
+                                    <div>
+                                        <Link to='/diet-plan-page'>
+                                            <img src={recipeIcon} alt="Healthy Recipe"/>
+                                        </Link>
+                                    </div>
                                 </Col>
-                                <Col align="right">
-                                    <div><img src={trendIcon} alt="BaymaxIcon"/></div>
-                                    <h5 align='right'>Type 2 Diabetes Patients Booming</h5>
+                                <Col align='center'>
+                                    <div><img src={exportIcon} alt="Export Recipe"/></div>
                                 </Col>
                             </Row>
-                        </div>
+                            <Row>
+                                <Col align="center"><h4>Calculate Your BMI</h4></Col>
+                                <Col align="center"><h4>Plan Healthy Recipes</h4></Col>
+                                <Col align="center"><h4>Maintain Healthy Diet</h4></Col>
 
-                        {/* Children Obesity chart components */}
-                        <div style={{height:"100%"}}>
+                            </Row>
+
+                            <div className="section-story-overview">
+
+                                {/* About Section */}
+                                <p align='justify' style={{fontSize: "20px"}}>
+                                    <b> Junk food dumper allows you to choose the perfect diet based on your
+                                        preferences.
+                                        It also shows you the calories intake necessary to be healthy along with the
+                                        nutritional value of various food items.
+                                        This is a perfect website that would help you on your journey towards a healthy
+                                        lifestyle for your child.
+                                    </b>
+                                </p>
+                            </div>
+
+                            {/* Project Video */}
+                            <div>
+                                <Video/>
+                            </div>
+
+
+                            <div className="section-story-overview">
+                                <Row>
+                                    <Col>
+                                        <div
+                                            className="image-container"
+                                            style={{
+                                                backgroundImage:
+                                                    "url(" + require("assets/img/land_page_pic_3.png").default + ")",
+                                            }}
+                                        >
+                                        </div>
+                                    </Col>
+
+                                    <Col>
+                                        <h3 className="title" align="center">Why Junk Food is an Issue?</h3>
+                                        <p align='justify'>
+                                            <b>
+                                                Regular consumption of junk food causes long-term health problems such
+                                                as obesity, accompanying emotional and self-esteem problems, and chronic
+                                                illnesses.
+                                                Lack of vitamins such as magnesium and calcium, encourage the
+                                                development of deficiency diseases as well as dental caries due to
+                                                higher sugar intake.
+                                                Fast food intake more than three times a week is associated with greater
+                                                odds such as asthma. Asthma severity is more than 25% in younger
+                                                children.
+                                            </b>
+                                        </p>
+                                    </Col>
+                                </Row>
+                            </div>
+                            <div>
+                                <h3 className="title" align='center'> How Children Obesity Become an Issue?</h3>
+                                <Row margin="0">
+                                    <Col align="left">
+                                        <div>
+                                            <img src={baymaxIcon} alt="BaymaxIcon"/></div>
+                                        <h5 align='left'>Children were obese in Australia</h5>
+                                    </Col>
+                                    <Col align="center">
+                                        <div><img src={junkfoodIcon} alt="BaymaxIcon"/></div>
+                                        <h5 align='center'>Advertisements are related to junk food.</h5>
+                                    </Col>
+                                    <Col align="right">
+                                        <div><img src={trendIcon} alt="BaymaxIcon"/></div>
+                                        <h5 align='right'>Type 2 Diabetes Patients Booming</h5>
+                                    </Col>
+                                </Row>
+                            </div>
+
+                            {/* Children Obesity chart components */}
+                            <div style={{height: "100%"}}>
                                 <h3 className="title" align='center'>Let The Data Speak for Itself</h3>
                                 <StackChart/>
-                                <p align='center' style={{fontWeight:"normal"}}>
-                                            Nearly 25% of the children around Austrlia were experencing overweight issue
-                                    </p>
+                                <p align='center' style={{fontWeight: "normal"}}>
+                                    Nearly 25% of the children around Australia were experiencing overweight issue
+                                </p>
 
-                            <div style={{display:hideButton, marginTop: '1%'}}>
-                                        <Button id="click" block className="newButton" color="info" onClick={submitValue} size="lg">
-                                                Know More
-                                        </Button>
-                            </div>
-                            {/* Know more tab */}
-                            <div style={{display:showMore}}>
-                                <hr style={{ color: "#808080", backgroundColor: "#808080", height: 3}}/>
-                                <FruitConsumption/>
-                                <VegConsumption/>
-                                <JunkFoodConsumption/>   
-
-                                <div style={{display:showLess, marginTop: '1%'}}>
-                                    <Button id="click" block className="newButton" color="info" onClick={submitClose} size="lg">
-                                        Show Less
+                                <div style={{display: hideButton, marginTop: '1%'}}>
+                                    <Button id="click" block className="newButton" color="info" onClick={submitValue}
+                                            size="lg">
+                                        Know More
                                     </Button>
-                                </div>                             
-                            </div>
-                            
-                        </div>
-                        
+                                </div>
+                                {/* Know more tab */}
+                                <div style={{display: showMore}}>
+                                    <hr style={{color: "#808080", backgroundColor: "#808080", height: 3}}/>
+                                    <FruitConsumption/>
+                                    <VegConsumption/>
+                                    <JunkFoodConsumption/>
 
-                    </Container>
-                {/* Footer */}
+                                    <div style={{display: showLess, marginTop: '1%'}}>
+                                        <Button id="click" block className="newButton" color="info"
+                                                onClick={submitClose} size="lg">
+                                            Show Less
+                                        </Button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </Container>
+                        {/* Footer */}
+                    </div>
+                    <div id='footer' style={{display: 'none'}}>
+                        <DefaultFooter/>
+                    </div>
                 </div>
-                <DefaultFooter />
             </div>
         </>
     );
 }
 
 export default HomePage;
-
 
 
 // import React from "react";
