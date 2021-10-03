@@ -54,4 +54,14 @@
     font-weight:bold;
     margin-top:5px;
     line-height: normal;
- }
+}
+.buttonStyle{
+    background-color:rgba(128,1,255,0.66);
+    /*marginLeft:45%;*/
+    border-radius:25px;
+    font-size:15px;
+    color:white;
+    height:45px;
+    border-width:0;
+    width:200px
+}
