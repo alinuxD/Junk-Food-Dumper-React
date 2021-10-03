@@ -363,7 +363,7 @@ function FoodDetailsPage(props) {
                                                     <img src={energyImg} className="rightImgStyle" alt=" "/>
                                                     <p className="rightTextStyleB">
                                                         Energy<br></br>
-                                                        {calories} kcal
+                                                        {calories} cal
                                                     </p>
                                                 </div>
                                             </div>
