@@ -48,7 +48,7 @@ function concatId(){
     // const strList =JSON.stringify(list)
     // localStorage.setItem('id',strList)
     //
-    let tempList =JSON.parse(sessionStorage.getItem('recipe'))
+    let tempList =JSON.parse(sessionStorage.getItem('recipes'))
     if (tempList==null){
         tempList=[]
     }
@@ -363,16 +363,13 @@ function SummaryPage() {
                             </>
                         )
                     })}
+                    <div style={{textAlign:'center'}}>
                     <Tooltip title="Add More Recipe">
                         <Button shape="circle"  size="large" >
                             <Link to="/diet-plan-page" >+</Link>
                         </Button>
                     </Tooltip>
-                    <Tooltip title="Create Your Plan">
-                        <Button   size="large" >
-                            <Link to="/summary-page" >Create Plan</Link>
-                        </Button>
-                    </Tooltip>
+                    </div>
                 </div>
 
                 <div style={bucket}>
