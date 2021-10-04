@@ -19,12 +19,12 @@ function defaultPic(pd) {
 function show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,nameList) {
     if(getBMI === "get") {
         return <p style={{color:'black',fontWeight:'1000',fontSize: '1.5em',textAlign:'center'}}>Your Recommended Calorie intake
-        <p style={{color:'green',fontWeight:'1000',fontSize: '1.2em',marginLeft:'60px'}}>
-            {parseInt(window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[1])
-            +' - '
-            +parseInt(window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[1])}
-            <span style={{color:'black',fontWeight:'500',fontSize: '0.5em',marginLeft:'10px'}}>Kcal Per Day</span>
-        </p>
+            <p style={{color:'green',fontWeight:'1000',fontSize: '1.2em',marginLeft:'60px'}}>
+                {parseInt(window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[1])
+                +' - '
+                +parseInt(window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[1])}
+                <span style={{color:'black',fontWeight:'500',fontSize: '0.5em',marginLeft:'10px'}}>Kcal Per Day</span>
+            </p>
             <Tooltip title="Create Your Plan">
                 <Button   size="large" >
                     <Link to="/summary-page" >Create Plan</Link>
@@ -91,7 +91,7 @@ function DietPlanPage() {
     let [totalCal, setTotalCal] = useState(0)
     const [list, setList] = useState([])
     const getBMI = window.sessionStorage.getItem("BMI");
-    const n = window.sessionStorage.getItem("recipes")
+    // const n = window.sessionStorage.getItem("recipes")
     // window.sessionStorage.setItem("recipes",JSON.stringify(list))
     // window.sessionStorage.setItem("goBack",queryFather)
     // const v = JSON.parse(window.sessionStorage.getItem("recipes"))
@@ -111,7 +111,7 @@ function DietPlanPage() {
             }
             setNameList(newList)
         }else {
-            window.sessionStorage.setItem("recipes",'')
+            window.sessionStorage.setItem("recipes",'{"recipe_id":"","recipe_name":""}')
         }
     },[window.sessionStorage.getItem("recipes")])
     //强制刷新
@@ -239,34 +239,36 @@ function DietPlanPage() {
 
             <Col md="4" style={{float:'left',position: 'relative',marginTop:'0px',paddingBottom:'50px',paddingLeft:'0px',marginLeft:'80px',marginRight:'40px'}}>
 
-                    <Col md="5" style={{float:'left',position: 'absolute',align:'left'}}>
-                        <img src={defaultPic(pd)} style={{float:'left',height:'150px',width:'150px',marginBottom:'0px'}}/>
-                    </Col>
-                    <Col md="9" style={{float:'right',textAlign:'left',paddingLeft:'30px',paddingBottom:'20px'}}>
-                        <p style={{fontSize: '1.2em',color:'black',fontWeight:'700',position: 'absolute'}}>
-                            <p style={{fontSize: '1.1em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'0px'}}>{pd.recipe_name}</p>
-                            {/*<Checkbox*/}
-                            {/*    style={{marginBottom:'20px',marginLeft:'20px', transitionDuration:"1s"}}*/}
-                            {/*    icon={<img src={require("assets/img/check.png").default} style={{ width:'30px',height:'30px' }} alt="" />}*/}
-                            {/*    borderColor="#D7C629"*/}
-                            {/*    borderRadius={30}*/}
-                            {/*    size={30}*/}
-                            {/*    label={<p style={{fontSize: '1.2em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'-5px'}}>{pd.recipe_name}</p>}*/}
-                            {/*    right={true}*/}
-                            {/*    onChange={() => {setList(list => [...list,Checkbox.state.checked+""])}}*/}
-                            {/*    checked={false}*/}
-                            {/*/>*/}
-                        </p>
-
-                        <p style={{fontSize: '1.0em',color:'black',fontWeight:'500',paddingRight:'0px',position: 'absolute',marginTop:'30px',paddingBottom:'50px'}}>
-                            {pd.recipe_description}
-                        </p>
-                        {/*<p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'400px',position: 'absolute',marginTop:'70px'}}>*/}
-                        {/*    Calories:{pd.recipe_nutrition.calories}*/}
-                        {/*</p>*/}
+                <Col md="5" style={{float:'left',position: 'absolute',align:'left'}}>
+                    <img src={defaultPic(pd)} style={{float:'left',height:'150px',width:'150px',marginBottom:'0px'}}/>
+                </Col>
+                <Col md="9" style={{float:'right',textAlign:'left',paddingLeft:'30px',paddingBottom:'20px'}}>
+                    <p style={{fontSize: '1.2em',color:'black',fontWeight:'700',position: 'absolute'}}>
+                        <p style={{fontSize: '1.1em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'0px'}}>{pd.recipe_name}</p>
+                        {/*<Checkbox*/}
+                        {/*    style={{marginBottom:'20px',marginLeft:'20px', transitionDuration:"1s"}}*/}
+                        {/*    icon={<img src={require("assets/img/check.png").default} style={{ width:'30px',height:'30px' }} alt="" />}*/}
+                        {/*    borderColor="#D7C629"*/}
+                        {/*    borderRadius={30}*/}
+                        {/*    size={30}*/}
+                        {/*    label={<p style={{fontSize: '1.2em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'-5px'}}>{pd.recipe_name}</p>}*/}
+                        {/*    right={true}*/}
+                        {/*    onChange={() => {setList(list => [...list,Checkbox.state.checked+""])}}*/}
+                        {/*    checked={false}*/}
+                        {/*/>*/}
 
 
-                        <span style={{float:'left'}}>
+                    </p>
+
+                    <p style={{fontSize: '1.0em',color:'black',fontWeight:'500',paddingRight:'0px',position: 'absolute',marginTop:'30px',paddingBottom:'50px'}}>
+                        {pd.recipe_description}
+                    </p>
+                    {/*<p style={{fontSize: '1.1em',color:'black',fontWeight:'500',paddingRight:'400px',position: 'absolute',marginTop:'70px'}}>*/}
+                    {/*    Calories:{pd.recipe_nutrition.calories}*/}
+                    {/*</p>*/}
+
+
+                    <span style={{float:'left'}}>
                             <button style={{align:'left',fontSize: '1.2em',marginLeft:'0px',verticalAlign:'middle',
                                 position: 'relative',marginTop:'100px',transitionDuration:'0.5s'}}
                                     id="click"
@@ -279,7 +281,7 @@ function DietPlanPage() {
                         </button>
                         </span>
 
-                        <span  style={{position: 'absolute',marginTop:'114px',float:'right',marginLeft:'20px',marginBottom:'200px'}}>
+                    <span  style={{position: 'absolute',marginTop:'114px',float:'right',marginLeft:'20px',marginBottom:'200px'}}>
                             <button
                                 id="click"
                                 className="newButton4"
@@ -296,7 +298,7 @@ function DietPlanPage() {
                                 <span style={{fontSize:'1.5em'}}>+</span>
                             </button>
                         </span>
-                    </Col>
+                </Col>
             </Col>
 
         </div>)
@@ -352,26 +354,26 @@ function DietPlanPage() {
                     {/*    {n}*/}
                     {/*</p>*/}
 
-                        <div className="SearchPage">
-                            {data}
-                            <div style={{marginLeft:'600px',marginTop:'1400px',position:'absolute'}}>
+                    <div className="SearchPage">
+                        {data}
+                        <div style={{marginLeft:'600px',marginTop:'1400px',position:'absolute'}}>
 
-                                <ReactPaginate
+                            <ReactPaginate
 
-                                               previousLabel={"prev"}
-                                               nextLabel={"next"}
-                                               breakLabel={"..."}
-                                               breakClassName={"break-me"}
-                                               pageCount={pageCount}
-                                               marginPagesDisplayed={2}
-                                               pageRangeDisplayed={5}
-                                               onPageChange={handlePageClick}
-                                               containerClassName={"pagination"}
-                                               subContainerClassName={"pages pagination"}
-                                               activeClassName={"active"}/>
-                            </div>
-
+                                previousLabel={"prev"}
+                                nextLabel={"next"}
+                                breakLabel={"..."}
+                                breakClassName={"break-me"}
+                                pageCount={pageCount}
+                                marginPagesDisplayed={2}
+                                pageRangeDisplayed={5}
+                                onPageChange={handlePageClick}
+                                containerClassName={"pagination"}
+                                subContainerClassName={"pages pagination"}
+                                activeClassName={"active"}/>
                         </div>
+
+                    </div>
 
                 </div>
 
