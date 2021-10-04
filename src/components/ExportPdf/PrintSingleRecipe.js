@@ -25,7 +25,7 @@ import proteinImg from 'assets/img/Protein.png';
 
 import {round, string} from "mathjs";
 import axios from "axios";
-import defaultImage from "assets/img/default.jpg";
+import defaultImage from "../../assets/img/default.jpg";
 import ReactToPrint from "react-to-print";
 
 
