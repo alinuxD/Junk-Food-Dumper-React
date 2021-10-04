@@ -26,117 +26,98 @@ function PrintDailyRecipe(props) {
         display: 'flex',
         flexDirection: 'column'
     }
-    var [totalData, setTotalData] = useState([])
+    var idList = props.idList
 
-    // var idDic = props
-    var idDic = {
-        1: [55986, 53697, 5062321],
-        2: [1444326, 3629531, 53697, 5062321],
-        3: []
-        // ,3: [3629531, 53697, 5062321, 3629531, 53697, 5062321, 3629531, 53697, 5062321]
-    }
-
-
-    const getData = async () => {
-        var tempData = []
-
-        for (var key in idDic) {
-            var dayData = []
-            console.log('天数： '+key)
-            console.log(idDic[key].length)
-            if (idDic[key].length == 0)
-            {
-                console.log('No choice')
-            }
-            else
-            {
-                for (var i = 0; i < idDic[key].length; i++) {
-                    var id = idDic[key][i]
-                    var recipeData = {}
-                    var recipeName = " "
-                    var ingredients = {}
-                    var directions = {}
-                    console.log("开始getAPI,显示id")
-                    console.log(id)
-                    console.log("id显示结束")
-                    let res = await axios.get(
-                        `http://api.junkfooddumper.tk/recipes/get?id=${id}`,
-                    ).catch(err => {
-                        console.log(err)
-                    })
-
-                    if (typeof res.data.recipe.recipe_name === 'string') {
-                        recipeName = res.data.recipe.recipe_name
-                    } else {
-                        recipeName = 'No Data'
-                    }
+    console.log(idList.length)
+    var tempData = []
+    //
+    for (var a = 0; a < idList.length; a++) {
+        var dayData = []
+        console.log('天数： ' + idList[a].day)
+        console.log(idList[a].chosenItems.length)
+        if (idList[a].chosenItems.length == 0) {
+            console.log('No choice')
+        } else {
+            for (var i = 0; i < idList[a].chosenItems.length; i++) {
+                var recipe = idList[a].chosenItems[i]
+                console.log(recipe)
+                var recipeData = {}
+                var recipeName = " "
+                var ingredients = {}
+                var directions = {}
+                console.log("开始读取数据")
 
 
-                    if (typeof res.data.recipe.ingredients.ingredient === 'object') {
-                        ingredients = res.data.recipe.ingredients.ingredient
-                        // console.log(res.data.recipe.ingredients.ingredient)
-                    } else {
-                        let emptyList = [{
-                            serving_id: 'No Data',
-                            ingredient_description: 'No Data'
-                        }]
-                        ingredients = emptyList
-                    }
-
-                    if (typeof res.data.recipe.directions.direction === 'object') {
-                        let tempDirections = res.data.recipe.directions.direction
-                        if (Object.keys(tempDirections)[0] === 'direction_number') {
-                            let list = [{
-                                direction_number: tempDirections.direction_number,
-                                direction_description: tempDirections.direction_description
-                            }]
-                            directions = list
-                        } else {
-                            directions = res.data.recipe.directions.direction
-                        }
-                    } else {
-                        let noDataList = [{
-                            direction_number: 'No Data',
-                            direction_description: 'No Data'
-                        }]
-                        directions = noDataList
-
-                    }
-                    recipeData["recipeName"] = recipeName
-                    recipeData["ingredients"] = ingredients
-                    recipeData["directions"] = directions
-                    // return tempData
-                    dayData.push(recipeData)
-                    console.log(dayData)
-                    //
+                if (typeof recipe.recipe_name === 'string') {
+                    recipeName = recipe.recipe_name
+                } else {
+                    recipeName = 'No Data'
                 }
-            }
-            if (idDic[key].length > 0)
-            {
-                console.log('执行添加')
-                var tempDayData = {}
-                tempDayData['day'] = key
-                tempDayData['chosenItems'] = dayData
-                tempData.push(tempDayData)
-                console.log(tempData)
+                console.log(recipeName)
 
-            }
-            else
-            {
-                console.log('不执行添加')
+
+                if (recipe.ingredients.length > 0) {
+                    ingredients = recipe.ingredients
+                    // console.log(res.data.recipe.ingredients.ingredient)
+                } else {
+                    let emptyList = [{
+                        serving_id: 'No Data',
+                        ingredient_description: 'No Data'
+                    }]
+                    ingredients = emptyList
+                }
+                console.log(ingredients)
+
+                if (recipe.directions.length > 0) {
+                    let tempDirections = recipe.directions
+                    console.log(tempDirections[0])
+                    if (tempDirections[0] === 'direction_number') {
+                        let list = [{
+                            direction_number: tempDirections[0],
+                            direction_description: tempDirections[1]
+                        }]
+                        directions = list
+                    } else {
+                        directions = recipe.directions
+                    }
+                } else {
+                    let noDataList = [{
+                        direction_number: 'No Data',
+                        direction_description: 'No Data'
+                    }]
+                    directions = noDataList
+
+                }
+                console.log(directions)
+                recipeData["recipeName"] = recipeName
+                recipeData["ingredients"] = ingredients
+                recipeData["directions"] = directions
+                console.log(recipeData)
+                dayData.push(recipeData)
+                console.log(dayData)
+
             }
         }
-        console.log(tempData)
-        setTotalData(tempData)
+        if (idList[a].chosenItems.length > 0) {
+            console.log('执行添加')
+            var tempDayData = {}
+            tempDayData['day'] = idList[a].day
+            tempDayData['chosenItems'] = dayData
+            tempData.push(tempDayData)
+            console.log(tempData)
+        } else {
+            console.log('不执行添加')
+        }
     }
 
-    useEffect(() => {
-        getData()
-    }, [])
+    console.log(tempData)
+    var totalData = tempData
+
 
     var myDate = new Date().getDate()
     var myMonth = new Date().getMonth() + 1
     var myYear = new Date().getFullYear()
+
 
     return (
         <>

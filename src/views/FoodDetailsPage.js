@@ -239,6 +239,16 @@ function FoodDetailsPage(props) {
 
             })
             .catch(err=>{console.log(err)})
+        document.body.classList.add("about-page");
+        document.body.classList.add("sidebar-collapse");
+        document.documentElement.classList.remove("nav-open");
+        document.body.setAttribute("style","overflow-x:auto;")
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+        return function cleanup() {
+            document.body.classList.remove("about-page");
+            document.body.classList.remove("sidebar-collapse");
+        };
 
     },[])
 
@@ -370,7 +380,7 @@ function FoodDetailsPage(props) {
                                         </div>
 
                                         <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
-                                             style={{marginLeft:'200px'}}>
+                                             style={{marginLeft:'200px',position:'absolute'}}>
                                             <div className="flipper">
                                                 <div className="front" style={{backgroundColor:'#83CF77'}}>
                                                     <img src={carbohydrateImg} className="rightImgStyle" alt=" "/>
@@ -408,7 +418,7 @@ function FoodDetailsPage(props) {
                                         </div>
 
                                         <div className="flip-container" onTouchStart="this.classList.toggle('hover');"
-                                             style={{marginLeft:'200px',marginTop:'20px'}}>
+                                             style={{marginLeft:'200px',marginTop:'200px'}}>
                                             <div className="flipper">
                                                 <div className="front" style={{backgroundColor:'#7CADF8'}}>
                                                     <img src={fatImg} className="rightImgStyle" alt=" "/>

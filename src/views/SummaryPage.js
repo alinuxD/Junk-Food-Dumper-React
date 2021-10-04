@@ -1,6 +1,5 @@
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import React, {useState, useCallback} from "react";
-import update from 'immutability-helper';
 import 'antd/dist/antd.css';
 import CardItem from "../components/Summary/CardItem";
 import {Modal} from 'antd'
