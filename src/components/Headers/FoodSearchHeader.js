@@ -36,9 +36,11 @@ function FoodSearchHeader(props) {
     const {setQueryFather} = props
 
 
-
     function onclickButton(){
         setQueryFather(query)
+        // window.sessionStorage.removeItem("goBack")
+        window.sessionStorage.setItem("goBack",query)
+
     }
 
     const handleKeypress = e => {

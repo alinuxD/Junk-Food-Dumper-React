@@ -26,7 +26,8 @@ import RecommendCaloriesbar from "components/ExerciseComponents/RecommendCalorie
 
 // icon
 import {FaRegQuestionCircle, FaReact, FaRunning} from 'react-icons/fa'
-import {AiOutlineCalculator} from 'react-icons/ai'
+import {AiOutlineCalculator, AiOutlineWarning} from 'react-icons/ai'
+import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
 
 
 function calcu(weight,height) {
@@ -107,6 +108,31 @@ function BmiPage() {
     const [guide, setGuide] = React.useState([12,15,24,27,29]);
     const [gender, setGender] = React.useState('Male');
 
+    const radioInput = {
+        marginRight: '0px',
+        // marginLeft: '-20px',
+        marginTop:'5px'
+    }
+    const radionValue = {
+        fontSize: '15px',
+        // marginRight: '50px',
+        // marginLeft:'-20px'
+    }
+
+    const guideline = {
+        "under13":{
+            "Male":{"sed":"1,600 - 2,000","mod":"1,800 - 2,200","act":"2,000 - 2,600"},
+            "Female":{"sed":"1,400 - 1,600","mod":"1,600 - 2,000","act":"1,800 - 2,200"}
+        },
+        "over13":{
+            "Male":{"sed":"2,000 - 2,400","mod":"2,400 - 2,800","act":"2,800 - 3,200"},
+            "Female":{"sed":"1,800","mod":"2,000","act":"2,400"}
+        }
+    }
+
+
+    const [ageLine,setAgeLine]= useState(age<=13 ? "under13":"over13")
+    const [activity,setActivity]= useState("mod")
 
     const [firstFocus, setFirstFocus] = React.useState(false);
     // const [lastFocus, setLastFocus] = React.useState(false);
@@ -124,6 +150,11 @@ function BmiPage() {
 
     //submit Button function
     const submitValue = () => {
+        window.sessionStorage.setItem("BMI","get")
+        // window.sessionStorage.setItem("recipes",'[{"recipe_nutrition":{"protein":"5.31","fat":"5.45","calories":"0",' +
+        //     '"carbohydrate":"40.31"},"recipe_id":"123","recipe_image":"https://m.ftscrt.com/static/recipe/9e62858e-9962-4354-95e2-8c6ecc96eda4.jpg",' +
+        //     '"recipe_description":"A 4-ingredient breakfast without added sugars.","recipe_name":"","recipe_url":"https://www.fatsecret.com/recipes/52653062-pancakes/Default.aspx"}]')
+
         let calValue = calcu(weight,height)
         if (age >=10 && age<=15   ){
 
@@ -313,7 +344,7 @@ function BmiPage() {
                                     </Button>
                                     <div style={{display:exerciseDivDisplay}}>
                                         <h2 className="title" style={{marginTop: '50px'}} ><FaReact/> Recommended Calorie Intake Per Day </h2>
-                                        
+
                                         {/* Recommend Calories Bar */}
                                         <RecommendCaloriesbar gender={gender} age={age}/>
 
@@ -338,13 +369,15 @@ function BmiPage() {
                                         <h4><FaRunning/> Sedentary Active - Briskly walking less than 30 minutes a day. Spend most of the day sitting</h4>
                                         <h4><FaRunning/><FaRunning/> Moderately Active - Briskly walking at least one hour and 45 minutes.</h4>
                                         <h4><FaRunning/><FaRunning/><FaRunning/> Very Active - Briskly walking more then four hours and 15 minutes a day. Jogging two hours a day</h4>
-                                    
+                                        <h2 className="title" style={{marginTop:'50px'}}> <AiOutlineWarning/> How do you think your children activity level is ? </h2>
+                                        <RecommendIntake gender={gender} age={age}/>
                                     </div>
+
                                 </Card>
                             </Col>
                         </div>
                         <div style={{display:exerciseDivDisplay}}>
-                            
+
                             {/* tab object */}
                             <Tabs >
                                 <TabList>

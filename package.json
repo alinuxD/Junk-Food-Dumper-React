@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "-": "0.0.1",
+    "@ant-design/icons": "latest",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "antd": "^4.16.13",
     "echarts": "^5.2.1",
@@ -17,8 +18,11 @@
     "plotly.js-dist": "^2.5.1",
     "react": "17.0.2",
     "react-bootstrap-switch": "15.5.3",
+    "react-custom-checkbox": "^2.0.0",
     "react-d3-speedometer": "^1.0.1",
     "react-datetime": "3.0.4",
+    "react-dnd": "^14.0.4",
+    "react-dnd-html5-backend": "latest",
     "react-dom": "17.0.2",
     "react-gauge-chart": "^0.4.0",
     "react-icons": "^4.2.0",
@@ -28,12 +32,9 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
     "react-tabs": "^3.2.2",
-    "reactstrap": "8.9.0",
-    "save": "^2.4.0",
     "react-to-print": "latest",
-    "react-dnd-html5-backend": "latest",
-    "@ant-design/icons": "latest",
-    "react-dnd": "latest"
+    "reactstrap": "8.9.0",
+    "save": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

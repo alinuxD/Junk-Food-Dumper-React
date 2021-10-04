@@ -38,7 +38,7 @@ function RecommendIntake(props){
 
     const [ageLine,setAgeLine]= useState(props.age<=13 ? "under13":"over13")
     const [activity,setActivity]= useState("mod")
-
+    window.sessionStorage.setItem("Cal",guideline[ageLine][props.gender][activity])
     return (
         <>
 
@@ -47,7 +47,7 @@ function RecommendIntake(props){
                     <h3 style={{marginRight: '15px',marginLeft: '-10px',textAlign: 'left'}}>
                         Your calorie:
                     </h3>
-                    <h3 className="text-center" style={{color:"#ffbe00",fontWeight: 700}}>{guideline[ageLine][props.gender][activity]}     </h3>
+                    <h3 className="text-center" style={{color:"#ffbe00",fontWeight: 700}}>{guideline[ageLine][props.gender][activity]} </h3>
                     <h3 >
                         &nbsp;Kcal Per Day
                     </h3>
@@ -58,18 +58,21 @@ function RecommendIntake(props){
 
                                 <Input style={radioInput}
                                        label="Male" type='Radio' checked={activity === 'sed'} value="sed"
-                                       onChange={() => setActivity('sed') }/>
-                                <div style={radionValue}>Not Active</div>
+                                       onChange={() => {setActivity('sed')
+                                           window.sessionStorage.setItem("Cal",guideline[ageLine][props.gender][activity])} }/>
+                                <div style={radionValue}>Sedentary Active</div>
                                 <br/>
                                 <Input style={radioInput}
                                        label="Female" type='Radio' checked={activity === 'mod'} value="mod"
-                                       onChange={() => setActivity('mod')}/>
+                                       onChange={() => {setActivity('mod')
+                                           window.sessionStorage.setItem("Cal",guideline[ageLine][props.gender][activity])}}/>
                                 <div style={radionValue}>Moderately Active</div>
                                 <br/>
                                 <Input style={radioInput}
                                        label="Female" type='Radio' checked={activity === 'act'} value="act"
-                                       onChange={() => setActivity('act')}/>
-                                <div style={radionValue}>Active</div>
+                                       onChange={() => {setActivity('act')
+                                           window.sessionStorage.setItem("Cal",guideline[ageLine][props.gender][activity])}}/>
+                                <div style={radionValue}>Very Active</div>
 
                             </InputGroup>
             </div>

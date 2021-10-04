@@ -75,6 +75,8 @@ function HomePage() {
         document.getElementById("background1").style.display = "none";
         document.getElementById("background2").style.display = "none";
         document.getElementById("disclaimer").style.display = "none";
+        window.sessionStorage.setItem("goBack","")
+        window.sessionStorage.setItem("page","0")
     }
 
 
