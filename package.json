@@ -30,7 +30,10 @@
     "react-tabs": "^3.2.2",
     "reactstrap": "8.9.0",
     "save": "^2.4.0",
-    "react-to-print": "latest"
+    "react-to-print": "latest",
+    "react-dnd-html5-backend": "latest",
+    "@ant-design/icons": "latest",
+    "react-dnd": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
