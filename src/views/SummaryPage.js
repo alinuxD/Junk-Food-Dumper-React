@@ -1,23 +1,20 @@
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import React, {useState, useCallback} from "react";
 import 'antd/dist/antd.css';
-import CardItem from "../components/Summary/CardItem";
+
 import {Modal} from 'antd'
-
-
 import { HTML5Backend } from 'react-dnd-html5-backend'
-
-import BMIPageHeader from "../components/Headers/BMIPageHeader";
 import {DndProvider} from "react-dnd";
-import Bucket from "../components/Summary/Bucket";
 import axios from "axios";
-import DayContainer from "../components/Summary/DayContainer";
 import defaultImage from "../assets/img/default.jpg"
-
 import { Button, Tooltip } from 'antd';
-import { ExclamationCircleOutlined,PlusOutlined } from '@ant-design/icons';
 import {Link} from "react-router-dom";
-import {NavLink} from "reactstrap";
+import { ExclamationCircleOutlined,PlusOutlined } from '@ant-design/icons';
+
+
+import SummaryPageHeader from "../components/Headers/SummaryPageHeader";
+import Bucket from "../components/Summary/Bucket";
+import CardItem from "../components/Summary/CardItem";
 import PrintDailyRecipe from "../components/ExportPdf/PrintDailyRecipe";
 
 function confirm() {
@@ -33,6 +30,36 @@ function round(number, precision) {
     return Math.round(+number + 'e' + precision) / Math.pow(10, precision);
 }
 
+function concatId(){
+    const list = [
+        // {
+        //     recipe_id:3629531,
+        //     recipe_name:'222222'
+        // },
+        // {
+        //     recipe_id:53697,
+        //     recipe_name:'zzz'
+        // },
+        // {
+        //     recipe_id:5062321,
+        //     recipe_name:'ffff'
+        // }
+    ]
+    // const strList =JSON.stringify(list)
+    // localStorage.setItem('id',strList)
+    //
+    let tempList =JSON.parse(sessionStorage.getItem('recipe'))
+    if (tempList==null){
+        tempList=[]
+    }
+    let newList = []
+    for (let i=0; i < tempList.length;i++){
+        newList.push(tempList[i].recipe_id)
+    }
+
+    return newList
+}
+
 function SummaryPage() {
     const card = {
 
@@ -40,7 +67,10 @@ function SummaryPage() {
         marginLeft:'50px',
         marginRight:'50px',
         marginBottom:'25px',
-        display: 'flex'
+        display: 'flex',
+        maxWidth:'1400px',
+        flexDirection:'row',
+        flexWrap:'wrap'
     }
 
     const bucket = {
@@ -50,7 +80,7 @@ function SummaryPage() {
         width:'1300px'
     }
 
-    const idDic = [121, 53697, 5062321]
+    const idDic = concatId()
     const [chosenList,setChosenList] = useState([])
 
 
@@ -76,14 +106,11 @@ function SummaryPage() {
             })
 
             //图片
-            
-            try {
+            if (typeof res.data.recipe.recipe_images.recipe_image === 'string') {
                 recipeImage = res.data.recipe.recipe_images.recipe_image
-            }
-            catch (err){
+            } else {
                 recipeImage = defaultImage
             }
-
 
             //名字
             if (typeof res.data.recipe.number_of_servings === 'string') {
@@ -314,7 +341,7 @@ function SummaryPage() {
     return (
         <>
             <HomeNavbar/>
-            <BMIPageHeader/>
+            <SummaryPageHeader/>
 
             <h3 style={{margin: '50px'}}>Your Chosen Recipes</h3>
             <DndProvider backend={HTML5Backend}>
@@ -339,7 +366,11 @@ function SummaryPage() {
                     <Tooltip title="Add More Recipe">
                         <Button shape="circle"  size="large" >
                             <Link to="/diet-plan-page" >+</Link>
-
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title="Create Your Plan">
+                        <Button   size="large" >
+                            <Link to="/summary-page" >Create Plan</Link>
                         </Button>
                     </Tooltip>
                 </div>
@@ -362,7 +393,10 @@ function SummaryPage() {
                 </div>
 
             </DndProvider>
-            <PrintDailyRecipe idList={dustbins}/>
+            <div style={{textAlign:'center',marginTop:'50px',height:'100px'}}>
+                <PrintDailyRecipe idList={dustbins} style={{marginBottom:'100px'}}/>
+            </div>
+
         </>
 
     );

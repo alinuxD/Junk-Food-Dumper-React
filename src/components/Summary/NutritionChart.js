@@ -6,7 +6,8 @@ function round(number, precision) {
 }
 
 function customData(data) {
-    const session = '2,800 - 3,200'
+    const session = window.localStorage.getItem('BMI')
+    // const session = '2,800 - 3,200'
     const intake = parseInt(session.slice(-5).replace(',',''))
     const protein = 34
     const fat = 79
