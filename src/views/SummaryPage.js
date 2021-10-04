@@ -50,7 +50,7 @@ function SummaryPage() {
         width:'1300px'
     }
 
-    const idDic = [3629531, 53697, 5062321]
+    const idDic = [121, 53697, 5062321]
     const [chosenList,setChosenList] = useState([])
 
 
@@ -76,11 +76,14 @@ function SummaryPage() {
             })
 
             //图片
-            if (typeof res.data.recipe.recipe_images.recipe_image === 'string') {
+            
+            try {
                 recipeImage = res.data.recipe.recipe_images.recipe_image
-            } else {
+            }
+            catch (err){
                 recipeImage = defaultImage
             }
+
 
             //名字
             if (typeof res.data.recipe.number_of_servings === 'string') {
