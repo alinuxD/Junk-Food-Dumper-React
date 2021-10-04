@@ -35,6 +35,7 @@ import AboutPage from "./views/AboutPage";
 import BmiPage from "./views/BmiPage";
 import DietPlanPage from "./views/DietPlanPage";
 import FoodDetailsPage from "./views/FoodDetailsPage";
+import SummaryPage from "./views/SummaryPage";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -58,6 +59,10 @@ ReactDOM.render(
         />
         <Route path="/diet-plan-page"
                render={(props) => <DietPlanPage {...props} />}
+        />
+
+        <Route path="/summary-page"
+               render={(props) => <SummaryPage {...props} />}
         />
         {/*<Route path="/help-page"*/}
         {/*       render={(props) => <HelpPage {...props} />}*/}
