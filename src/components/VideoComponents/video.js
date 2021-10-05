@@ -6,7 +6,7 @@ class Video extends Component {
         return (
         <div className='player-wrapper'>
             <ReactPlayer
-            url= 'video/TA44_Project_Video_First_Cut.mp4'
+            url= 'video/TA44_Project_Video_Final_Cut.mp4'
             width='100%'
             height='100%'
             controls = {true}
