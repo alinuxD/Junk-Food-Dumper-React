@@ -55,8 +55,11 @@ function HomeNavbar() {
                             id="navbar-brand"
                             style={{fontSize: "1.8571em"}}
                         >
+                            <NavLink to="/home-page" tag={Link} >
+                                <p>Junk Food Dumper</p>
+                            </NavLink>
 
-                            Junk Food Dumper
+
                         </NavbarBrand>
 
                         <UncontrolledTooltip target="#navbar-brand">
