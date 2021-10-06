@@ -10,13 +10,13 @@ import {
 } from "reactstrap";
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Link } from "react-router-dom";
 
 // core components
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import BMIPageHeader from "../components/Headers/BMIPageHeader";
 import RecommendExercise from "../components/ExerciseComponents/RecommendExercise";
-
 import ReactSpeedometer from "react-d3-speedometer";
 // import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
 
@@ -107,6 +107,7 @@ function BmiPage() {
     const [bmiDivDisplay, setBmiDivDisplay]=useState('none')
     const [guide, setGuide] = React.useState([12,15,24,27,29]);
     const [gender, setGender] = React.useState('Male');
+    const [query, setQuery] = React.useState('')
 
     const radioInput = {
         marginRight: '0px',
@@ -369,7 +370,7 @@ function BmiPage() {
                                         <h4><FaRunning/> Sedentary Active - Briskly walking less than 30 minutes a day. Spend most of the day sitting</h4>
                                         <h4><FaRunning/><FaRunning/> Moderately Active - Briskly walking at least one hour and 45 minutes.</h4>
                                         <h4><FaRunning/><FaRunning/><FaRunning/> Very Active - Briskly walking more then four hours and 15 minutes a day. Jogging two hours a day</h4>
-                                        <h2 className="title" style={{marginTop:'50px'}}> <AiOutlineWarning/> How do you think your children activity level is ? </h2>
+                                        <h2 className="title" style={{marginTop:'50px'}}> <AiOutlineWarning/> What do you think your children activity level is ? </h2>
                                         <RecommendIntake gender={gender} age={age}/>
                                     </div>
 
@@ -390,9 +391,29 @@ function BmiPage() {
                                     <RecommendExercise value={exerciseWeight}/>
                                     </div>
                                 </TabPanel>
-                                <TabPanel>
-                                    <FoodSearch/>
+
+                                {/* Recipe search bar */}
+                                <TabPanel style={{height:'500px', backgroundColor:'white'}}>
+                                    <h1 align='center' style={{color: 'black',fontSize: '35px', padding:'50px'}}  className="title">
+                                        Looking for healthy recipes? Just type
+                                    </h1>
+                                        <Input
+                                            style ={{fontSize: '1.7em', width: '900px', borderWidth:'3px',orderRadius: '15px', marginLeft:'100px', backgroundColor:'white', borderColor:'black'}}
+                                            type='text'
+                                            name='condition' 
+                                            placeholder="Enter your ingredients"
+                                            onChange={e => setQuery(e.target.value)}
+                                            value={query}>
+                                        </Input>
+                                        {/* Link the parameter to the diet plan page */}
+                                        <Link to={{
+                                            pathname:"/diet-plan-page",
+                                            search:'',
+                                            state:{key:query} }}>
+                                        <Button style={{marginLeft:'45%',color:'white', backgroundColor:'#38761d'}}>Search</Button>
+                                        </Link>
                                 </TabPanel>
+                                
                             </Tabs>
                         </div>
 

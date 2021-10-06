@@ -6,8 +6,8 @@ import axios from "axios";
 import ReactPaginate from 'react-paginate';
 import defaultImage from "../assets/img/default.jpg"
 import FoodSearchHeader from "../components/Headers/FoodSearchHeader";
-import {Link} from "react-router-dom";
 import NewFooter from "../components/Footers/NewFooter";
+import {Link, useLocation , useHistory } from "react-router-dom";
 import { Button, Tooltip } from 'antd';
 
 function defaultPic(pd) {
@@ -96,6 +96,10 @@ function DietPlanPage() {
     // window.sessionStorage.setItem("goBack",queryFather)
     // const v = JSON.parse(window.sessionStorage.getItem("recipes"))
     const [nameList, setNameList] = useState([])
+
+    // Parameter from the BMI search page
+    const location = useLocation()
+    const history = useHistory()
 
 
     useEffect(() =>{
@@ -216,6 +220,13 @@ function DietPlanPage() {
     // }
 
     const getData = async() => {
+
+        // Search from BMI page
+        if (location.state != undefined){
+            setQueryFather(location.state.key)
+            history.replace()
+        } 
+
         const resp = await axios.get(`http://api.junkfooddumper.tk/recipes/search`, {
             params: {
                 query: window.sessionStorage.getItem("goBack"),
