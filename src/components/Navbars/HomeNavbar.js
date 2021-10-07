@@ -50,6 +50,7 @@ function HomeNavbar() {
                 <Container>
                     <div className="navbar-translate" >
                         <NavbarBrand
+                            href="/home-page"
                             to="/home-page"
                             // target="_blank"
                             id="navbar-brand"
