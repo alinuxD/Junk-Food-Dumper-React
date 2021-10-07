@@ -9,6 +9,8 @@ import FoodSearchHeader from "../components/Headers/FoodSearchHeader";
 import NewFooter from "../components/Footers/NewFooter";
 import {Link, useLocation , useHistory } from "react-router-dom";
 import { Button, Tooltip } from 'antd';
+import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
+import MinusOutlined from "@ant-design/icons/lib/icons/MinusOutlined";
 
 function defaultPic(pd) {
     if ("recipe_image" in pd)
@@ -16,9 +18,12 @@ function defaultPic(pd) {
     else {return defaultImage;}
 }
 
-function show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,nameList,newname,newRecipe,refreshRecipe) {
+function show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,nameList,newname,newRecipe) {
     if(getBMI === "get") {
+
         return <p style={{color:'black',fontWeight:'1000',fontSize: '1.5em',textAlign:'center'}}>Your Recommended Calorie intake
+            {/*测试用代码*/}
+            {/*<p>{JSON.stringify(nameList)}</p>*/}
             <p style={{color:'green',fontWeight:'1000',fontSize: '1.2em',marginLeft:'60px'}}>
                 {parseInt(window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[1])
                 +' - '
@@ -37,36 +42,27 @@ function show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,
                     {nameList.map((item,index)=>(
                         <p style={{fontWeight:'800',fontSize: '0.8em',textAlign:'center',paddingLeft:'50px'}}>{item.recipe_name}
                             <span  style={{position: 'absolute',fontSize: '0.8em',marginLeft:'20px'}}>
-                            <button
-                                id="click"
-                                className="newButton5"
-                                onClick={() => {
-                                    deleteRecipe(item.recipe_id);
-                                    // setList(list => list.filter((item) => item !== item.recipe_name));
-                                    // if(totalCal >= 0) {
-                                    //     setTotalCal(totalCal => (totalCal - parseInt(item.recipe_nutrition.calories)));
-                                    // }else {
-                                    //     setTotalCal(0)
-                                    // }
-                                }}
-                            >
-                                <img src={require("assets/img/delete.png").default} style={{float:'left',marginTop:'-12px',marginLeft:'-15px'}}/>
-                            </button>
+                            {/*<button*/}
+                            {/*    id="click"*/}
+                            {/*    className="newButton5"*/}
+                            {/*    onClick={() => {*/}
+                            {/*        deleteRecipe(item.recipe_id);*/}
+                            {/*        // setList(list => list.filter((item) => item !== item.recipe_name));*/}
+                            {/*        // if(totalCal >= 0) {*/}
+                            {/*        //     setTotalCal(totalCal => (totalCal - parseInt(item.recipe_nutrition.calories)));*/}
+                            {/*        // }else {*/}
+                            {/*        //     setTotalCal(0)*/}
+                            {/*        // }*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    <img src={require("assets/img/delete.png").default} style={{float:'left',marginTop:'-12px',marginLeft:'-15px'}}/>*/}
+                            {/*</button>*/}
+                                 <Button shape="default"  size="small" icon={<DeleteOutlined />}  onClick={()=>deleteRecipe(item.recipe_id)} />
+
                         </span>
                         </p>
                     ))}
                 </p>
-                <span  style={{position: 'absolute',fontSize: '0.8em',marginLeft:'20px'}}>
-                            <button
-                                id="click"
-                                className="newButton5"
-                                onClick={() => {
-                                    refreshRecipe();
-                                }}
-                            >
-                                <img src={require("assets/img/delete.png").default} style={{float:'left',marginTop:'-12px',marginLeft:'-15px'}}/>
-                            </button>
-                        </span>
 
             </p>
         </p>
@@ -139,11 +135,6 @@ function DietPlanPage() {
     //     deleteRecipe();
     // }, [list,setList])
 
-    const refreshRecipe = useCallback(() => {
-        setNameList(JSON.parse(window.sessionStorage.getItem("recipes")));
-        setRefresh(true);
-    },[setRefresh]);
-
     const findRecipe = useCallback((id) => {
         //得在里面加个flag，判断card 是否存在
         const newList = nameList;
@@ -176,7 +167,7 @@ function DietPlanPage() {
             //     recipe_name: item.recipe_name
             // }]);
             // setTotalCal(totalCal => totalCal + parseInt(item.recipe_nutrition.calories));
-            window.sessionStorage.setItem("recipes",JSON.stringify(nameList));
+            window.sessionStorage.setItem("recipes",JSON.stringify(newList));
             setRefresh(true);
             // doRefresh();
             // forceUpdate()
@@ -189,14 +180,14 @@ function DietPlanPage() {
         const { isInList, index } = findRecipe(id);
         // const newList = nameList.filter(item => item.recipe_id !== id);
         const newList = nameList
-        if(newList.length > 0) {
-            newList.length--;
-        }
+        // if(newList.length > 0) {
+        //     newList.length--;
+        // }
         // if(newList.length > 0) {
         //     newList.length--;
         // }
         newList.splice(index,1);
-        setNameList(nameList.filter(item => item.recipe_id !== id))
+        // setNameList(nameList.filter(item => item.recipe_id !== id))
         setNameList(newList);
         window.sessionStorage.setItem("recipes",JSON.stringify(nameList));
         setRefresh(true);
@@ -204,26 +195,28 @@ function DietPlanPage() {
         // forceUpdate()
     },[findRecipe,nameList,setNameList,setRefresh]);
 
-
-    // useEffect(() =>{
-    //     const recipes = JSON.parse(window.sessionStorage.getItem("recipes"))
-    //     if (recipes !== null){
-    //         let newList = []
-    //         for (let i = 0;i<recipes.length; i++){
-    //             let newItem = {
-    //                 recipe_id:recipes.recipe_id,
-    //                 recipe_name:recipes.recipe_name
-    //             }
-    //             newList.push(newItem)
-    //         }
-    //         setNameList(nameList => [...nameList,newList]);
-    //         setRefresh(true);
     //
-    //     }else {
-    //         setRefresh(true);
-    //         // window.sessionStorage.setItem("recipes",'{"recipe_id":"","recipe_name":""}')
-    //     }
-    // },[window.sessionStorage.getItem("recipes"),setRefresh])
+    useEffect(() =>{
+        const recipes = JSON.parse(window.sessionStorage.getItem("recipes"))
+
+
+        if (recipes !== null){
+            // let newList = []
+            // for (let i = 0;i<recipes.length; i++){
+            //     let newItem = {
+            //         recipe_id:recipes[i].recipe_id,
+            //         recipe_name:recipes[].recipe_name
+            //     }
+            //     newList.push(newItem)
+            // }
+            setNameList(recipes);
+            setRefresh(true);
+
+        }else {
+            setRefresh(true);
+            // window.sessionStorage.setItem("recipes",'{"recipe_id":"","recipe_name":""}')
+        }
+    },[setRefresh])
 
 
     useEffect(()=>{
@@ -403,7 +396,7 @@ function DietPlanPage() {
                         </h2>
                     </Col>
                     <Col md="5" style={{float:'right',paddingRight:'50px',marginLeft:'1100px',marginRight:'100px',position: 'absolute'}}>
-                        {show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,nameList,newname,newRecipe,refreshRecipe)}
+                        {show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,nameList,newname,newRecipe)}
                     </Col>
                     <p style={{fontSize: '0.2em',position:'absolute'}}>
                         {n}

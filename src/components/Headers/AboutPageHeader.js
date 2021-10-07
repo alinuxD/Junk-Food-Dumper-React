@@ -36,9 +36,8 @@ function AboutPageHeader() {
                 ></div>
                 <div className="content-center">
                     <Container>
-                        <h1 className="title">About Us
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <h1 className="title" style={{color:'white',position:'absolute',top:'-40px'}}>
+                            About Us
                         </h1>
                     </Container>
                 </div>

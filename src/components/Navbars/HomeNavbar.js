@@ -50,13 +50,14 @@ function HomeNavbar() {
                 <Container>
                     <div className="navbar-translate" >
                         <NavbarBrand
-                            to="/home-page"
-                            // target="_blank"
                             id="navbar-brand"
                             style={{fontSize: "1.8571em"}}
                         >
+                            <NavLink to="/home-page" tag={Link} >
+                                Junk Food Dumper
+                            </NavLink>
 
-                            Junk Food Dumper
+
                         </NavbarBrand>
 
                         <UncontrolledTooltip target="#navbar-brand">

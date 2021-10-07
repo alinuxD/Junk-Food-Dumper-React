@@ -48,7 +48,7 @@ function concatId(){
     // const strList =JSON.stringify(list)
     // localStorage.setItem('id',strList)
     //
-    let tempList =JSON.parse(sessionStorage.getItem('recipe'))
+    let tempList =JSON.parse(sessionStorage.getItem('recipes'))
     if (tempList==null){
         tempList=[]
     }
@@ -96,31 +96,31 @@ function SummaryPage() {
 
             let ingredients = []
             let directions = []
-            console.log("开始getAPI,显示id")
-            console.log(id)
-            console.log("id显示结束")
+            // console.log("开始getAPI,显示id")
+            // console.log(id)
+            // console.log("id显示结束")
             let res = await axios.get(
                 `http://api.junkfooddumper.tk/recipes/get?id=${id}`,
             ).catch(err => {
                 console.log(err)
             })
 
-            //图片
-            if (typeof res.data.recipe.recipe_images.recipe_image === 'string') {
+            try {
                 recipeImage = res.data.recipe.recipe_images.recipe_image
-            } else {
+            }
+            catch (err){
                 recipeImage = defaultImage
             }
 
-            //名字
-            if (typeof res.data.recipe.number_of_servings === 'string') {
+            //份数
+            try {
                 numberOfServing = parseInt(res.data.recipe.number_of_servings)
-            } else {
+            } catch (err) {
                 numberOfServing = 1
             }
 
             //营养
-            if (typeof res.data.recipe.serving_sizes.serving === 'object') {
+            try {
                 recipeNutrition = {
                     fiber: parseFloat(res.data.recipe.serving_sizes.serving.fiber),
                     calcium:parseFloat(res.data.recipe.serving_sizes.serving.calcium),
@@ -129,7 +129,7 @@ function SummaryPage() {
                     protein:parseFloat(res.data.recipe.serving_sizes.serving.protein),
                     fat:parseFloat(res.data.recipe.serving_sizes.serving.fat),
                 }
-            } else {
+            } catch (err) {
                 recipeNutrition = {
                     fiber:0,
                     calcium:0,
@@ -139,17 +139,17 @@ function SummaryPage() {
             }
 
             //名字
-            if (typeof res.data.recipe.recipe_name === 'string') {
+            try {
                 recipeName = res.data.recipe.recipe_name
-            } else {
+            } catch (err) {
                 recipeName = 'No Data'
             }
 
 
-            if (typeof res.data.recipe.ingredients.ingredient === 'object') {
+            try {
                 ingredients = res.data.recipe.ingredients.ingredient
                 // console.log(res.data.recipe.ingredients.ingredient)
-            } else {
+            } catch (err) {
                 let emptyList = [{
                     serving_id: 'No Data',
                     ingredient_description: 'No Data'
@@ -157,7 +157,7 @@ function SummaryPage() {
                 ingredients = emptyList
             }
 
-            if (typeof res.data.recipe.directions.direction === 'object') {
+            try {
                 let tempDirections = res.data.recipe.directions.direction
                 if (Object.keys(tempDirections)[0] === 'direction_number') {
                     let list = [{
@@ -168,7 +168,7 @@ function SummaryPage() {
                 } else {
                     directions = res.data.recipe.directions.direction
                 }
-            } else {
+            } catch (err) {
                 let noDataList = [{
                     direction_number: 'No Data',
                     direction_description: 'No Data'
@@ -186,9 +186,9 @@ function SummaryPage() {
             recipeData["directions"] = directions
             // return tempData
             dayData.push(recipeData)
-            console.log(dayData)
+            // console.log(dayData)
 
-        }
+            }
         setChosenList(dayData)
     }
 
@@ -220,46 +220,6 @@ function SummaryPage() {
         }
     }
 
-    const deleteTotal = (chosenItems,index)=>{
-        if (index===0){
-            let newdayList = [...day1nut]
-            if (Array.isArray(chosenItems) && chosenItems.length === 0){
-                newdayList=[0,0,0,0]
-            }
-            for (let i = 0; i < chosenItems.length; i++) {
-                newdayList[0] = round(newdayList[0] - chosenItems[i].recipe_nutrition.calories,2);
-                newdayList[1] = round(newdayList[1] - chosenItems[i].recipe_nutrition.protein,2);
-                newdayList[2] = round(newdayList[2] - chosenItems[i].recipe_nutrition.fat,2);
-                newdayList[3] = round(newdayList[3] - chosenItems[i].recipe_nutrition.carbohydrate,2);
-            }
-            setDay1Nut(newdayList)
-        }else if (index===1){
-            let newdayList = [...day2nut]
-            if (Array.isArray(chosenItems) && chosenItems.length === 0){
-                newdayList=[0,0,0,0]
-            }
-            for (let i = 0; i < chosenItems.length; i++) {
-                newdayList[0] = round(newdayList[0] - chosenItems[i].recipe_nutrition.calories,2);
-                newdayList[1] = round(newdayList[1] - chosenItems[i].recipe_nutrition.protein,2);
-                newdayList[2] = round(newdayList[2] - chosenItems[i].recipe_nutrition.fat,2);
-                newdayList[3] = round(newdayList[3] - chosenItems[i].recipe_nutrition.carbohydrate,2);
-            }
-            setDay2Nut(newdayList)
-        }else if (index===2){
-            let newdayList = [...day3nut]
-            if (Array.isArray(chosenItems) && chosenItems.length === 0){
-                newdayList=[0,0,0,0]
-            }
-            for (let i = 0; i < chosenItems.length; i++) {
-                newdayList[0] = round(newdayList[0] - chosenItems[i].recipe_nutrition.calories,2);
-                newdayList[1] = round(newdayList[1] - chosenItems[i].recipe_nutrition.protein,2);
-                newdayList[2] = round(newdayList[2] - chosenItems[i].recipe_nutrition.fat,2);
-                newdayList[3] = round(newdayList[3] - chosenItems[i].recipe_nutrition.carbohydrate,2);
-            }
-            setDay3Nut(newdayList)
-        }
-    }
-
 
 
     React.useEffect(() => {
@@ -280,61 +240,60 @@ function SummaryPage() {
         {day: 3, chosenItems: []}
     ])
 
-    // const
 
     const handleDrop =  useCallback((index, item) => {
         const newDustbins = dustbins;
-        const newItem = {...item, "id": Date.now()}
+        const newItem={...item,"id":Date.now()}
 
-        if (newDustbins[index].chosenItems.length < 16) {
+        if (newDustbins[index].chosenItems.length<16){
             console.log(newDustbins[index].chosenItems.length)
             newDustbins[index].chosenItems.push(newItem)
 
-            calculateTotal(newDustbins[index].chosenItems, index)
+            calculateTotal(newDustbins[index].chosenItems,index)
 
             setDustbins(newDustbins);
-        } else {
+        }else {
             confirm()
         }
 
     })
 
-    const findCard = useCallback((id, day) => {
-        const card = dustbins[day - 1].chosenItems.filter((c) => c.id === id)[0];
+    const findCard = useCallback((id,day) => {
+        const card = dustbins[day-1].chosenItems.filter((c) => c.id === id)[0];
 
         return {
             card,
-            index: dustbins[(day - 1)].chosenItems.indexOf(card),
+            index: dustbins[(day-1)].chosenItems.indexOf(card),
         };
-    }, [dustbins]);
+    },[dustbins]);
 
-    const moveCard = useCallback((id, atIndex, day) => {
-        const {card, index} = findCard(id, day);
+    const moveCard = useCallback((id, atIndex,day) => {
+        const { card, index } = findCard(id,day);
         const newDustbins = dustbins;
-        newDustbins[(day - 1)].chosenItems.splice(index, 1);
-        newDustbins[(day - 1)].chosenItems.splice(atIndex, 0, card);
+        newDustbins[(day-1)].chosenItems.splice(index,1);
+        newDustbins[(day-1)].chosenItems.splice(atIndex,0,card);
         setDustbins(newDustbins)
-    }, [findCard, dustbins, setDustbins]);
+    },[findCard,dustbins,setDustbins]);
 
-    const deleteCard = useCallback((id, day) => {
-        const {card, index} = findCard(id, day);
+    const deleteCard = useCallback((id,day)=>{
+        const { card, index } = findCard(id,day);
         const newDustbins = [...dustbins];
-        newDustbins[(day - 1)].chosenItems.splice(index, 1);
+        newDustbins[(day-1)].chosenItems.splice(index,1);
         setDustbins(newDustbins)
 
-        calculateTotal(newDustbins[(day - 1)].chosenItems, (day - 1))
+        calculateTotal(newDustbins[(day-1)].chosenItems,(day-1))
 
 
-    }, [findCard, dustbins, setDustbins]);
+    },[findCard,dustbins,setDustbins]);
 
-    const getNutByIndex = useCallback((index) => {
-        if (index === 0) {
-            return day1nut;
-        } else if (index === 1) {
-            return day2nut
-        } else if (index === 2) {
-            return day3nut
-        }
+    const getNutByIndex = useCallback((index)=>{
+            if (index===0){
+                return day1nut;
+           }else if (index===1){
+                return day2nut
+            }else if (index===2){
+                return day3nut
+            }
 
     })
 
@@ -349,30 +308,26 @@ function SummaryPage() {
                     {chosenList.map((item, index) => {
                         return (
                             <>
-                                {/*<p>{JSON.stringify(dustbins)}</p>*/}
-                                <CardItem
-                                    key={index}
-                                    content={item.recipe_name}
-                                    recipe_image={item.recipe_image}
-                                    recipe_name={item.recipe_name}
-                                    recipe_id={item.recipe_id}
-                                    recipe_nutrition={item.recipe_nutrition}
-                                    ingredients={item.ingredients}
-                                    directions={item.directions}
-                                />
+                            <CardItem
+                                key={index}
+                                content={item.recipe_name}
+                                recipe_image={item.recipe_image}
+                                recipe_name={item.recipe_name}
+                                recipe_id={item.recipe_id}
+                                recipe_nutrition={item.recipe_nutrition}
+                                ingredients={item.ingredients}
+                                directions={item.directions}
+                            />
                             </>
                         )
                     })}
+                    <div style={{textAlign:'center'}}>
                     <Tooltip title="Add More Recipe">
                         <Button shape="circle"  size="large" >
                             <Link to="/diet-plan-page" >+</Link>
                         </Button>
                     </Tooltip>
-                    <Tooltip title="Create Your Plan">
-                        <Button   size="large" >
-                            <Link to="/summary-page" >Create Plan</Link>
-                        </Button>
-                    </Tooltip>
+                    </div>
                 </div>
 
                 <div style={bucket}>
@@ -389,7 +344,7 @@ function SummaryPage() {
                                  }
 
                         />
-                    ))}
+                     ))}
                 </div>
 
             </DndProvider>

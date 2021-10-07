@@ -69,35 +69,83 @@ function HomePage() {
     }, []);
 
 
-    function hideDisclaimer() {
-        document.getElementById("navbar").style.display = "";
-        document.getElementById("footer").style.display = "";
-        document.getElementById("background1").style.display = "none";
-        document.getElementById("background2").style.display = "none";
-        document.getElementById("disclaimer").style.display = "none";
-        window.sessionStorage.setItem("goBack","")
-        window.sessionStorage.setItem("page","0")
-        window.sessionStorage.setItem("recipes",'{"recipe_id":"","recipe_name":""}')
+    // var [shelterStatus, setShelterStatus] = useState('block')
+    // var [componentStatus, setComponentStatus] = useState('none')
+    var tempShelterStatus = 'block'
+    var tempComponentStatus = 'none'
+    console.log("检查访问次数是否第一次")
+    console.log(window.sessionStorage.getItem("loadingTime"))
+    console.log(window.sessionStorage.getItem("goBack"))
+    console.log(window.sessionStorage.getItem("page"))
+
+    if (window.sessionStorage.getItem("loadingTime") === "second") {
+
+        console.log("第二次")
+        tempShelterStatus = 'none'
+        tempComponentStatus = ''
     }
 
 
+    // try
+    // {
+    //     if (window.sessionStorage.getItem("LoadingTime")==="2")
+    //     {
+    //         setShelterStatus('none')
+    //         setComponentStatus('')
+    //     }
+    // }
+    // catch (err)
+    // {
+    //     console.log('First Time Load')
+    // }
+    // function checkTimes(){
+    //     if(window.name == ""){
+    //
+    //         console.log("首次被加载");
+    //         // hideDisclaimer()
+    //        b
+
+    function hideDisclaimer() {
+        tempShelterStatus = 'none'
+        tempComponentStatus = ''
+        document.getElementById("navbar").style.display = tempComponentStatus;
+        document.getElementById("footer").style.display = tempComponentStatus;
+        document.getElementById("background1").style.display = tempShelterStatus;
+        document.getElementById("disclaimer").style.display = tempShelterStatus;
+        // setShelterStatus('none')
+        // setComponentStatus('')
+        window.sessionStorage.setItem("loadingTime", "second")
+        // document.getElementById("navbar").style.display = "";
+        // document.getElementById("footer").style.display = "";
+        // document.getElementById("background1").style.display = "none";
+        // document.getElementById("disclaimer").style.display = "none";
+        window.sessionStorage.setItem("goBack", "")
+        window.sessionStorage.setItem("page", "0")
+        console.log(window.sessionStorage.getItem("LoadingTime"))
+
+    }
+
     return (
         <>
-            <div onClick={hideDisclaimer}>
-                <div id='navbar' style={{display: 'none'}}>
+            <div>
+                {console.log(tempComponentStatus)}
+                {console.log(tempShelterStatus)}
+                <div id='navbar' style={{display: tempComponentStatus}}>
                     <HomeNavbar/>
                 </div>
 
                 <div className="wrapper">
-                    <div id="background1" className='background1' style={{display: 'block'}}/>
-                    <div id="disclaimer" className='disclaimer' style={{display: 'block'}}>
-                        <h3 align='center' style={{fontWeight:'bold'}}>Disclaimer</h3>
-                        <p align='justify' style={{fontFamily:'Arial'}}>
+                    <div id="background1" className='background1' style={{display: tempShelterStatus}}/>
+                    <div id="disclaimer" className='disclaimer' style={{display: tempShelterStatus}}>
+                        <h3 align='center' style={{fontWeight: 'bold'}}>Disclaimer</h3>
+                        <p align='justify' style={{fontFamily: 'Arial'}}>
                             Please read this disclaimer (“Disclaimer”) carefully before using a website operated by
                             Techpathy.<br></br><br></br>
 
-                            All information posted is merely for educational and informational purposes. It is not intended
-                            as a substitute for professional advice. Should you decide to act upon any information on this website,
+                            All information posted is merely for educational and informational purposes. It is not
+                            intended
+                            as a substitute for professional advice. Should you decide to act upon any information on
+                            this website,
                             you do so at your own risk.<br></br><br></br>
 
                             While the information on this website has been verified to the best of our abilities,
@@ -107,6 +155,9 @@ function HomePage() {
                             updated. If you want to make sure that you are up to date with the latest changes,
                             we advise you to frequently visit the page.
                         </p>
+                        <div align='center' style={{marginTop: '-10px'}}>
+                            <button className="buttonStyleD" onClick={hideDisclaimer}>I Understand</button>
+                        </div>
                     </div>
 
                     <HomePageHeader/>
@@ -115,7 +166,7 @@ function HomePage() {
                         <Container>
                             <div className="separator separator-primary"></div>
                             {/*<div id="background3" className='background' style={{display:'block'}}/>*/}
-                            <div id="background2" className='background2' style={{display: 'block'}}/>
+                            {/*<div id="background2" className='background2' style={{display: 'block'}}/>*/}
 
 
                             <h1 style={{fontWeight: 'bold'}} align="center">What is Junk Food Dumper?</h1>
@@ -204,7 +255,7 @@ function HomePage() {
                                     <Col align="left">
                                         <div>
                                             <img src={baymaxIcon} alt="BaymaxIcon"/></div>
-                                        <h5 align='left'>Children were obese in Australia</h5>
+                                        <h5 align='left'>Children are obese in Australia</h5>
                                     </Col>
                                     <Col align="center">
                                         <div><img src={junkfoodIcon} alt="BaymaxIcon"/></div>
@@ -212,7 +263,7 @@ function HomePage() {
                                     </Col>
                                     <Col align="right">
                                         <div><img src={trendIcon} alt="BaymaxIcon"/></div>
-                                        <h5 align='right'>Type 2 Diabetes Patients Booming</h5>
+                                        <h5 align='right'>Increase in type 2 diabetes.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                                     </Col>
                                 </Row>
                             </div>
@@ -222,7 +273,7 @@ function HomePage() {
                                 <h3 className="title" align='center'>Let The Data Speak for Itself</h3>
                                 <StackChart/>
                                 <p align='center' style={{fontWeight: "normal"}}>
-                                    Nearly 25% of the children around Australia were experiencing overweight issue
+                                    25% of the children are overweight.
                                 </p>
 
                                 <div style={{display: hideButton, marginTop: '1%'}}>
@@ -252,7 +303,7 @@ function HomePage() {
                         </Container>
                         {/* Footer */}
                     </div>
-                    <div id='footer' style={{display: 'none'}}>
+                    <div id='footer' style={{display: tempComponentStatus}}>
                         <DefaultFooter/>
                     </div>
                 </div>
