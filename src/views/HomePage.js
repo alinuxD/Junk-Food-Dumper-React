@@ -188,7 +188,11 @@ function HomePage() {
                                     </div>
                                 </Col>
                                 <Col align='center'>
-                                    <div><img src={exportIcon} alt="Export Recipe"/></div>
+                                    <div>
+                                        <Link to='/summary-page'>
+                                            <img src={exportIcon} alt="Export Recipe"/>
+                                        </Link>
+                                    </div>
                                 </Col>
                             </Row>
                             <Row>
