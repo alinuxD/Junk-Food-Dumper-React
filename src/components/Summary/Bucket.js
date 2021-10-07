@@ -5,7 +5,7 @@ import DayContainer from "./DayContainer";
 import NutritionChart from "./NutritionChart";
 
 const style = {
-    minHeight:'200px',
+    minHeight:'250px',
     maxHeight:'420px',
     width:'1000px',
     marginBottom:'25px',
