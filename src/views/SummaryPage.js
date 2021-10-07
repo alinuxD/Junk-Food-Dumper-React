@@ -96,31 +96,31 @@ function SummaryPage() {
 
             let ingredients = []
             let directions = []
-            console.log("开始getAPI,显示id")
-            console.log(id)
-            console.log("id显示结束")
+            // console.log("开始getAPI,显示id")
+            // console.log(id)
+            // console.log("id显示结束")
             let res = await axios.get(
                 `http://api.junkfooddumper.tk/recipes/get?id=${id}`,
             ).catch(err => {
                 console.log(err)
             })
 
-            //图片
-            if (typeof res.data.recipe.recipe_images.recipe_image === 'string') {
+            try {
                 recipeImage = res.data.recipe.recipe_images.recipe_image
-            } else {
+            }
+            catch (err){
                 recipeImage = defaultImage
             }
 
-            //名字
-            if (typeof res.data.recipe.number_of_servings === 'string') {
+            //份数
+            try {
                 numberOfServing = parseInt(res.data.recipe.number_of_servings)
-            } else {
+            } catch (err) {
                 numberOfServing = 1
             }
 
             //营养
-            if (typeof res.data.recipe.serving_sizes.serving === 'object') {
+            try {
                 recipeNutrition = {
                     fiber: parseFloat(res.data.recipe.serving_sizes.serving.fiber),
                     calcium:parseFloat(res.data.recipe.serving_sizes.serving.calcium),
@@ -129,7 +129,7 @@ function SummaryPage() {
                     protein:parseFloat(res.data.recipe.serving_sizes.serving.protein),
                     fat:parseFloat(res.data.recipe.serving_sizes.serving.fat),
                 }
-            } else {
+            } catch (err) {
                 recipeNutrition = {
                     fiber:0,
                     calcium:0,
@@ -139,17 +139,17 @@ function SummaryPage() {
             }
 
             //名字
-            if (typeof res.data.recipe.recipe_name === 'string') {
+            try {
                 recipeName = res.data.recipe.recipe_name
-            } else {
+            } catch (err) {
                 recipeName = 'No Data'
             }
 
 
-            if (typeof res.data.recipe.ingredients.ingredient === 'object') {
+            try {
                 ingredients = res.data.recipe.ingredients.ingredient
                 // console.log(res.data.recipe.ingredients.ingredient)
-            } else {
+            } catch (err) {
                 let emptyList = [{
                     serving_id: 'No Data',
                     ingredient_description: 'No Data'
@@ -157,7 +157,7 @@ function SummaryPage() {
                 ingredients = emptyList
             }
 
-            if (typeof res.data.recipe.directions.direction === 'object') {
+            try {
                 let tempDirections = res.data.recipe.directions.direction
                 if (Object.keys(tempDirections)[0] === 'direction_number') {
                     let list = [{
@@ -168,7 +168,7 @@ function SummaryPage() {
                 } else {
                     directions = res.data.recipe.directions.direction
                 }
-            } else {
+            } catch (err) {
                 let noDataList = [{
                     direction_number: 'No Data',
                     direction_description: 'No Data'
@@ -186,7 +186,7 @@ function SummaryPage() {
             recipeData["directions"] = directions
             // return tempData
             dayData.push(recipeData)
-            console.log(dayData)
+            // console.log(dayData)
 
             }
         setChosenList(dayData)
@@ -220,46 +220,6 @@ function SummaryPage() {
         }
     }
 
-    const deleteTotal = (chosenItems,index)=>{
-        if (index===0){
-            let newdayList = [...day1nut]
-            if (Array.isArray(chosenItems) && chosenItems.length === 0){
-                newdayList=[0,0,0,0]
-            }
-            for (let i = 0; i < chosenItems.length; i++) {
-                newdayList[0] = round(newdayList[0] - chosenItems[i].recipe_nutrition.calories,2);
-                newdayList[1] = round(newdayList[1] - chosenItems[i].recipe_nutrition.protein,2);
-                newdayList[2] = round(newdayList[2] - chosenItems[i].recipe_nutrition.fat,2);
-                newdayList[3] = round(newdayList[3] - chosenItems[i].recipe_nutrition.carbohydrate,2);
-            }
-            setDay1Nut(newdayList)
-        }else if (index===1){
-            let newdayList = [...day2nut]
-            if (Array.isArray(chosenItems) && chosenItems.length === 0){
-                newdayList=[0,0,0,0]
-            }
-            for (let i = 0; i < chosenItems.length; i++) {
-                newdayList[0] = round(newdayList[0] - chosenItems[i].recipe_nutrition.calories,2);
-                newdayList[1] = round(newdayList[1] - chosenItems[i].recipe_nutrition.protein,2);
-                newdayList[2] = round(newdayList[2] - chosenItems[i].recipe_nutrition.fat,2);
-                newdayList[3] = round(newdayList[3] - chosenItems[i].recipe_nutrition.carbohydrate,2);
-            }
-            setDay2Nut(newdayList)
-        }else if (index===2){
-            let newdayList = [...day3nut]
-            if (Array.isArray(chosenItems) && chosenItems.length === 0){
-                newdayList=[0,0,0,0]
-            }
-            for (let i = 0; i < chosenItems.length; i++) {
-                newdayList[0] = round(newdayList[0] - chosenItems[i].recipe_nutrition.calories,2);
-                newdayList[1] = round(newdayList[1] - chosenItems[i].recipe_nutrition.protein,2);
-                newdayList[2] = round(newdayList[2] - chosenItems[i].recipe_nutrition.fat,2);
-                newdayList[3] = round(newdayList[3] - chosenItems[i].recipe_nutrition.carbohydrate,2);
-            }
-            setDay3Nut(newdayList)
-        }
-    }
-
 
 
     React.useEffect(() => {
@@ -280,7 +240,6 @@ function SummaryPage() {
         {day: 3, chosenItems: []}
     ])
 
-    // const
 
     const handleDrop =  useCallback((index, item) => {
         const newDustbins = dustbins;
@@ -349,7 +308,6 @@ function SummaryPage() {
                     {chosenList.map((item, index) => {
                         return (
                             <>
-                            {/*<p>{JSON.stringify(dustbins)}</p>*/}
                             <CardItem
                                 key={index}
                                 content={item.recipe_name}
