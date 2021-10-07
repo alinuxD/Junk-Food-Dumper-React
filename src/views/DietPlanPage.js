@@ -21,21 +21,24 @@ function defaultPic(pd) {
 function show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,nameList,newname,newRecipe) {
     if(getBMI === "get") {
 
-        return <p style={{color:'black',fontWeight:'1000',fontSize: '1.5em',textAlign:'center'}}>Your Recommended Calorie intake
+        return <p style={{color:'black',fontWeight:'1000',fontSize: '1.5em',textAlign:'center',marginLeft:'-100px'}}>Your Recommended Calorie intake
             {/*测试用代码*/}
             {/*<p>{JSON.stringify(nameList)}</p>*/}
-            <p style={{color:'green',fontWeight:'1000',fontSize: '1.2em',marginLeft:'60px'}}>
+            <p style={{color:'green',fontWeight:'1000',fontSize: '1.2em',marginLeft:'20px'}}>
                 {parseInt(window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[1])
                 +' - '
                 +parseInt(window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[1])}
                 <span style={{color:'black',fontWeight:'500',fontSize: '0.5em',marginLeft:'10px'}}>Kcal Per Day</span>
             </p>
-            <Tooltip title="Create Your Plan">
-                <Button   size="large" >
-                    <Link to="/summary-page" >Create Plan</Link>
-                </Button>
-            </Tooltip>
-            <p style={{color:'black',fontWeight:'1000',fontSize: '1.1em',textAlign:'center',marginLeft:'220px',marginTop:'150px',marginBottom:'250px',paddingRight:'100px'}}>
+            <p style={{marginLeft:'-420px',position:'absolute',fontWeight:'500'}}>
+                <Tooltip title="Create Your Plan">
+                    <Button   size="large" className="newButton7">
+                        <Link to="/summary-page" ><span style={{fontWeight:'500',color:'white',fontSize: '1.2em'}}>Create Plan</span></Link>
+                    </Button>
+                </Tooltip>
+            </p>
+
+            <p style={{color:'black',fontWeight:'1000',fontSize: '1.1em',textAlign:'center',marginLeft:'450px',marginTop:'150px',marginBottom:'250px',paddingRight:'40px'}}>
                 Kindly add your favourite recipes
 
                 <p style={{color:'#285B5D',fontWeight:'800',fontSize: '1em',textAlign:'center',paddingLeft:'25px',marginLeft:'-60px',marginTop:'30px'}}>
@@ -398,9 +401,9 @@ function DietPlanPage() {
                     <Col md="5" style={{float:'right',paddingRight:'50px',marginLeft:'1100px',marginRight:'100px',position: 'absolute'}}>
                         {show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,nameList,newname,newRecipe)}
                     </Col>
-                    <p style={{fontSize: '0.2em',position:'absolute'}}>
-                        {n}
-                    </p>
+                    {/*<p style={{fontSize: '0.2em',position:'absolute'}}>*/}
+                    {/*    {n}*/}
+                    {/*</p>*/}
 
                     <div className="SearchPage">
                         {data}

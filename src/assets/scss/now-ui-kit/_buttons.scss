@@ -447,3 +447,36 @@
   height: 50px;
   margin-left: 100px}
 
+.newButton7 {
+  outline: none !important;
+  border-width: 0 !important;
+  border-radius: 10px !important;
+  padding: 11px 25px !important;
+  width: 175px !important;
+  height: 50px !important;
+  margin-left: 750px !important;
+  background-color: #D8AA38 !important;}
+.newButton7:hover {
+  background-color: #6CDC58 !important;
+}
+.newButton7 span {
+  cursor: pointer !important;
+  display: inline-block !important;
+  position: relative !important;
+  transition: 0.5s !important;
+}
+.newButton7 span:after {
+  content: '>>' !important;
+  position: absolute !important;
+  opacity: 0 !important;
+  top: 0 !important;
+  right: -2em !important;
+  transition: 0.5s !important;
+}
+.newButton7:hover span {
+  padding-right: 25px !important;
+}
+.newButton7:hover span:after {
+  opacity: 1 !important;
+  right: 0 !important;
+}
