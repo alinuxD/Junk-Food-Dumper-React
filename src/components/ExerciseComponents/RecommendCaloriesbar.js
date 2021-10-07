@@ -39,7 +39,7 @@ function RecommendCaloriesbar(props){
                     <text x='500' y='110' style={{fontWeight:'bold'}}> {guideline["under13"][props.gender][2]} </text>
                     <text x='752' y='40' style={{fontWeight:'bold'}}> {guideline["under13"][props.gender][3]} </text>
                     <text x='1050' y='110' style={{fontWeight:'bold'}}> {guideline["under13"][props.gender][4]} cals</text>
-                    <text x='250' y='110' style={{fontWeight:'bold'}}>Sedentary Active</text>
+                    <text x='250' y='110' style={{fontWeight:'bold'}}>Less Active</text>
                     <text x='480' y='40' style={{fontWeight:'bold'}}>Moderately Active</text>
                     <text x='760' y='110' style={{fontWeight:'bold'}}>Very Active</text>
 
@@ -64,9 +64,9 @@ function RecommendCaloriesbar(props){
                         <text x='450' y='110' style={{fontWeight:'bold'}}> {guideline["over13"][props.gender][1]} </text>
                         <text x='735' y='110' style={{fontWeight:'bold'}}> {guideline["over13"][props.gender][2]} </text>
                         <text x='1050' y='110' style={{fontWeight:'bold'}}> {guideline["over13"][props.gender][3]} cals</text>
-                        <text x='250' y='40' style={{fontWeight:'bold'}}>Not Active</text>
+                        <text x='250' y='40' style={{fontWeight:'bold'}}>Less Active</text>
                         <text x='545' y='40' style={{fontWeight:'bold'}}>Moderately Active</text>
-                        <text x='900' y='40' style={{fontWeight:'bold'}}>Active</text>
+                        <text x='900' y='40' style={{fontWeight:'bold'}}>Very Active</text>
 
                     </svg>
                 </>
@@ -88,9 +88,9 @@ function RecommendCaloriesbar(props){
                         <text x='450' y='110' style={{fontWeight:'bold'}}> {guideline["over13"][props.gender][1]} </text>
                         <text x='735' y='110' style={{fontWeight:'bold'}}> {guideline["over13"][props.gender][2]} </text>
                         <text x='1050' y='110' style={{fontWeight:'bold'}}> {guideline["over13"][props.gender][3]} cals</text>
-                        <text x='250' y='40' style={{fontWeight:'bold'}}>Not Active</text>
+                        <text x='250' y='40' style={{fontWeight:'bold'}}>Less Active</text>
                         <text x='545' y='40' style={{fontWeight:'bold'}}>Moderately Active</text>
-                        <text x='900' y='40' style={{fontWeight:'bold'}}>Active</text>
+                        <text x='900' y='40' style={{fontWeight:'bold'}}>Very Active</text>
 
     
                 </svg>

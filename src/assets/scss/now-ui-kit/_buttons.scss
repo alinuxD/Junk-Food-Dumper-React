@@ -207,13 +207,7 @@
   }
 }
 
-.newButton {
-  border-width: 1px;
-  border-radius: 50px !important;
-  padding: 11px 25px !important;
-  width: 250px;
-  height: 50px;
-  margin-left: 100px}
+
 
 .newButton2 {
   outline: none !important;
@@ -409,3 +403,47 @@
   text-align: center !important;
   padding-left: 50px !important;
 }
+
+.newCheckbox {
+  width: 30px;
+  height: 30px;
+  animation: right 1s;
+  position: absolute;
+}
+
+.button6 {
+  border-width: 1px !important;
+  border-radius: 50px !important;
+  padding: 11px 25px !important;
+  width: 250px !important;
+  height: 65px !important;
+  margin-left: 100px !important;
+  display: inline-block !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  outline: none !important;
+  color: white !important;
+  background-color: #3C9EA2 !important;
+  border: none !important;
+  box-shadow: 0 9px #325658 !important;
+}
+
+.button6:hover {background-color: #48C5CA !important}
+
+.button6:active {
+  background-color: #48C5CA !important;
+  box-shadow: 0 5px #666 !important;
+  transform: translateY(4px) !important;
+}
+
+
+.newButton {
+  border-width: 1px;
+  border-radius: 50px !important;
+  padding: 11px 25px !important;
+  width: 250px;
+  height: 50px;
+  margin-left: 100px}
+

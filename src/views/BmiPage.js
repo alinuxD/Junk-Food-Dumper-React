@@ -28,6 +28,7 @@ import RecommendCaloriesbar from "components/ExerciseComponents/RecommendCalorie
 import {FaRegQuestionCircle, FaReact, FaRunning} from 'react-icons/fa'
 import {AiOutlineCalculator, AiOutlineWarning} from 'react-icons/ai'
 import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
+import {useHistory} from "react-router";
 
 
 function calcu(weight,height) {
@@ -108,6 +109,21 @@ function BmiPage() {
     const [guide, setGuide] = React.useState([12,15,24,27,29]);
     const [gender, setGender] = React.useState('Male');
     const [query, setQuery] = React.useState('')
+
+
+    function onclickButton(e){
+        setQuery(e.target.value)
+        window.sessionStorage.setItem("goBack",query)
+
+    }
+    const history = useHistory();
+    const handleKeypress = e => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            onclickButton(e)
+            history.push("/diet-plan-page")
+        }
+    };
 
     const radioInput = {
         marginRight: '0px',
@@ -225,7 +241,7 @@ function BmiPage() {
 
 
                                         <InputGroup style={{marginBottom: '20px',marginTop:'10px'}}>
-                                            <h4 >
+                                            <h4 style={{marginTop:'29px'}}>
                                                 Age(10-15):
                                             </h4>
 
@@ -239,7 +255,7 @@ function BmiPage() {
 
                                         </InputGroup>
                                         <InputGroup style={{marginBottom: '20px'}}>
-                                            <h4 style={{marginRight: '15px',marginLeft: '13px'}}>
+                                            <h4 style={{marginLeft: '35px',marginTop:'29px'}}>
                                                 Height:
                                             </h4>
 
@@ -252,12 +268,12 @@ function BmiPage() {
                                                    onChange = {e => setHeight(e.target.value)}
                                             ></Input>
 
-                                            <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
+                                            <h4 style={{marginRight: '150px',marginLeft:'-120px',marginTop:'29px'}}>
                                                 cm
                                             </h4>
                                         </InputGroup>
                                         <InputGroup style={{marginBottom: '60px'}}>
-                                            <h4 style={{marginRight: '15px',marginLeft: '13px'}}>
+                                            <h4 style={{marginLeft: '35px',marginTop:'29px'}}>
                                                 Weight:
                                             </h4>
 
@@ -270,7 +286,7 @@ function BmiPage() {
                                                    onChange = {e => setWeight(e.target.value)}
                                             ></Input>
 
-                                            <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
+                                            <h4 style={{marginRight: '150px',marginLeft:'-120px',marginTop:'29px'}}>
                                                 Kg
                                             </h4>
                                         </InputGroup>
@@ -336,7 +352,7 @@ function BmiPage() {
                                     <Button
                                         id="click"
                                         block
-                                        className="newButton"
+                                        className="button6"
                                         color="info"
                                         onClick={submitValue}
                                         size="lg"
@@ -344,10 +360,13 @@ function BmiPage() {
                                         Get Your BMI!
                                     </Button>
                                     <div style={{display:exerciseDivDisplay}}>
-                                        <h2 className="title" style={{marginTop: '50px'}} ><FaReact/> Recommended Calorie Intake Per Day </h2>
+                                        <h2 className="title" style={{marginTop: '100px',position:'relative'}} ><FaReact/> Recommended Calorie Intake Per Day </h2>
 
                                         {/* Recommend Calories Bar */}
-                                        <RecommendCaloriesbar gender={gender} age={age}/>
+                                        <p style={{marginTop: '50px'}}>
+                                            <RecommendCaloriesbar gender={gender} age={age}/>
+                                        </p>
+
 
                                         {/* <Col md="5" style={{float:'right',marginRight: '15px',marginLeft: '10px'}}>
                                             <CardBody className="anotherNewCard1" style={{marginTop: "-100px"}}>
@@ -367,7 +386,7 @@ function BmiPage() {
                                         <RecommendCaloriesbar gender={gender} age={age}/> */}
 
                                         {/* Description for different active level */}
-                                        <h4><FaRunning/> Sedentary Active - Briskly walking less than 30 minutes a day. Spend most of the day sitting</h4>
+                                        <h4><FaRunning/> Less Active - Briskly walking less than 30 minutes a day. Spend most of the day sitting</h4>
                                         <h4><FaRunning/><FaRunning/> Moderately Active - Briskly walking at least one hour and 45 minutes.</h4>
                                         <h4><FaRunning/><FaRunning/><FaRunning/> Very Active - Briskly walking more then four hours and 15 minutes a day. Jogging two hours a day</h4>
                                         <h2 className="title" style={{marginTop:'50px'}}> <AiOutlineWarning/> What do you think your children activity level is ? </h2>
@@ -402,15 +421,17 @@ function BmiPage() {
                                             type='text'
                                             name='condition' 
                                             placeholder="Enter your ingredients"
-                                            onChange={e => setQuery(e.target.value)}
-                                            value={query}>
+                                            onChange={e => {setQuery(e.target.value)
+                                                window.sessionStorage.setItem("goBack",e.target.value)}}
+                                            value={query}
+                                            onKeyPress={handleKeypress}>
                                         </Input>
                                         {/* Link the parameter to the diet plan page */}
                                         <Link to={{
                                             pathname:"/diet-plan-page",
                                             search:'',
                                             state:{key:query} }}>
-                                        <Button style={{marginLeft:'45%',color:'white', backgroundColor:'#38761d'}}>Search</Button>
+                                        <Button onClick={onclickButton} style={{marginLeft:'45%',color:'white', backgroundColor:'#38761d'}}>Search</Button>
                                         </Link>
                                 </TabPanel>
                                 

@@ -77,6 +77,7 @@ function HomePage() {
         document.getElementById("disclaimer").style.display = "none";
         window.sessionStorage.setItem("goBack","")
         window.sessionStorage.setItem("page","0")
+        window.sessionStorage.setItem("recipes",'{"recipe_id":"","recipe_name":""}')
     }
 
 

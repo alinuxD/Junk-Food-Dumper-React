@@ -188,7 +188,7 @@ function SummaryPage() {
             dayData.push(recipeData)
             console.log(dayData)
 
-            }
+        }
         setChosenList(dayData)
     }
 
@@ -284,57 +284,57 @@ function SummaryPage() {
 
     const handleDrop =  useCallback((index, item) => {
         const newDustbins = dustbins;
-        const newItem={...item,"id":Date.now()}
+        const newItem = {...item, "id": Date.now()}
 
-        if (newDustbins[index].chosenItems.length<16){
+        if (newDustbins[index].chosenItems.length < 16) {
             console.log(newDustbins[index].chosenItems.length)
             newDustbins[index].chosenItems.push(newItem)
 
-            calculateTotal(newDustbins[index].chosenItems,index)
+            calculateTotal(newDustbins[index].chosenItems, index)
 
             setDustbins(newDustbins);
-        }else {
+        } else {
             confirm()
         }
 
     })
 
-    const findCard = useCallback((id,day) => {
-        const card = dustbins[day-1].chosenItems.filter((c) => c.id === id)[0];
+    const findCard = useCallback((id, day) => {
+        const card = dustbins[day - 1].chosenItems.filter((c) => c.id === id)[0];
 
         return {
             card,
-            index: dustbins[(day-1)].chosenItems.indexOf(card),
+            index: dustbins[(day - 1)].chosenItems.indexOf(card),
         };
-    },[dustbins]);
+    }, [dustbins]);
 
-    const moveCard = useCallback((id, atIndex,day) => {
-        const { card, index } = findCard(id,day);
+    const moveCard = useCallback((id, atIndex, day) => {
+        const {card, index} = findCard(id, day);
         const newDustbins = dustbins;
-        newDustbins[(day-1)].chosenItems.splice(index,1);
-        newDustbins[(day-1)].chosenItems.splice(atIndex,0,card);
+        newDustbins[(day - 1)].chosenItems.splice(index, 1);
+        newDustbins[(day - 1)].chosenItems.splice(atIndex, 0, card);
         setDustbins(newDustbins)
-    },[findCard,dustbins,setDustbins]);
+    }, [findCard, dustbins, setDustbins]);
 
-    const deleteCard = useCallback((id,day)=>{
-        const { card, index } = findCard(id,day);
+    const deleteCard = useCallback((id, day) => {
+        const {card, index} = findCard(id, day);
         const newDustbins = [...dustbins];
-        newDustbins[(day-1)].chosenItems.splice(index,1);
+        newDustbins[(day - 1)].chosenItems.splice(index, 1);
         setDustbins(newDustbins)
 
-        calculateTotal(newDustbins[(day-1)].chosenItems,(day-1))
+        calculateTotal(newDustbins[(day - 1)].chosenItems, (day - 1))
 
 
-    },[findCard,dustbins,setDustbins]);
+    }, [findCard, dustbins, setDustbins]);
 
-    const getNutByIndex = useCallback((index)=>{
-            if (index===0){
-                return day1nut;
-           }else if (index===1){
-                return day2nut
-            }else if (index===2){
-                return day3nut
-            }
+    const getNutByIndex = useCallback((index) => {
+        if (index === 0) {
+            return day1nut;
+        } else if (index === 1) {
+            return day2nut
+        } else if (index === 2) {
+            return day3nut
+        }
 
     })
 
@@ -349,17 +349,17 @@ function SummaryPage() {
                     {chosenList.map((item, index) => {
                         return (
                             <>
-                            {/*<p>{JSON.stringify(dustbins)}</p>*/}
-                            <CardItem
-                                key={index}
-                                content={item.recipe_name}
-                                recipe_image={item.recipe_image}
-                                recipe_name={item.recipe_name}
-                                recipe_id={item.recipe_id}
-                                recipe_nutrition={item.recipe_nutrition}
-                                ingredients={item.ingredients}
-                                directions={item.directions}
-                            />
+                                {/*<p>{JSON.stringify(dustbins)}</p>*/}
+                                <CardItem
+                                    key={index}
+                                    content={item.recipe_name}
+                                    recipe_image={item.recipe_image}
+                                    recipe_name={item.recipe_name}
+                                    recipe_id={item.recipe_id}
+                                    recipe_nutrition={item.recipe_nutrition}
+                                    ingredients={item.ingredients}
+                                    directions={item.directions}
+                                />
                             </>
                         )
                     })}
@@ -389,7 +389,7 @@ function SummaryPage() {
                                  }
 
                         />
-                     ))}
+                    ))}
                 </div>
 
             </DndProvider>
