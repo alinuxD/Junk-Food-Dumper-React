@@ -105,7 +105,18 @@ function DietPlanPage() {
     // window.sessionStorage.setItem("recipes",JSON.stringify(list))
     // window.sessionStorage.setItem("goBack",queryFather)
     // const v = JSON.parse(window.sessionStorage.getItem("recipes"))
-    let [nameList, setNameList] = useState([])
+    const [nameList, setNameList] = useState(()=>{
+        try {
+            let a = JSON.parse(window.sessionStorage.getItem("recipes"))
+            if (a!=null){
+                return a
+            }else {
+                return []
+            }
+        }catch (e) {
+            return []
+        }
+    })
     const [refresh,setRefresh] = useState(false);
     let [newRecipe,setRecipe] = useState(JSON.parse(window.sessionStorage.getItem("recipes")))
 
@@ -200,6 +211,7 @@ function DietPlanPage() {
 
 
     useEffect(() =>{
+
         const recipes = JSON.parse(window.sessionStorage.getItem("recipes"))
 
 

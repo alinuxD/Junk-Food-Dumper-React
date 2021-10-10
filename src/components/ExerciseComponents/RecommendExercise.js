@@ -13,19 +13,27 @@ function RecommendExercise(props){
 
     // weight = <div>this.props.weight</div>
     const exercise = { "exerciseList" : [
-            { "name":"Cycling, mountain bike, bmx" , "calories": "1.750729719" },
-            {"name":"Stationary cycling, moderate", "calories":"1.441339355"},
-            {"name":"Circuit training, minimal rest", "calories":"1.647825266"},
-            {"name":"Weight lifting, light workout", "calories":"0.617426722"},
-            {"name":"Stair machine", "calories":"1.85295717"},
-            {"name":"Ski machine", "calories":"1.441339355"},
-            {"name":"Stretching, hatha yoga", "calories":"0.82323563"},
-            {"name":"Running, general", "calories":"1.647825266"},
+            { "name":"Walking 2.0 mph" , "calories": "0.411617815" },
+            {"name":"Playing Catch", "calories":"0.515199272"},
+            {"name":"Bird watching", "calories":"0.515199272"},
+            {"name":"Playing with animals", "calories":"0.515199272"},
+            {"name":"Playing volleyball", "calories":"0.617426722"},
+            {"name":"Walking the dog", "calories":"0.617426722"},
+            {"name":"Walking 3.0 mph", "calories":"0.679710997"},
+            {"name":"Cycling < 10 mph", "calories":"0.82323563"},
             {"name":"Badminton", "calories":"0.92749409"},
-            {"name":"Boxing, in ring", "calories":"2.471060896"}]};
+            {"name":"Table tennis", "calories":"0.82323563"},
+            {"name":"Tai chi", "calories":"0.82323563"},
+            {"name":"Ballet", "calories":"0.92749409"},
+            {"name":"Basketball", "calories":"0.92749409"},
+            {"name":"Softball, Baseball", "calories":"1.02972154"},
+            {"name":"Walking 4.0 mph", "calories":"1.02972154"},
+
+        
+        ]};
 
     var randomList=[]
-    while (randomList.length<3){
+    while (randomList.length<7){
         var num= parseInt(Math.floor(Math.random()*10))
         if (randomList.indexOf(num)==-1){
             randomList.push(num)
@@ -38,26 +46,42 @@ function RecommendExercise(props){
         <>
          
             <Row>    
-                <Col className="ml-auto  text-center">
-                    <h2 className="title"><FaListUl/> Recommended Exercise</h2>
+                <Col style={{padding:'50px'}}>
+                    <h2 align='center' className="title">Recommended Exercise</h2>
                     <h4>
                         <table>
                             <tbody>
                             <tr>
-                                <th>Exercise Name</th>
-                                <th>Calories Burnt / Hour</th>
+                                <th align='center'>Exercise Name</th>
+                                <th align='center'>Calories Burnt / Hour</th>
                             </tr>
                             <tr >
                                 <td>{exercise.exerciseList[randomList[0]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td>{round(exercise.exerciseList[randomList[0]].calories*parseInt(props.value),2)}</td>
+                                <td align='center'>{round(exercise.exerciseList[randomList[0]].calories*parseInt(props.value),2)}</td>
                             </tr>
                             <tr >
                                 <td>{exercise.exerciseList[randomList[1]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td>{round(exercise.exerciseList[randomList[1]].calories*parseInt(props.value),2)}</td>
+                                <td align='center'>{round(exercise.exerciseList[randomList[1]].calories*parseInt(props.value),2)}</td>
                             </tr >
                             <tr>
                                 <td>{exercise.exerciseList[randomList[2]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td>{round(exercise.exerciseList[randomList[2]].calories*parseInt(props.value),2)}</td>
+                                <td align='center'>{round(exercise.exerciseList[randomList[2]].calories*parseInt(props.value),2)}</td>
+                            </tr>
+                            <tr >
+                                <td>{exercise.exerciseList[randomList[3]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td align='center'>{round(exercise.exerciseList[randomList[3]].calories*parseInt(props.value),2)}</td>
+                            </tr>
+                            <tr >
+                                <td>{exercise.exerciseList[randomList[4]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td align='center'>{round(exercise.exerciseList[randomList[4]].calories*parseInt(props.value),2)}</td>
+                            </tr>
+                            <tr>
+                                <td>{exercise.exerciseList[randomList[5]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td align='center'>{round(exercise.exerciseList[randomList[5]].calories*parseInt(props.value),2)}</td>
+                            </tr>
+                            <tr >
+                                <td>{exercise.exerciseList[randomList[6]].name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td align='center'>{round(exercise.exerciseList[randomList[6]].calories*parseInt(props.value),2)}</td>
                             </tr>
                             </tbody>
                         </table>
