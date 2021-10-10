@@ -198,7 +198,7 @@ function BmiPage() {
         }
 
     }
-
+       
     return (
         <>
             <HomeNavbar />
@@ -360,11 +360,15 @@ function BmiPage() {
                                         Get Your BMI!
                                     </Button>
                                     <div style={{display:exerciseDivDisplay}}>
+
+                                        
                                         <h2 className="title" style={{marginTop: '100px',position:'relative'}} ><FaReact/> Recommended Calorie Intake Per Day </h2>
 
                                         {/* Recommend Calories Bar */}
                                         <p style={{marginTop: '50px'}}>
+
                                             <RecommendCaloriesbar gender={gender} age={age}/>
+
                                         </p>
 
 
