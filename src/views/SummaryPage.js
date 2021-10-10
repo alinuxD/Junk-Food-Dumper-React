@@ -88,12 +88,32 @@ function SummaryPage() {
                 console.log(err)
             })
 
-            try {
-                recipeImage = res.data.recipe.recipe_images.recipe_image
+            console.log(typeof res.data.recipe.recipe_images)
+            try
+            {
+                console.log("开始读取图片")
+                let tempImgData = res.data.recipe.recipe_images.recipe_image
+                console.log(typeof tempImgData)
+                if (typeof tempImgData ==='string')
+                {
+                    console.log("读取到单一图片")
+                    console.log(tempImgData)
+                    recipeImage = tempImgData
+                }
+                else if (typeof tempImgData ==='object')
+                {
+                    console.log("读取到一个List")
+                    let imgAddress = tempImgData[0]
+                    console.log(imgAddress)
+                    recipeImage = tempImgData[0]
+                }
             }
-            catch (err){
+            catch (err)
+            {
+                console.log("没有图片图片")
                 recipeImage = defaultImage
             }
+
 
             //份数
             try {

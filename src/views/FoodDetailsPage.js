@@ -177,15 +177,31 @@ function FoodDetailsPage(props) {
                     setFat('-')
                 }
 
-
-                try {
-                    setRecipeImage(res.data.recipe.recipe_images.recipe_image)
+                console.log(typeof res.data.recipe.recipe_images)
+                try
+                {
+                    console.log("开始读取图片")
+                    let tempImgData = res.data.recipe.recipe_images.recipe_image
+                    console.log(typeof tempImgData)
+                    if (typeof tempImgData ==='string')
+                    {
+                        console.log("读取到单一图片")
+                        console.log(tempImgData)
+                        setRecipeImage(tempImgData)
+                    }
+                    else if (typeof tempImgData ==='object')
+                    {
+                        console.log("读取到一个List")
+                        let imgAddress = tempImgData[0]
+                        console.log(imgAddress)
+                        setRecipeImage(tempImgData[0])
+                    }
                 }
-                catch (err){
+                catch (err)
+                {
+                    console.log("没有图片")
                     setRecipeImage(defaultImage)
                 }
-
-
 
                 if (typeof res.data.recipe.ingredients.ingredient==='object')
                 {
@@ -487,7 +503,6 @@ function FoodDetailsPage(props) {
                                     </button>
                                 </a>
                                 <PrintSingleRecipe idNo = {props.match.params.id}/>
-
                             </div>
 
                         </Container>
