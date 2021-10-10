@@ -31,23 +31,6 @@ function round(number, precision) {
 }
 
 function concatId(){
-    const list = [
-        // {
-        //     recipe_id:3629531,
-        //     recipe_name:'222222'
-        // },
-        // {
-        //     recipe_id:53697,
-        //     recipe_name:'zzz'
-        // },
-        // {
-        //     recipe_id:5062321,
-        //     recipe_name:'ffff'
-        // }
-    ]
-    // const strList =JSON.stringify(list)
-    // localStorage.setItem('id',strList)
-    //
     let tempList =JSON.parse(sessionStorage.getItem('recipes'))
     if (tempList==null){
         tempList=[]
@@ -301,8 +284,18 @@ function SummaryPage() {
         <>
             <HomeNavbar/>
             <SummaryPageHeader/>
+            <div style={{display:'flex', justifyContent:'space-between'}}>
+            <h3 style={{marginLeft: '50px',marginTop:'50px'}}>Your Chosen Recipes:</h3>
+                <p style={{color:'black',fontWeight:'1000',fontSize: '1.5em',textAlign:'right',marginTop:'50px',marginRight:'50px'}}>Your Recommended Calorie intake
 
-            <h3 style={{margin: '50px'}}>Your Chosen Recipes</h3>
+                    <p style={{color:'green',fontWeight:'1000',fontSize: '1.2em',marginLeft:'20px'}}>
+                        {parseInt(window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[1])
+                        +' - '
+                        +parseInt(window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[1])}
+                        <span style={{color:'black',fontWeight:'500',fontSize: '0.5em',marginLeft:'10px'}}>Cal Per Day</span>
+                    </p>
+                </p>
+            </div>
             <DndProvider backend={HTML5Backend}>
                 <div style={card}>
                     {chosenList.map((item, index) => {
