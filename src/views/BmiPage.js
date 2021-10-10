@@ -114,6 +114,7 @@ function BmiPage() {
     function onclickButton(e){
         setQuery(e.target.value)
         window.sessionStorage.setItem("goBack",query)
+        window.sessionStorage.setItem("page","0")
 
     }
     const history = useHistory();

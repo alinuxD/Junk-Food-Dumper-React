@@ -391,7 +391,7 @@ function DietPlanPage() {
                 <FoodSearchHeader setQueryFather ={setQueryFather}/>
                 <div className="DietPlanPage" style={{with:'10%',minWidth:'1800px'}}>
 
-                    <div className="demo_line_01" style={{fontSize: '1.3em',color:'#3C7A33',fontWeight:'700',position:'relative',textAlign:'center',marginTop:'40px'}}>Recommended Recipes</div>
+                    <div className="demo_line_01" style={{fontSize: '2em',color:'#3C7A33',fontWeight:'700',position:'relative',textAlign:'center',marginTop:'40px'}}>Recommended Recipes</div>
                     <Col md="8" style={{float:'left'}}>
                         <h2 style={{fontSize: '2em',color:'black',fontWeight:'700',marginTop:'70px',marginLeft:'180px',marginBottom:'150px',position:'relative'}}>
                             <img src={require("assets/img/Ingredients.png").default} style={{float:'left',height:'80px',width:'80px',marginTop:'-40px',marginRight:'10px'}}/>Your Ingredients: {window.sessionStorage.getItem("goBack")}
@@ -409,7 +409,6 @@ function DietPlanPage() {
                         <div style={{marginLeft:'600px',marginTop:'1400px',position:'absolute'}}>
 
                             <ReactPaginate
-
                                 previousLabel={"prev"}
                                 nextLabel={"next"}
                                 breakLabel={"..."}
@@ -420,7 +419,12 @@ function DietPlanPage() {
                                 onPageChange={handlePageClick}
                                 containerClassName={"pagination"}
                                 subContainerClassName={"pages pagination"}
-                                activeClassName={"active"}/>
+                                activeClassName={"active"}
+                                forcePage={parseInt(window.sessionStorage.getItem("page"))}
+                                // onPageActive={handlePageClick}
+                                // disableInitialCallback={true}
+                                // eventListener={"onPageChange"}
+                            />
                         </div>
 
                     </div>

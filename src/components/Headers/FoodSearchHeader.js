@@ -32,7 +32,7 @@ function FoodSearchHeader(props) {
         }
     });
     // const setFoodInput = props;
-    const [query, setQuery] = React.useState('')
+    const [query, setQuery] = React.useState(window.sessionStorage.getItem("goBack"))
     const {setQueryFather} = props
 
 
@@ -40,6 +40,7 @@ function FoodSearchHeader(props) {
         setQueryFather(query)
         // window.sessionStorage.removeItem("goBack")
         window.sessionStorage.setItem("goBack",query)
+        window.sessionStorage.setItem("page","0")
 
     }
 
