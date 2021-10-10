@@ -501,9 +501,10 @@ function FoodDetailsPage(props) {
                                     <button className="buttonStyle">
                                         Back to Search Page
                                     </button>
-                                </a>
-                                <PrintSingleRecipe idNo = {props.match.params.id}/>
+                                    &nbsp;&nbsp;&nbsp;
+                                </a>     <PrintSingleRecipe idNo = {props.match.params.id}/>
                             </div>
+
 
                         </Container>
                     </div>

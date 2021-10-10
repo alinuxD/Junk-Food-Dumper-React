@@ -404,7 +404,7 @@ function PrintSingleRecipe(props) {
             </div>
             <ReactToPrint
                 content={() => document.getElementById('printArea')}
-                trigger={() => <button className="buttonStyle">Print to PDF!</button>}
+                trigger={() => <button className="buttonStyle">Export to PDF!</button>}
             />
         </>
 
