@@ -59,7 +59,7 @@ function RecommendCaloriesbar(props){
 
                     </svg>
 
-                    <h5 style={help}><AiOutlineQuestionCircle/> Active level were labeled with different color, the number were the min and max calories intake </h5> 
+                    <text style={help}><h5 style={{color:'blue'}}><AiOutlineQuestionCircle/> Active level were labeled with different color, the number were the min and max calories intake </h5></text> 
                 </div>
             </>
         )
@@ -69,6 +69,14 @@ function RecommendCaloriesbar(props){
 
             return (
                 <>   
+                <div
+                    onMouseEnter={e => {
+                    setHelp({display: 'block'});
+                }}
+                    onMouseLeave={e => {
+                        setHelp({display: 'none'})
+                }}
+                >
                     <svg width="1200" height="200">
                         
                         <rect x='120' y='50' rx="20" ry="20" width="33%" height="40px" style={{fill:"lightblue"}} />
@@ -85,14 +93,24 @@ function RecommendCaloriesbar(props){
                         <text x='545' y='40' style={{fontWeight:'bold'}}>Moderately Active</text>
                         <text x='900' y='40' style={{fontWeight:'bold'}}>Very Active</text>
 
-                    </svg>
+                    </svg> 
+                    <text style={help}><h5 style={{color:'blue'}}><AiOutlineQuestionCircle/> Active level were labeled with different color, the number were the min and max calories intake </h5></text> 
+                </div>
                 </>
 
             )
         } else {
 
             return (
-                <>     
+                <>
+                <div
+                    onMouseEnter={e => {
+                    setHelp({display: 'block'});
+                }}
+                    onMouseLeave={e => {
+                        setHelp({display: 'none'})
+                }}
+                >
                 <svg width="1200" height="200">
                     
                 <rect x='120' y='50' rx="20" ry="20" width="33%" height="40px" style={{fill:"lightblue"}} />
@@ -111,6 +129,8 @@ function RecommendCaloriesbar(props){
 
     
                 </svg>
+                <text style={help}><h5 style={{color:'blue'}}><AiOutlineQuestionCircle/> Active level were labeled with different color, the number were the min and max calories intake </h5></text> 
+                </div>
             </>
             )
         }
