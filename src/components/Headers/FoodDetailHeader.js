@@ -34,7 +34,7 @@ function FoodDetailHeader() {
                 ></div>
                 <div className="content-center">
                     <Container>
-                        <h1 className="title">Recipe Details
+                        <h1 className="title"  style={{color:'white'}}>Recipe Details
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </h1>

@@ -30,7 +30,7 @@ function SummaryPageHeader() {
                     className="page-header-image"
                     style={{
                         backgroundImage:
-                            "url(" + require("assets/img/BMI2.jpeg").default + ")",
+                            "url(" + require("assets/img/summaryPageHeader.jpg").default + ")",
                     }}
                     ref={pageHeader}
                 ></div>

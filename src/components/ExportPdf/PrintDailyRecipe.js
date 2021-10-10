@@ -200,8 +200,8 @@ function PrintDailyRecipe(props) {
                                                             <br></br>
                                                         </p>
                                                     </Row>
-                                                    <div>
-                                                        <Col md='4' style={{width: '35%', float: "left"}}>
+                                                    <div style={{width: '100%'}}>
+                                                        <div style={{width: '40%',float: "left"}}>
                                                             <p style={{fontWeight: 'bold'}}>
                                                                 Ingredients:
                                                             </p>
@@ -215,9 +215,9 @@ function PrintDailyRecipe(props) {
                                                                     </Label>
                                                                 </FormGroup>
                                                             ))}
-                                                        </Col>
+                                                        </div>
 
-                                                        <Col md='6' style={{width: '100%'}}>
+                                                        <div style={{width: '60%',float: "left"}}>
                                                             <p style={{fontWeight: 'bold'}}>
                                                                 Description:
                                                             </p>
@@ -228,10 +228,10 @@ function PrintDailyRecipe(props) {
                                                                         {item.direction_description}</li>
                                                                 ))}
                                                             </div>
-                                                        </Col>
-                                                        <Row style={{width: '100%'}}/>
-                                                        <hr/>
+                                                        </div>
                                                     </div>
+                                                    <Row style={{width: '100%'}}/>
+                                                    <hr/>
                                                 </li>
                                             ))}
                                         </li>
