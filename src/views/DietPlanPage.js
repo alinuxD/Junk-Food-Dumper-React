@@ -38,7 +38,7 @@ function show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,
                 </Tooltip>
             </p>
 
-            <p style={{color:'black',fontWeight:'1000',fontSize: '1.1em',textAlign:'center',marginLeft:'450px',marginTop:'150px',marginBottom:'250px',paddingRight:'40px'}}>
+            <p style={{color:'black',fontWeight:'1000',fontSize: '1.1em',textAlign:'center',marginLeft:'150px',marginTop:'150px',marginBottom:'250px',paddingRight:'60px',paddingLeft:'240px'}}>
                 Kindly add your favourite recipes
 
                 <p style={{color:'#285B5D',fontWeight:'800',fontSize: '1em',textAlign:'center',paddingLeft:'25px',marginLeft:'-60px',marginTop:'30px'}}>
@@ -198,7 +198,7 @@ function DietPlanPage() {
         // forceUpdate()
     },[findRecipe,nameList,setNameList,setRefresh]);
 
-    //
+
     useEffect(() =>{
         const recipes = JSON.parse(window.sessionStorage.getItem("recipes"))
 
@@ -292,20 +292,7 @@ function DietPlanPage() {
                 </Col>
                 <Col md="9" style={{float:'right',textAlign:'left',paddingLeft:'30px',paddingBottom:'20px'}}>
                     <p style={{fontSize: '1.2em',color:'black',fontWeight:'700',position: 'absolute'}}>
-                        <p style={{fontSize: '1.1em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'0px'}}>{pd.recipe_name}</p>
-                        {/*<Checkbox*/}
-                        {/*    style={{marginBottom:'20px',marginLeft:'20px', transitionDuration:"1s"}}*/}
-                        {/*    icon={<img src={require("assets/img/check.png").default} style={{ width:'30px',height:'30px' }} alt="" />}*/}
-                        {/*    borderColor="#D7C629"*/}
-                        {/*    borderRadius={30}*/}
-                        {/*    size={30}*/}
-                        {/*    label={<p style={{fontSize: '1.2em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'-5px'}}>{pd.recipe_name}</p>}*/}
-                        {/*    right={true}*/}
-                        {/*    onChange={() => {setList(list => [...list,Checkbox.state.checked+""])}}*/}
-                        {/*    checked={false}*/}
-                        {/*/>*/}
-
-
+                        <p style={{fontSize: '1.1em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'0px',marginRight:'-10px'}}>{pd.recipe_name}</p>
                     </p>
 
                     <p style={{fontSize: '1.0em',color:'black',fontWeight:'500',paddingRight:'0px',position: 'absolute',marginTop:'30px',paddingBottom:'50px'}}>
@@ -335,7 +322,7 @@ function DietPlanPage() {
                                 className="newButton4"
                                 onClick={() => {
                                     addRecipe(pd);
-                                    window.sessionStorage.setItem("recipes",JSON.stringify(nameList));
+                                    // window.sessionStorage.setItem("recipes",JSON.stringify(nameList));
                                     // const { isInList, index } = findRecipe(pd.recipe_id);
                                     // if (!isInList) {
                                     //     setList(list => [...list,pd])
