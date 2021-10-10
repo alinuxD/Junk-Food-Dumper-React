@@ -9,7 +9,7 @@ import { Container } from "reactstrap";
 function NewFooter() {
     return (
         <>
-            <footer className="footer footer-default">
+            <footer className="footer1 footer-default">
                 <Container style={{marginTop:'1500px'}}>
                     <nav>
                         <ul>

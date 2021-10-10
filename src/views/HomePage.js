@@ -172,33 +172,33 @@ function HomePage() {
                             <h1 style={{fontWeight: 'bold'}} align="center">What is Junk Food Dumper?</h1>
 
                             {/* Icon Section */}
-                            <Row>
+                            <Row style={{marginTop:'60px'}}>
                                 <Col align="center">
                                     <div>
-                                        <Link to="/bmi-page">
+                                        {/* <Link to="/bmi-page"> */}
                                             <img src={bmiIcon} height="200" alt="BMI_Calculator"/>
-                                        </Link>
+                                        {/* </Link> */}
                                     </div>
                                 </Col>
                                 <Col align="center">
                                     <div>
-                                        <Link to='/diet-plan-page'>
+                                        {/* <Link to='/diet-plan-page'> */}
                                             <img src={recipeIcon} alt="Healthy Recipe"/>
-                                        </Link>
+                                        {/* </Link> */}
                                     </div>
                                 </Col>
                                 <Col align='center'>
                                     <div>
-                                        <Link to='/summary-page'>
+                                        {/* <Link to='/summary-page'> */}
                                             <img src={exportIcon} alt="Export Recipe"/>
-                                        </Link>
+                                        {/* </Link> */}
                                     </div>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col align="center"><h4>Calculate Your BMI</h4></Col>
                                 <Col align="center"><h4>Plan Healthy Recipes</h4></Col>
-                                <Col align="center"><h4>Maintain Healthy Diet</h4></Col>
+                                <Col align="center"><h4>Maintain Healthy Lifestyle</h4></Col>
 
                             </Row>
 
