@@ -11,9 +11,9 @@ function FoodDetailHeader() {
     React.useEffect(() => {
         if (window.innerWidth > 991) {
             const updateScroll = () => {
-                let windowScrollTop = window.pageYOffset / 3;
-                pageHeader.current.style.transform =
-                    "translate3d(0," + windowScrollTop + "px,0)";
+                // let windowScrollTop = window.pageYOffset / 3;
+                // pageHeader.current.style.transform =
+                //     "translate3d(0," + windowScrollTop + "px,0)";
             };
             window.addEventListener("scroll", updateScroll);
             return function cleanup() {
@@ -34,7 +34,7 @@ function FoodDetailHeader() {
                 ></div>
                 <div className="content-center">
                     <Container>
-                        <h1 className="title">Recipe Details
+                        <h1 className="title"  style={{color:'white'}}>Recipe Details
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </h1>

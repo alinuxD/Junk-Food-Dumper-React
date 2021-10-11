@@ -4,22 +4,31 @@ import React, {useState} from "react";
 import {
     Button,
     Input,
-
     InputGroup,
     Container,
     Col, CardBody,  Card
 } from "reactstrap";
 
-// core components
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Link } from "react-router-dom";
 
+// core components
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import BMIPageHeader from "../components/Headers/BMIPageHeader";
 import RecommendExercise from "../components/ExerciseComponents/RecommendExercise";
-
 import ReactSpeedometer from "react-d3-speedometer";
-import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
+// import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
 
+import 'react-tabs/style/react-tabs.css';
+import FoodSearch from "../components/Headers/FoodSearch";
+import RecommendCaloriesbar from "components/ExerciseComponents/RecommendCaloriesbar.js";
+
+// icon
+import {FaRegQuestionCircle, FaReact, FaRunning} from 'react-icons/fa'
+import {AiOutlineCalculator, AiOutlineWarning} from 'react-icons/ai'
+import RecommendIntake from "../components/ExerciseComponents/RecommendIntake";
+import {useHistory} from "react-router";
 
 
 function calcu(weight,height) {
@@ -99,7 +108,49 @@ function BmiPage() {
     const [bmiDivDisplay, setBmiDivDisplay]=useState('none')
     const [guide, setGuide] = React.useState([12,15,24,27,29]);
     const [gender, setGender] = React.useState('Male');
+    const [query, setQuery] = React.useState('')
 
+
+    function onclickButton(e){
+        setQuery(e.target.value)
+        window.sessionStorage.setItem("goBack",query)
+        window.sessionStorage.setItem("page","0")
+
+    }
+    const history = useHistory();
+    const handleKeypress = e => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            onclickButton(e)
+            history.push("/diet-plan-page")
+        }
+    };
+
+    const radioInput = {
+        marginRight: '0px',
+        // marginLeft: '-20px',
+        marginTop:'5px'
+    }
+    const radionValue = {
+        fontSize: '15px',
+        // marginRight: '50px',
+        // marginLeft:'-20px'
+    }
+
+    const guideline = {
+        "under13":{
+            "Male":{"sed":"1,600 - 2,000","mod":"1,800 - 2,200","act":"2,000 - 2,600"},
+            "Female":{"sed":"1,400 - 1,600","mod":"1,600 - 2,000","act":"1,800 - 2,200"}
+        },
+        "over13":{
+            "Male":{"sed":"2,000 - 2,400","mod":"2,400 - 2,800","act":"2,800 - 3,200"},
+            "Female":{"sed":"1,800","mod":"2,000","act":"2,400"}
+        }
+    }
+
+
+    const [ageLine,setAgeLine]= useState(age<=13 ? "under13":"over13")
+    const [activity,setActivity]= useState("mod")
 
     const [firstFocus, setFirstFocus] = React.useState(false);
     // const [lastFocus, setLastFocus] = React.useState(false);
@@ -117,14 +168,31 @@ function BmiPage() {
 
     //submit Button function
     const submitValue = () => {
+        window.sessionStorage.setItem("BMI","get")
+        // window.sessionStorage.setItem("recipes",'[{"recipe_nutrition":{"protein":"5.31","fat":"5.45","calories":"0",' +
+        //     '"carbohydrate":"40.31"},"recipe_id":"123","recipe_image":"https://m.ftscrt.com/static/recipe/9e62858e-9962-4354-95e2-8c6ecc96eda4.jpg",' +
+        //     '"recipe_description":"A 4-ingredient breakfast without added sugars.","recipe_name":"","recipe_url":"https://www.fatsecret.com/recipes/52653062-pancakes/Default.aspx"}]')
+
         let calValue = calcu(weight,height)
         if (age >=10 && age<=15   ){
+            if (height<100 || height>200){
+                alert("Height and  weight are out of range!")
+                return
+            }else if (weight<20 || weight>150){
+                alert("Height and  weight are out of range!")
+                return
+            }
 
             if (calValue != "error"){
-                setSpeedBmi(calValue)
+                if (calValue > select(age,gender)[4]){
+                    setSpeedBmi(select(age,gender)[4])
+                } else
+                {
+                setSpeedBmi(calValue)}
                 setExerciseWeight(weight)
                 setGuide(select(age,gender))
                 setExerciseDivDisplay("block")
+                setBmiDivDisplay("block")
             }else{
                 setExerciseDivDisplay("none")
                 setBmiDivDisplay("none")
@@ -138,7 +206,7 @@ function BmiPage() {
         }
 
     }
-
+       
     return (
         <>
             <HomeNavbar />
@@ -147,8 +215,8 @@ function BmiPage() {
                 <div className="section section-about-us">
                     <Container>
 
-                        <h2 style={{color: 'black',fontSize: '35px',textAlign: 'left'}} className="title">What is BMI? Why is it important?</h2>
-                        <h5 className="description" style={{color: 'black',fontSize: '20px',textAlign: 'left', fontWeight:'normal'}}>
+                        <h2 style={{color: 'black',fontSize: '35px',textAlign: 'left'}} className="title"><FaRegQuestionCircle/> Why Body Mass Index (BMI) is Important?</h2>
+                        <h5 className="description" style={{color: 'black',fontSize: '20px',textAlign: 'justify', fontWeight:'normal'}}>
                             BMI is a calculation of your size that takes into account
                             your height and weight. It's a good way to gauge whether
                             your weight is in healthy proportion to your height.
@@ -157,13 +225,12 @@ function BmiPage() {
                             the healthy range. BMI helps in averting major health issues.
                         </h5>
 
-                        <div className="separator separator-primary"></div>
                         <div className="section-story-overview">
 
                             <Col className="ml-auto mr-auto" md="20">
                                 <Card className="card-login card-plain">
 
-                                    <h2 className="title">Calculate your child’s BMI below</h2>
+                                    <h2 className="title"><AiOutlineCalculator/> Calculate Your Child’s BMI Below</h2>
                                     <Col md="6" style={{float:'left'}}>
 
                                         <InputGroup >
@@ -182,7 +249,7 @@ function BmiPage() {
 
 
                                         <InputGroup style={{marginBottom: '20px',marginTop:'10px'}}>
-                                            <h4 >
+                                            <h4 style={{marginTop:'29px'}}>
                                                 Age(10-15):
                                             </h4>
 
@@ -196,7 +263,7 @@ function BmiPage() {
 
                                         </InputGroup>
                                         <InputGroup style={{marginBottom: '20px'}}>
-                                            <h4 style={{marginRight: '15px',marginLeft: '13px'}}>
+                                            <h4 style={{marginLeft: '35px',marginTop:'29px'}}>
                                                 Height:
                                             </h4>
 
@@ -209,12 +276,12 @@ function BmiPage() {
                                                    onChange = {e => setHeight(e.target.value)}
                                             ></Input>
 
-                                            <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
+                                            <h4 style={{marginRight: '150px',marginLeft:'-120px',marginTop:'29px'}}>
                                                 cm
                                             </h4>
                                         </InputGroup>
                                         <InputGroup style={{marginBottom: '60px'}}>
-                                            <h4 style={{marginRight: '15px',marginLeft: '13px'}}>
+                                            <h4 style={{marginLeft: '35px',marginTop:'29px'}}>
                                                 Weight:
                                             </h4>
 
@@ -227,7 +294,7 @@ function BmiPage() {
                                                    onChange = {e => setWeight(e.target.value)}
                                             ></Input>
 
-                                            <h4 style={{marginRight: '150px',marginLeft:'-120px'}}>
+                                            <h4 style={{marginRight: '150px',marginLeft:'-120px',marginTop:'29px'}}>
                                                 Kg
                                             </h4>
                                         </InputGroup>
@@ -248,8 +315,9 @@ function BmiPage() {
 
                                         <CardBody style={{marginTop:'120px',fontSize: '3.0em',marginLeft: '-65px',marginRight:'150px'}}>
                                             <ReactSpeedometer
+                                            currentValueText="Body Mass Index (BMI)"
                                                 value={speedBmi}
-                                                minValue={12}
+                                                minValue={guide[0]}
                                                 maxValue={guide[4]}
                                                 segments={4}
                                                 customSegmentStops={guide}
@@ -279,7 +347,7 @@ function BmiPage() {
                                                 segmentColors={["#F5CD19", "#5BE12C", "#ECA522","#D44124"]}
                                                 needleTransition="easeElastic"
                                                 needleTransitionDuration={3000}
-                                                ringWidth={70}
+                                                ringWidth={100}
                                                 width={500}
                                                 // height={500}
                                                 labelFontSize={"16"}
@@ -292,7 +360,7 @@ function BmiPage() {
                                     <Button
                                         id="click"
                                         block
-                                        className="newButton"
+                                        className="button6"
                                         color="info"
                                         onClick={submitValue}
                                         size="lg"
@@ -300,14 +368,19 @@ function BmiPage() {
                                         Get Your BMI!
                                     </Button>
                                     <div style={{display:exerciseDivDisplay}}>
-                                        <h2 className="title" style={{marginTop: '100px'}}>Recommended Calorie intake </h2>
-                                        <Col md="6" style={{float:'left'}}>
-                                            <CardBody className="anotherNewCard2" style={{marginTop: "36px"}}>
-                                                <RecommendIntake gender={gender} age={age}/>
 
-                                            </CardBody>
-                                        </Col>
-                                        <Col md="5" style={{float:'right',marginRight: '15px',marginLeft: '10px'}}>
+                                        
+                                        <h2 className="title" style={{marginTop: '100px',position:'relative'}} ><FaReact/> Recommended Calorie Intake Per Day </h2>
+
+                                        {/* Recommend Calories Bar */}
+                                        <p style={{marginTop: '50px'}}>
+
+                                            <RecommendCaloriesbar gender={gender} age={age}/>
+
+                                        </p>
+
+
+                                        {/* <Col md="5" style={{float:'right',marginRight: '15px',marginLeft: '10px'}}>
                                             <CardBody className="anotherNewCard1" style={{marginTop: "-100px"}}>
                                                 <div
                                                     className="image-container image-right"
@@ -322,19 +395,67 @@ function BmiPage() {
                                                 ></div>
                                             </CardBody>
                                         </Col>
+                                        <RecommendCaloriesbar gender={gender} age={age}/> */}
+
+                                        {/* Description for different active level */}
+                                        <h4><FaRunning/> Less Active - Briskly walking less than 30 minutes a day. Spend most of the day sitting</h4>
+                                        <h4><FaRunning/><FaRunning/> Moderately Active - Briskly walking at least one hour and 45 minutes.</h4>
+                                        <h4><FaRunning/><FaRunning/><FaRunning/> Very Active - Briskly walking more then four hours and 15 minutes a day. Jogging two hours a day</h4>
+                                        <h2 className="title" style={{marginTop:'50px'}}> <AiOutlineWarning/> What do you think your children activity level is ? </h2>
+                                        <RecommendIntake gender={gender} age={age}/>
                                     </div>
+
                                 </Card>
                             </Col>
                         </div>
-
                         <div style={{display:exerciseDivDisplay}}>
-                            <h3 style={{textAlign: "center"}}>Want to look for some good recipes!&nbsp;  <a href="/diet-plan-page">Click Here!</a></h3>
-                            <RecommendExercise value={exerciseWeight}/>
+
+                            {/* tab object */}
+                            <Tabs >
+                                <TabList>
+                                <Tab><h3 style={{fontWeight:'bold'}}>Move More</h3></Tab>
+                                <Tab><h3 style={{fontWeight:'bold'}}>Eat Better</h3></Tab>
+                                </TabList>
+
+                                <TabPanel style={{backgroundColor:'#eeeeee'}}>
+                                    <div>
+                                    <RecommendExercise value={exerciseWeight}/>
+                                    </div>
+                                </TabPanel>
+
+                                {/* Recipe search bar */}
+                                <TabPanel style={{height:'500px', backgroundColor:'white'}}>
+                                    <h1 align='center' style={{color: 'black',fontSize: '35px', padding:'50px'}}  className="title">
+                                        Looking for healthy recipes? Just type
+                                    </h1>
+                                        <Input
+                                            style ={{fontSize: '1.7em', width: '900px', borderWidth:'3px',orderRadius: '15px', marginLeft:'100px', backgroundColor:'white', borderColor:'black'}}
+                                            type='text'
+                                            name='condition' 
+                                            placeholder="Enter your ingredients"
+                                            onChange={e => {setQuery(e.target.value)
+                                                window.sessionStorage.setItem("goBack",e.target.value)}}
+                                            value={query}
+                                            onKeyPress={handleKeypress}>
+                                        </Input>
+                                        {/* Link the parameter to the diet plan page */}
+                                        <Link to={{
+                                            pathname:"/diet-plan-page",
+                                            search:'',
+                                            state:{key:query} }}>
+                                        <Button onClick={onclickButton} style={{marginLeft:'45%',color:'white', backgroundColor:'#38761d'}}>Search</Button>
+                                        </Link>
+                                </TabPanel>
+                                
+                            </Tabs>
                         </div>
+
                     </Container>
+
                 </div>
 
                 <DefaultFooter />
+
             </div>
         </>
     );

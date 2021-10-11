@@ -50,13 +50,14 @@ function HomeNavbar() {
                 <Container>
                     <div className="navbar-translate" >
                         <NavbarBrand
-                            to="/home-page"
-                            // target="_blank"
                             id="navbar-brand"
                             style={{fontSize: "1.8571em"}}
                         >
+                            <NavLink to="/home-page" tag={Link} >
+                                Junk Food Dumper
+                            </NavLink>
 
-                            Junk Food Dumper
+
                         </NavbarBrand>
 
                         <UncontrolledTooltip target="#navbar-brand">
@@ -89,11 +90,6 @@ function HomeNavbar() {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink to="/about-page" tag={Link} style={{fontSize: "1em"}}>
-                                    About
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink to="/bmi-page" tag={Link} style={{fontSize: "1em"}}>
                                     BMI Calculator
                                 </NavLink>
@@ -106,6 +102,11 @@ function HomeNavbar() {
                             <NavItem>
                                 <NavLink to="/diet-plan-page" tag={Link} style={{fontSize: "1em"}}>
                                     Diet Plan
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink to="/about-page" tag={Link} style={{fontSize: "1em"}}>
+                                    About
                                 </NavLink>
                             </NavItem>
                             {/*<NavItem>*/}

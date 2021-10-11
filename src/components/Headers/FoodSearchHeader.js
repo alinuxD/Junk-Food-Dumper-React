@@ -21,9 +21,9 @@ function FoodSearchHeader(props) {
     React.useEffect(() => {
         if (window.innerWidth > 991) {
             const updateScroll = () => {
-                let windowScrollTop = window.pageYOffset / 3;
-                pageHeader.current.style.transform =
-                    "translate3d(0," + windowScrollTop + "px,0)";
+                // let windowScrollTop = window.pageYOffset / 3;
+                // pageHeader.current.style.transform =
+                //     "translate3d(0," + windowScrollTop + "px,0)";
             };
             window.addEventListener("scroll", updateScroll);
             return function cleanup() {
@@ -32,13 +32,16 @@ function FoodSearchHeader(props) {
         }
     });
     // const setFoodInput = props;
-    const [query, setQuery] = React.useState('')
+    const [query, setQuery] = React.useState(window.sessionStorage.getItem("goBack"))
     const {setQueryFather} = props
-
 
 
     function onclickButton(){
         setQueryFather(query)
+        // window.sessionStorage.removeItem("goBack")
+        window.sessionStorage.setItem("goBack",query)
+        window.sessionStorage.setItem("page","0")
+
     }
 
     const handleKeypress = e => {

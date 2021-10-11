@@ -4,7 +4,7 @@ import React from "react";
 import {
     Container,
     Row,
-    Col,
+    Col, NavLink,
 } from "reactstrap";
 
 // core components
@@ -12,6 +12,7 @@ import {
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import AboutPageHeader from "../components/Headers/AboutPageHeader";
+import {Link} from "react-router-dom";
 
 function AboutPage() {
     // const [firstFocus, setFirstFocus] = React.useState(false);
@@ -27,6 +28,7 @@ function AboutPage() {
             document.body.classList.remove("sidebar-collapse");
         };
     }, []);
+
     return (
         <>
             <HomeNavbar />
@@ -45,7 +47,7 @@ function AboutPage() {
                                         <b>We offer various features that can help you to keep your child healthy.
                                         We allow you to calculate BMI and recommend the necessary calorie intake,
                                         so that you know how many calories your child needs to be healthy.
-                                        You can also plan your own diet by looking at various feedbacks we give you based on what food items you want in your meal.
+                                        You can also plan your own diet by looking at the various recipes that are suggested to you based on the ingredients you want in your meal
                                             We aim to aid you in keeping your child healthy in a easy and effective way.</b><br></br><br></br>
                                     </p>
                                     <div
@@ -91,17 +93,20 @@ function AboutPage() {
                                     <b>FAQs</b>
                                 </h2>
                                 <p>
-                                    <b><b>What if my child is allergic to certain food items?</b></b><br></br>
-                                    <b>You can avoid looking for food items if you know that your child is already allergic to it.
+                                    <b><b>What if my child is allergic to certain food ingredients?</b></b><br></br>
+                                    <b>You can avoid looking for food ingredients that your child is already allergic to it.
                                     Our recommendation would be to consult a GP to know what if your child can eat a certain food item.</b><br></br>
 
                                     <b><b>How do I know that this information is accurate?</b></b><br></br>
-                                    <b>All the information provided to you is based on turtable sources.
-                                    Click here for further information.</b><br></br>
+                                    <b>All the information provided to you is based on trustable sources.</b><br></br>
 
                                     <b><b>How is BMI calculated?</b></b><br></br>
-                                    <b>BMI is a calculation of your size that takes into account your height and weight.
-                                        Click here to calculate your child’s BMI.</b>
+                                    <b>BMI is a calculation of your size that takes into account your height and weight. </b>
+                                    {/*<b>Click here to calculate your child’s BMI.</b>*/}
+
+                                    <Link to={"/bmi-page"} >
+                                        <b><u>Click here to calculate your child’s BMI.</u></b>
+                                    </Link>
                                 </p>
                             </Col>
                         </Row>
