@@ -175,6 +175,13 @@ function BmiPage() {
 
         let calValue = calcu(weight,height)
         if (age >=10 && age<=15   ){
+            if (height<100 || height>200){
+                alert("Height and  weight are out of range!")
+                return
+            }else if (weight<20 || weight>150){
+                alert("Height and  weight are out of range!")
+                return
+            }
 
             if (calValue != "error"){
                 if (calValue > select(age,gender)[4]){

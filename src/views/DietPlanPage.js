@@ -28,7 +28,7 @@ function show(getBMI,list,totalCal,deleteRecipe,setList,setTotalCal,setNameList,
                 {parseInt(window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[0].split(',')[1])
                 +' - '
                 +parseInt(window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[0]+window.sessionStorage.getItem("Cal").split(' - ')[1].split(',')[1])}
-                <span style={{color:'black',fontWeight:'500',fontSize: '0.5em',marginLeft:'10px'}}>Kcal Per Day</span>
+                <span style={{color:'black',fontWeight:'500',fontSize: '0.5em',marginLeft:'10px'}}>Cal Per Day</span>
             </p>
             <p style={{marginLeft:'-420px',position:'absolute',fontWeight:'500'}}>
                 <Tooltip title="Create Your Plan">
