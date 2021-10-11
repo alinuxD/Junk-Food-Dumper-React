@@ -1,1 +1,1 @@
-export const BACK_END_URL = "http://api.junkfooddumper.tk/"
+export const BACK_END_URL = "https://api.junkfooddumper.tk/"

@@ -83,7 +83,7 @@ function SummaryPage() {
             // console.log(id)
             // console.log("id显示结束")
             let res = await axios.get(
-                `http://api.junkfooddumper.tk/recipes/get?id=${id}`,
+                `https://api.junkfooddumper.tk/recipes/get?id=${id}`,
             ).catch(err => {
                 console.log(err)
             })

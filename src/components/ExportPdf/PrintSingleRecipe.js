@@ -57,7 +57,7 @@ function PrintSingleRecipe(props) {
     useEffect(() => {
         const id = props.idNo
         axios.get(
-            `http://api.junkfooddumper.tk/recipes/get?id=${id}`,
+            `https://api.junkfooddumper.tk/recipes/get?id=${id}`,
         )
             .then(res => {
                 if (typeof res.data.recipe.recipe_name === 'string') {

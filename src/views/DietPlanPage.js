@@ -276,7 +276,7 @@ function DietPlanPage() {
             history.replace()
         }
 
-        const resp = await axios.get(`http://api.junkfooddumper.tk/recipes/search`, {
+        const resp = await axios.get(`https://api.junkfooddumper.tk/recipes/search`, {
             params: {
                 query: window.sessionStorage.getItem("goBack"),
             }
