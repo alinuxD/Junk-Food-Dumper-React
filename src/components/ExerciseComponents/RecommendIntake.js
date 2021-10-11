@@ -115,11 +115,11 @@ function RecommendIntake(props){
                 </p>
                 <CardBody >
                     <span style={{textAlign: 'left',fontWeight: '700',fontSize: '2em',marginLeft:'280px'}}>
-                        Your calorie:
+                        Your calories:
                     </span>
                     <span className="text-center" style={{color:"#ffbe00",fontWeight: 700,textAlign: 'left',fontSize: '2em',marginLeft:'15px'}}>{guideline[ageLine][props.gender][activity]} </span>
                     <span style={{textAlign: 'left',fontWeight: '700',fontSize: '2em'}}>
-                        &nbsp;Kcal Per Day
+                        &nbsp;Cal Per Day
                     </span>
                 </CardBody>
 

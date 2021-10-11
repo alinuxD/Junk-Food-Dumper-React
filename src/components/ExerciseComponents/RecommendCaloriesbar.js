@@ -59,7 +59,7 @@ function RecommendCaloriesbar(props){
 
                     </svg>
 
-                    <text style={help}><h5 style={{color:'blue'}}><AiOutlineQuestionCircle/> Active level were labeled with different color, the number were the min and max calories intake </h5></text> 
+                    <text style={help}><h5 style={{color:'blue'}}><AiOutlineQuestionCircle/> Active levels are labeled with different colors, the numbers are the min and max calorie intakes </h5></text> 
                 </div>
             </>
         )

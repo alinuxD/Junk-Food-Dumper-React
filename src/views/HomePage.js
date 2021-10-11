@@ -254,7 +254,7 @@ function HomePage() {
                                 </Row>
                             </div>
                             <div>
-                                <h3 className="title" align='center'> How Children Obesity Become an Issue?</h3>
+                                <h3 className="title" align='center'> Why Children Obesity is an Issue?</h3>
                                 <Row margin="0">
                                     <Col align="left">
                                         <div>
@@ -289,7 +289,7 @@ function HomePage() {
                                 {/* Know more tab */}
                                 <div style={{display: showMore}}>
                                     <hr style={{color: "#808080", backgroundColor: "#808080", height: 3}}/>
-                                    <h3 className="title" align='center'>Children did not meet the daily requirement of consuming vegetables and fruits</h3>
+                                    <h3 className="title" align='center'>Children did not meet the daily requirement of vegetables and fruits</h3>
                                     <FruitConsumption/>
                                     <VegConsumption/>
                                     <JunkFoodConsumption/>
