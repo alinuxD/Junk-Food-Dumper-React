@@ -114,8 +114,8 @@ function RecommendIntake(props){
                     </InputGroup>
                 </p>
                 <CardBody >
-                    <span style={{textAlign: 'left',fontWeight: '700',fontSize: '2em',marginLeft:'280px'}}>
-                        Your calorie:
+                    <span style={{textAlign: 'left',fontWeight: '700',fontSize: '2em',marginLeft:'180px'}}>
+                        Your child's calorie intake is
                     </span>
                     <span className="text-center" style={{color:"#ffbe00",fontWeight: 700,textAlign: 'left',fontSize: '2em',marginLeft:'15px'}}>{guideline[ageLine][props.gender][activity]} </span>
                     <span style={{textAlign: 'left',fontWeight: '700',fontSize: '2em'}}>
