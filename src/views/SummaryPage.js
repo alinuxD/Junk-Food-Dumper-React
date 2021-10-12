@@ -2,7 +2,7 @@ import HomeNavbar from "../components/Navbars/HomeNavbar";
 import React, {useState, useCallback} from "react";
 import 'antd/dist/antd.css';
 
-import {Modal} from 'antd'
+import {Drawer, Modal} from 'antd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import {DndProvider} from "react-dnd";
 import axios from "axios";
@@ -16,6 +16,7 @@ import SummaryPageHeader from "../components/Headers/SummaryPageHeader";
 import Bucket from "../components/Summary/Bucket";
 import CardItem from "../components/Summary/CardItem";
 import PrintDailyRecipe from "../components/ExportPdf/PrintDailyRecipe";
+import InfoCircleOutlined from "@ant-design/icons/lib/icons/InfoCircleOutlined";
 
 function confirm() {
     Modal.confirm({
@@ -66,6 +67,16 @@ function SummaryPage() {
     const idDic = concatId()
     const [chosenList,setChosenList] = useState([])
 
+    const [visible, setVisible] = useState(false);
+
+
+    const onClose = () => {
+        setVisible(false);
+    };
+
+    const showDrawer = () => {
+        setVisible(true);
+    };
 
     const getData = async ()=>{
         let dayData = []
@@ -305,7 +316,13 @@ function SummaryPage() {
             <HomeNavbar/>
             <SummaryPageHeader/>
             <div style={{display:'flex', justifyContent:'space-between'}}>
-            <h3 style={{marginLeft: '50px',marginTop:'50px'}}>Your Chosen Recipes:</h3>
+                <div style={{display:'flex'}}>
+                    <h3 style={{marginLeft: '50px',marginTop:'50px'}}>Your Chosen Recipes:</h3>
+                    <Tooltip title="Help Information">
+                        <Button type="dashed" shape="circle" icon={<InfoCircleOutlined />} onClick={showDrawer} style={{marginLeft:'10px', marginTop: '55px'}}/>
+                    </Tooltip>
+                </div>
+
                 <p style={{color:'black',fontWeight:'1000',fontSize: '1.5em',textAlign:'right',marginTop:'50px',marginRight:'50px'}}>Your Recommended Calorie intake
 
                     <p style={{color:'green',fontWeight:'1000',fontSize: '1.2em',marginLeft:'20px'}}>
@@ -321,6 +338,7 @@ function SummaryPage() {
                     {chosenList.map((item, index) => {
                         return (
                             <>
+
                             <CardItem
                                 key={index}
                                 content={item.recipe_name}
@@ -331,6 +349,7 @@ function SummaryPage() {
                                 ingredients={item.ingredients}
                                 directions={item.directions}
                             />
+
                             </>
                         )
                     })}
@@ -364,6 +383,15 @@ function SummaryPage() {
             <div style={{textAlign:'center',marginTop:'50px',height:'100px'}}>
                 <PrintDailyRecipe idList={dustbins} style={{marginBottom:'100px'}}/>
             </div>
+
+
+            <Modal title="Help information" visible={visible} onOk={onClose} onCancel={onClose} okText='Ok' cancelText="Cancel">
+                <p>You can drag and drop the chosen recipes into the tiles below to create a healthy eating plan.</p>
+                <p>The graph’s information is color coded as follows:</p>
+                <p>Red – You have exceeded your intake (&gt;120%).</p>
+                <p>Green – You have required amount of nutrients (&gt;80%).</p>
+                <p>Yellow – You can add more recipes to meet your nutrient requirement (&lt;80%).</p>
+            </Modal>
 
         </>
 
