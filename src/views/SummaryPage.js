@@ -355,7 +355,7 @@ function SummaryPage() {
                     })}
                     <div style={{textAlign:'center'}}>
                     <Tooltip title="Add More Recipe">
-                        <Button shape="circle"  size="large" >
+                        <Button shape="circle"  size="large" style={{marginTop:'100px',marginLeft:'50px'}}>
                             <Link to="/diet-plan-page" >+</Link>
                         </Button>
                     </Tooltip>
