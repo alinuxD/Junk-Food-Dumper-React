@@ -304,7 +304,7 @@ function DietPlanPage() {
                 </Col>
                 <Col md="9" style={{float:'right',textAlign:'left',paddingLeft:'30px',paddingBottom:'20px'}}>
                     <p style={{fontSize: '1.2em',color:'black',fontWeight:'700',position: 'absolute'}}>
-                        <p style={{fontSize: '1.1em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'0px',marginRight:'-10px'}}>{pd.recipe_name}</p>
+                        <p style={{fontSize: '1.1em',color:'black',fontWeight:'700',paddingLeft:'0px',marginLeft:'0px',marginRight:'-5000px',paddingRight:'-1000px',position: 'relative'}}>{pd.recipe_name}</p>
                     </p>
 
                     <p style={{fontSize: '1.0em',color:'black',fontWeight:'500',paddingRight:'0px',position: 'absolute',marginTop:'30px',paddingBottom:'50px'}}>

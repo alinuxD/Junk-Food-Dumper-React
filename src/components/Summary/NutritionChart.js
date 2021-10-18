@@ -24,7 +24,7 @@ function customData(data) {
 
     for (let i=0;i<temp.length;i++){
         const tempValue =temp[i]
-        if (tempValue>100){
+        if (tempValue>120){
 
             temp[i] = {
                 value: tempValue,
@@ -32,7 +32,7 @@ function customData(data) {
                     color: '#e40000'
                 }
             }
-        }else if (tempValue<60){
+        }else if (tempValue<80){
             temp[i] = {
                 value: tempValue,
                 itemStyle: {
